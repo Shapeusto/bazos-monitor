@@ -1,4 +1,4 @@
-"""Saved searches and watched categories (Phase 5).
+"""Saved searches and watched categories.
 
 Repository layer over the ``saved_searches`` and ``watched_categories`` tables.
 Counts are computed with the shared :func:`queries.count_listings_split`

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase 1 (recon): download real sample pages from bazos.sk.
+"""Download real sample pages from bazos.sk.
 
 This script only *downloads and stores* raw HTML so that selectors and URL
 patterns can be derived from real pages instead of guesses. It contains no

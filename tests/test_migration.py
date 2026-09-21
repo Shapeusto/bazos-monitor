@@ -73,7 +73,7 @@ def test_migration_is_safe_to_run_twice(tmp_path):
 def test_migration_v3_to_latest_keeps_existing_data(tmp_path):
     path = tmp_path / "v3.db"
     db = Database(path)
-    # Simulate a v3 database by removing the Phase 5/6 tables and rolling back.
+    # Simulate a v3 database by removing the later tables and rolling back.
     for table in ("saved_searches", "watched_categories", "settings", "batch_runs"):
         db.conn.execute(f"DROP TABLE {table}")
     db.conn.execute("UPDATE schema_version SET version = 3")

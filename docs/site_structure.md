@@ -1,4 +1,4 @@
-# bazos.sk – site structure (Phase 1 recon)
+# bazos.sk – site structure
 
 Everything below is based on real pages downloaded by `src/fetch_samples.py`
 into `tests/fixtures/` (no guessed selectors). The site was served as UTF-8

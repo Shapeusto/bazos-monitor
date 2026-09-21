@@ -43,7 +43,7 @@ min_batch_interval_minutes: 15 # skip watched categories scraped less recently
 # --- Web UI ---------------------------------------------------------------
 web_port: 5000                 # always bound to 127.0.0.1
 
-# --- Phase 1 recon sample URLs --------------------------------------------
+# --- Sample URLs (used by src/fetch_samples.py) ----------------------------
 samples:
   category_url: "https://pc.bazos.sk/notebook/"
   edge_case_url: "https://zvierata.bazos.sk/"

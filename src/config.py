@@ -48,7 +48,7 @@ def resolve_db_path(config: dict[str, Any]) -> pathlib.Path:
 
 
 def politeness_from_config(config: dict[str, Any]) -> dict[str, Any]:
-    """Legacy dict shape used by the Phase 1/2 downloaders."""
+    """Legacy dict shape used by the sample/catalog downloaders."""
     return {
         "user_agent": config["user_agent"],
         "delay_seconds": config["request_delay_seconds"],

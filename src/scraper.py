@@ -1,4 +1,4 @@
-"""Incremental category scraper (Phase 3).
+"""Incremental category scraper.
 
 Fetches category *listing* pages only (never detail pages, never query-string
 URLs) and stores results in SQLite. The incremental stop rule accounts for the

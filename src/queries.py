@@ -10,7 +10,7 @@ Location filters: a listing whose location cannot be determined
 listing disappear. See :func:`search_listings` for the precise semantics.
 
 The same :func:`filters_from_dict` / :func:`filters_to_dict` pair is used by
-the Flask route and by saved searches (Phase 5); there is no second filter
+the Flask route and by saved searches; there is no second filter
 parser.
 """
 
@@ -45,7 +45,7 @@ _EXTRA_COLUMNS = """
       WHERE ph2.listing_id = l.id ORDER BY ph2.id DESC LIMIT 1 OFFSET 1) AS previous_price_amount
 """
 
-# URL keys of the filters that a saved search persists (Phase 5). Transient
+# URL keys of the filters that a saved search persists. Transient
 # state (page, include_hidden, only_new, only_favorites, ...) is deliberately
 # not stored; ``only_new`` is applied at open time via a link flag.
 PERSISTENT_URL_KEYS = (
@@ -276,7 +276,7 @@ def filters_to_dict(filters: Any) -> dict[str, Any]:
 
 
 def saved_search_filters(filters: Any) -> dict[str, Any]:
-    """The persistent subset of a filter set, as URL-style keys (Phase 5)."""
+    """The persistent subset of a filter set, as URL-style keys."""
     url = filters_to_dict(filters)
     return {key: url[key] for key in PERSISTENT_URL_KEYS if key in url}
 

@@ -1,4 +1,4 @@
-"""Batch update of watched categories (Phase 5).
+"""Batch update of watched categories.
 
 Runs :func:`scraper.scrape_category` sequentially for every watched category.
 The caller (``jobs.ScrapeCoordinator``) holds the single global scrape lock, so

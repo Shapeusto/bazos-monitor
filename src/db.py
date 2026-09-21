@@ -1,16 +1,16 @@
 """SQLite storage for the bazos.sk scraper.
 
 Schema version history:
-  * v1 (Phase 3): listings, listing_categories, price_history, scrape_runs.
-  * v2 (Phase 4): listings gains ``search_text`` (normalised title +
+  * v1: listings, listing_categories, price_history, scrape_runs.
+  * v2: listings gains ``search_text`` (normalised title +
     description), ``is_hidden``, ``is_favorite`` and ``kraj``; existing rows
     are backfilled.
-  * v3 (Phase 4b): listings gains ``psc_status`` (valid/placeholder/foreign/
+  * v3: listings gains ``psc_status`` (valid/placeholder/foreign/
     unmatched/missing) and ``kraj_source`` (psc/city/NULL); existing rows are
     reclassified via ``geo.classify_location``.
-  * v4 (Phase 5): ``saved_searches`` and ``watched_categories`` tables.
+  * v4: ``saved_searches`` and ``watched_categories`` tables.
     Existing data is untouched.
-  * v5 (Phase 6): ``settings`` (key/value) and ``batch_runs`` (history of
+  * v5: ``settings`` (key/value) and ``batch_runs`` (history of
     watched-category batches). Existing data is untouched.
   * v6: listings gains ``search_desc`` (normalised short description only) so
     the UI can search the description independently of the title; existing

@@ -1,4 +1,4 @@
-"""Parser for bazos.sk category listing pages (Phase 2).
+"""Parser for bazos.sk category listing pages.
 
 All selectors and formats are derived from the real pages saved in
 ``tests/fixtures/`` (see ``docs/site_structure.md``). This module performs no

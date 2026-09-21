@@ -266,7 +266,7 @@ def test_city_field_is_escaped(tmp_path):
 
 
 # ---------------------------------------------------------------------------
-# Phase 5: saved searches, watched categories, batch
+# Saved searches, watched categories, batch
 # ---------------------------------------------------------------------------
 
 def test_saved_searches_api(tmp_path):
@@ -399,7 +399,7 @@ def test_saved_search_name_is_escaped(tmp_path):
 
 
 # ---------------------------------------------------------------------------
-# Phase 6: scheduler + new-count
+# Scheduler + new-count
 # ---------------------------------------------------------------------------
 
 def test_foreign_badge(tmp_path):

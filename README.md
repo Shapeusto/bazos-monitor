@@ -1,350 +1,182 @@
-# bazos_scraper
+# Bazoš monitor
 
-A small, polite scraper for [bazos.sk](https://www.bazos.sk) (Slovak
-classifieds). Long-term goal: show **new** listings from chosen categories,
-sortable by price and filterable by keywords in the listing description.
+A personal, polite scraper and local web UI for
+[bazos.sk](https://www.bazos.sk), the Slovak classifieds site. It keeps
+listings from the categories you choose in a local SQLite database and lets
+you search, filter and sort them offline.
 
-This repository is being built in phases. **Phases 1 (recon), 2 (listing
-parser + category catalog), 3 (SQLite storage + incremental scraping CLI),
-4 (local web UI), 4b (location classification), 5 (saved searches + watched
-categories), 6 (automatic check / scheduler) and 7 (resumable full-category
-download) are done.** Notifications and detail-page fetching are not part of
-any phase yet.
+* **Local only.** The web server binds to `127.0.0.1` and talks only to the
+  local database. Nothing is uploaded anywhere.
+* **Private by design.** Seller names, phone numbers and e-mail addresses are
+  never read or stored.
+* **Polite.** Honest User-Agent, a delay between requests, retries with
+  backoff, an immediate stop on HTTP 403/429, and no query-string URLs.
 
-See [`changelog.md`](changelog.md) for the changes in each phase.
+## Features
 
-## How to run the app
+* Incremental scraping of any category from the catalog (20 sections +
+  449 subcategories); a run stops as soon as it reaches listings it already
+  knows.
+* **Download whole category** — a resumable mode that walks every page of a
+  category, with progress, ETA and coverage (`500 z ~6 386`), so you can see
+  *all* listings, not just the first few hundred.
+* **Age window** — only listings posted in the last N days (default **10**)
+  are scanned and shown; configurable, and can be turned off.
+* Local search: keywords (all / any / exclude), a description-only keyword
+  box, price range, price type, city, PSČ prefix, region, new / favourite /
+  hidden, "added within", relevance sort and pagination. Keyword, city and
+  description matching are diacritics-insensitive (`kosice` finds `Košice`).
+* Saved searches and watched categories.
+* One-click batch update of all watched categories, plus an optional automatic
+  scheduler.
+* Slovak UI with a light/dark theme, no CDNs and no front-end build step at
+  runtime.
+
+## Requirements
+
+* Python **3.11+** (tested on 3.14).
+* Node.js only if you want to rebuild the stylesheet — not needed to run.
+
+## Install
 
 Run everything from the project root (`bazos_scraper`).
 
-```
-cd bazos_scraper
+```bash
 python -m pip install -r requirements.txt
+```
+
+## Run the web UI
+
+```bash
 python -m src.web
 ```
 
 Then open <http://127.0.0.1:5000> (the port is `web_port` in `config.yaml`).
-The server binds only to `127.0.0.1` and talks only to the local SQLite
-database.
 
-The CLI works the same way, e.g.:
+## Run the CLI
 
-```
+```bash
 python -m src.cli stats
 python -m src.cli scrape --category pc/notebook
 ```
 
-**Windows tip.** Set UTF-8 mode first so Slovak diacritics and `€` render
-correctly in the console:
+**Windows tip.** Enable UTF-8 mode so Slovak diacritics and `€` render in the
+console:
 
 ```
 $env:PYTHONUTF8=1      # PowerShell
 set PYTHONUTF8=1       # cmd.exe
 ```
 
-## Phase 1 – recon
+Stored data is always correct UTF-8 either way.
 
-* Downloads real sample pages from bazos.sk and stores them as raw HTML under
-  `tests/fixtures/` so that selectors/URL patterns come from real pages.
-* Documents the site structure in [`docs/site_structure.md`](docs/site_structure.md).
+## Configuration (`config.yaml`)
 
-## Phase 2 – listing parser + category catalog
-
-* `src/parser.py` – `parse_listing_page(html, category_key)` returns a
-  `ParsedPage` with `Listing` dataclasses (id, url, title, short description,
-  price amount/type/text, city, PSČ, date, views, TOP flag).
-* `src/categories.py` + `categories.yaml` – the selectable catalog (20
-  top-level sections + 449 subcategories) with `load_categories()` and
-  `get_category(key)`.
-* `src/build_categories.py` – regenerates `categories.yaml` from the homepage
-  and the category map; `--verify` fetches 3 random categories and parses them.
-* `tests/test_parser.py` – offline parser tests (fixtures only).
-
-## Phase 3 – SQLite storage + incremental scraping CLI
-
-* `src/db.py` – SQLite schema (`listings`, `listing_categories`,
-  `price_history`, `scrape_runs`), versioned migrations, upsert and queries.
-* `src/scraper.py` – `scrape_category(...)` fetches listing pages only and
-  stops when it catches up (TOP-only pages are never a stop signal) or when
-  the page is older than the age window (`stop_reason=too_old`).
-* `src/cli.py` – command line (`categories`, `scrape`, `show`, `mark-seen`,
-  `stats`).
-* `src/fetcher.py` – shared polite HTTP layer: honest UA, delay, timeouts,
-  backoff, abort on 403/429, and a hard guard that **refuses any URL with a
-  query string** (`?`), since robots.txt disallows them.
-* `tests/test_db.py`, `tests/test_scraper.py`, `tests/test_cli.py` – offline.
-
-## Phase 4 – local web UI
-
-* `src/web/` – Flask app (`python -m src.web`), Jinja templates and vanilla JS.
-  Binds only to `127.0.0.1`; no CDNs, no frameworks, no build step.
-* `src/queries.py` – parameterised SQL search (keywords all/any/exclude, a
-  description-only keyword filter, price, price type, city, PSČ/kraj,
-  new/favorite/hidden, date ranges, relevance sort, pagination). City and
-  description matching are diacritics-insensitive.
-* `src/text.py` – `normalize_text` (lowercase + diacritics removed),
-  `parse_terms` and safe diacritics-insensitive keyword highlighting.
-* `src/geo.py` + `src/data/psc_kraje.csv` – PSČ -> kraj lookup.
-* DB migrated to schema v2: `search_text`, `is_hidden`, `is_favorite`, `kraj`.
-* `tests/test_text.py`, `test_geo.py`, `test_migration.py`, `test_queries.py`,
-  `test_web.py` – offline.
-
-## Phase 4b – location classification + unknown-location filter
-
-* `src/geo.py` – `classify_location(psc, city)` returns
-  `(kraj, psc_status, kraj_source)`. `psc_status` is one of `valid`,
-  `placeholder`, `foreign`, `unmatched`, `missing`; `kraj_source` is `psc`,
-  `city` or `None`. The city fallback uses `src/data/obce_kraje.csv`
-  (generated from the same gunsoft dataset) and only resolves names that map
-  to exactly one kraj.
-* DB migrated to schema v3: `psc_status`, `kraj_source` (+ index on
-  `psc_status`); all existing rows are reclassified.
-* `src/queries.py` – `include_unknown_location` (default on) keeps listings
-  with an unknown/invalid PSČ visible when a kraj or PSČ filter is active;
-  results carry a confirmed/unknown split.
-* `src/web/` – checkbox "Zahrnúť inzeráty s neznámym alebo neplatným PSČ",
-  a "PSČ neplatné" badge, a "~" marker for city-estimated kraj, the
-  "Kraj neznámy" option and the confirmed/unknown summary.
-* `python -m src.cli refresh-kraj` – recompute `kraj`, `psc_status` and
-  `kraj_source` for all stored listings.
-* `tests/test_geo.py`, `test_queries.py`, `test_db.py`, `test_migration.py`,
-  `test_web.py`, `test_cli.py` – extended.
-
-## Phase 5 – saved searches and watched categories
-
-* DB migrated to schema v4: `saved_searches` and `watched_categories` tables.
-* `src/queries.py` – the single filter parser is now `filters_from_dict` /
-  `filters_to_dict` (a validated `Filters` object), shared by the Flask route
-  and saved searches. `count_listings` / `count_listings_split` reuse the same
-  WHERE builder as `search_listings` (no duplicated SQL).
-* `src/saved.py` – CRUD for saved searches (`create`, `update`, `rename`,
-  `delete`, `list_saved_searches_with_counts`) and watched categories
-  (`watch_category`, `unwatch_category`, `list_watched`,
-  `overlap_warnings`). Name/category/limit validation lives here.
-* `src/batch.py` – `run_watched_update(force, deep)` scrapes every watched
-  category sequentially; skips recent ones, aborts on HTTP 403/429, supports
-  cancellation and reports per-category progress.
-* `src/jobs.py` – `ScrapeCoordinator` owns the single global scrape lock used
-  by both the single-category job and the batch (no two scrapes at once).
-* `src/web/` – sidebar with "Uložené hľadania" and "Sledované kategórie",
-  batch progress panel and the JSON API below.
-* `tests/test_saved.py`, `test_batch.py` – new; the rest extended.
-
-### API (Phase 5)
-
-| route | method | purpose |
+| key | default | meaning |
 | --- | --- | --- |
-| `/api/saved-searches` | GET | list saved searches with `total`/`new_count` |
-| `/api/saved-searches` | POST | create `{name, category_key, filters, sort}` |
-| `/api/saved-searches/<id>` | PUT | rename (`{name}`) and/or update filters |
-| `/api/saved-searches/<id>` | DELETE | delete |
-| `/api/watched` | GET | watched categories + overlap warnings |
-| `/api/watched` | POST | watch `{category_key}` |
-| `/api/watched` | DELETE | unwatch `{category_key}` |
-| `/api/batch/start` | POST | start `{force, deep}` |
-| `/api/batch/cancel` | POST | request cancellation |
-| `/api/batch/status` | GET | batch progress state |
+| `user_agent` | `bazos-personal-monitor/0.1 (personal use)` | HTTP User-Agent |
+| `request_delay_seconds` | `1.5` | minimum delay between any two requests |
+| `timeout_connect` / `timeout_read` | `10` / `30` | HTTP timeouts in seconds |
+| `max_retries` / `backoff_factor` | `3` / `2.0` | retries with exponential backoff (connection errors / 5xx) |
+| `db_path` | `data/bazos.db` | SQLite path, relative to the project root |
+| `first_run_max_pages` | `10` | page budget for a category with no stored listings yet |
+| `incremental_max_pages` | `25` | page budget for a category already in the DB |
+| `hard_max_pages` | `100` | absolute cap (also caps `--max-pages`) |
+| `max_listing_age_days` | `10` | scan/show only listings posted in the last N days; `0` disables |
+| `backfill_max_pages_per_run` | `1000` | pages per whole-category download (hard ceiling 2000) |
+| `placeholder_psc` | `["12345", "00000", …]` | PSČ values treated as "no real address" |
+| `max_saved_searches` | `50` | limit on saved searches |
+| `max_watched_categories` | `40` | limit on watched categories |
+| `min_batch_interval_minutes` | `15` | skip watched categories scraped more recently than this |
+| `web_port` | `5000` | local web port (bound to `127.0.0.1`) |
+| `samples` | – | URLs used by `src/fetch_samples.py` |
 
-All POST/PUT bodies must be JSON (otherwise 415). Starting a batch or a single
-scrape while another scrape runs returns 409 with a Slovak message.
+## Web UI
 
-## Phase 6 – automatic check (scheduler)
+* **Category picker** (top) — searchable, with per-category `total / new`
+  counts and coverage (`X z ~Y`, badge **kompletné**).
+* **Aktualizovať** — incremental scrape of the selected category in the
+  background.
+* **Stiahnuť celú kategóriu** — resumable download of every page. Shows an
+  estimate first, then a progress panel with a spinner, percentage, ETA and a
+  *Zrušiť* button. Large categories continue over several runs.
+* **Filters** — keywords, description-only, price, city, PSČ, region, "added
+  within", and a checkbox to turn the age window off. Filters live in the URL,
+  so any view is bookmarkable.
+* **Results** — sortable table (cards on mobile), row actions (seen / hide /
+  favourite) and bulk actions, without page reloads.
+* **Left sidebar** — saved searches and watched categories. Clicking a watched
+  category opens it like a search.
 
-* DB migrated to schema v5: `settings` (key/value) and `batch_runs` (history
-  of watched-category batches, with `trigger` `manual`/`scheduled`/`catch_up`).
-* `src/scheduler.py` – `Scheduler` with an injectable clock and wait mechanism.
-  Hard-coded limits: min interval **30 min**, max **1440 min**, default **60**;
-  busy lock postpones by 5 min; 3 consecutive failures pause; HTTP 403/429
-  pauses immediately (never auto re-enabled).
-* `src/jobs.py` – `ScrapeCoordinator.run_batch_locked()` lets the scheduler run
-  a batch through the *same* global lock as the manual paths.
-* Single-instance guard: `SingleInstanceLock` (`data/app.lock`, OS-level lock).
-* `src/web/` – "Automatická kontrola" panel, warning banners, live countdown,
-  tab title with the number of new listings.
-* `tests/test_scheduler.py` – new (fake clock, mocked batch, no network).
+### Age window
 
-### API (Phase 6)
+`max_listing_age_days` (default **10**, `0` disables) limits both scraping and
+display to listings posted within the last N days:
 
-| route | method | purpose |
-| --- | --- | --- |
-| `/api/scheduler` | GET | scheduler state (incl. `seconds_until_next_run`) |
-| `/api/scheduler/enable` | POST | enable (does not run immediately) |
-| `/api/scheduler/disable` | POST | disable |
-| `/api/scheduler/interval` | POST | set `{minutes}` (30–1440) |
-| `/api/scheduler/run-now` | POST | start a normal batch (`trigger=manual`); 409 if busy |
-| `/api/new-count` | GET | unseen, non-hidden listings in watched categories |
+* the scraper **skips** listings older than `today − N` and stops when a page's
+  non-TOP listings are all older than the window (`stop_reason=too_old`). This
+  applies to the whole-category download too;
+* the UI shows only listings inside the window by default. The checkbox
+  **„Len inzeráty z posledných 10 dní“** (in *Zobrazenie*) turns it off
+  (`?days=0` shows everything stored).
 
-### API (Phase 7 – full-category download)
+The window is **sliding**: it is always computed from today's date and compared
+with the listing's own posting date (`posted_date`).
 
-| route | method | purpose |
-| --- | --- | --- |
-| `/api/backfill/start` | POST | start/resume a full-category download `{category_key, restart?}`; 202 or 409 if busy |
-| `/api/backfill/status` | GET | current backfill progress state |
-| `/api/backfill/cancel` | POST | request cancellation (state saved, resumable) |
-| `/api/coverage` | GET | `{stored, estimate, backfill_status, complete, ...}` for `?category_key=` |
+### Whole-category download
 
-## Automatická kontrola
+The incremental scraper stops on `caught_up` (the right behaviour for
+monitoring new ads), so a category stuck at ~500 stored listings would never go
+deeper. **Stiahnuť celú kategóriu** is a separate, **manual** mode that ignores
+`caught_up` and walks every page:
 
-Panel **Automatická kontrola** v ľavom stĺpci umožňuje zapnúť pravidelnú
-kontrolu sledovaných kategórií. Interval sa nastavuje z presetov (30 min, 1 h,
-2 h, 6 h, 12 h, 24 h) alebo vlastným počtom minút; **minimum je 30 minút**
-(pevné, nedá sa znížiť konfigom ani API). Po zapnutí sa kontrola **nespustí
-hneď** – prvý beh je naplánovaný na `teraz + interval`; okamžité spustenie je
-tlačidlo **Spustiť teraz**.
+* resumable — the state (`next_page`, counters) is saved after every page; a
+  cancelled or crashed run continues where it stopped, and **Začať odznova**
+  restarts from page 1;
+* capped per run by `backfill_max_pages_per_run`; a bigger category is
+  downloaded over several runs (`paused` / `cap_reached`);
+* after it finishes, one normal incremental pass over pages 1–2 runs
+  automatically so the newest ads are not missed;
+* each run is recorded in `scrape_runs` with `mode = backfill`;
+* it uses the same polite session and the same global scrape lock. The
+  scheduler and the batch update never start it.
 
-* Beží len kým je aplikácia spustená (`python -m src.web`). Zelený stav
-  „Čaká" ukazuje odpočet „Ďalšia kontrola o N min".
-* Ak je práve spustené ručné sťahovanie alebo dávka, kontrola sa **odloží
-  o 5 minút** (nezmešká sa).
-* Po reštarte, ak bol naplánovaný čas už preč, prebehne **jeden** náhradný beh
-  (`catch_up`) po 60 s; zmeškané intervaly sa neopakujú jednotlivo.
-* Ak nie sú žiadne sledované kategórie, stav je „Nie je čo sledovať" a čas sa
-  posunie.
-* Pri HTTP 403/429 (blokovanie) sa kontrola **vypne** a zobrazí sa červený
-  banner; zapnúť ju treba ručne. Po troch neúspešných behoch sa pozastaví
-  (žltý banner). Úspešný beh vynuluje počítadlo.
-* Panel zobrazuje posledný výsledok („Naposledy: pred 12 min, 5 nových").
-* V záhlaví karty je počet nových inzerátov vo sledovaných kategóriách
-  (`(12) Bazoš monitor`), obnovovaný každú minútu.
-* `data/app.lock` (OS-level zámok) bráni spusteniu druhej inštancie.
+### Saved searches and watched categories
 
-## Časové okno (posledných N dní)
+* **Saved searches** store the current filters under a name (1–60 chars,
+  unique): category, keywords, prices, price type, PSČ, region, city, age
+  window and "added within"; `sort` is stored separately. Transient filters
+  (`only_new`, `include_hidden`, `only_favorites`, `include_unknown_location`,
+  page) are not stored. Each item shows how many new listings match.
+* **Watched categories** are scraped together with **Aktualizovať všetky
+  sledované** (a batch). Optionally *vynútiť* (ignore the interval) and *hlbšie
+  prehľadanie*. The batch runs sequentially and uses the single global lock, so
+  no other scrape can run at the same time (409 otherwise). Categories scraped
+  less than `min_batch_interval_minutes` ago are skipped unless forced. An
+  HTTP 403/429 aborts the whole batch.
 
-`max_listing_age_days` (predvolene **10**, `0` vypne) obmedzuje skenovanie aj
-zobrazovanie na inzeráty zverejnené za posledných N dní:
+### Automatic check (scheduler)
 
-* scraper inzeráty staršie ako `dnes − N` **preskočí** (neuloží) a keď na
-  stránke narazí na samé staré (nie TOP) inzeráty, zastaví sa
-  (`stop_reason=too_old`). Platí to aj pre backfill;
-* UI predvolene zobrazuje len inzeráty z tohto okna. Vo filtri „Zobrazenie“
-  je pole **„Len inzeráty z posledných 10 dní“** – po odškrtnutí sa zobrazí
-  všetko uložené (`?days=0`).
+The **Automatická kontrola** panel runs a watched-category batch on a timer.
+The interval is chosen from presets (30 min, 1 h, 2 h, 6 h, 12 h, 24 h) or a
+custom value; the **minimum is 30 minutes** (hard-coded). Enabling does not run
+immediately — the first run is `now + interval`; use **Spustiť teraz** to run
+at once.
 
-Okno je **posuvné**: počíta sa vždy od dnešného dátumu, takže sa každý deň
-posunie. Porovnáva sa s dátumom zverejnenia inzerátu (`posted_date`, ten
-`[d.m.rrrr]` pri inzeráte). Filter `days` sa ukladá v uložených hľadaniach.
+* Runs only while the app is running (`python -m src.web`).
+* If a manual scrape or batch is in progress, the check is postponed by 5
+  minutes.
+* After a restart, if the scheduled time has passed, exactly one catch-up run
+  happens after 60 s.
+* On HTTP 403/429 the check is disabled and must be re-enabled manually; after
+  three consecutive failures it is paused.
+* `data/app.lock` (OS-level lock) prevents a second instance from starting.
 
-## Stiahnutie celej kategórie (Phase 7)
+## CLI reference
 
-Inkrementálne sťahovanie sa zámerne zastaví hneď, ako narazí na už známu
-stránku (`caught_up`) – to je správne pre sledovanie noviniek, ale znamená, že
-kategória „zaseknutá“ na ~500 inzerátoch sa už nikdy nedostane hlbšie. Preto
-existuje samostatný, **ručný** režim, ktorý prejde všetky stránky kategórie.
+Run from the project root.
 
-* DB migrovaná na schému v7: `backfill_state`, `category_stats` a stĺpec
-  `scrape_runs.mode`.
-* Tlačidlo **Stiahnuť celú kategóriu** (vpravo hore, len keď je vybraná
-  konkrétna kategória) otvorí potvrdenie s odhadom: „Stiahne sa približne
-  P stránok (~N inzerátov), potrvá aspoň M minút.“ Čísla pochádzajú z posledného
-  známeho počtu zo stránky (`total_count`) a z `request_delay_seconds`.
-* Ak je kategória väčšia než `backfill_max_pages_per_run` (predvolene 1000
-  strán, pevný strop 2000 v kóde), upozorní, že sa stiahne na viac behov.
-* Priebeh (progress bar `pages_done / pages_estimated`, nové inzeráty, ETA,
-  „Zrušiť“) je v paneli **Stiahnutie celej kategórie**. Pri 403/429 sa beh
-  preruší a zobrazí sa rovnaké červené upozornenie ako inde.
-* **Obnoviteľnosť:** stav sa po každej stránke ukladá do tabuľky
-  `backfill_state` (`status`, `next_page`, `total_estimate`, `pages_done`).
-  Zrušený alebo spadnutý beh (aj „running“ po páde procesu) pokračuje od
-  `next_page`; tlačidlo **Začať odznova** spustí od strany 1.
-* Po dokončení sa automaticky spustí jeden bežný inkrementálny sken strán 1–2,
-  aby nechýbali najnovšie inzeráty.
-* Každý beh je v `scrape_runs` s `mode` = `backfill` (bežné behy majú
-  `incremental`), so štandardnými počítadlami a `stop_reason`
-  (`last_page`, `cap_reached`, `cancelled`, `blocked`, `failed`).
-* Používa **rovnaký** `PoliteSession`, rovnaký globálny zámok
-  (`ScrapeCoordinator`) a rovnaké pravidlá (žiadne query stringy, žiadne
-  zníženie oneskorenia, okamžitý stop pri 403/429). **Scheduler ani dávka
-  nikdy nespúšťajú backfill** – je výhradne manuálny.
-* `category_coverage(category_key)` vracia `stored` (uložené inzeráty),
-  `estimate` (posledný známy `total_count`), `backfill_status` a `complete`.
-  V prehľade kategórií sa zobrazuje „500 z ~6 386“ a odznak **kompletné**.
-
-Nastavenie v `config.yaml`: `backfill_max_pages_per_run` (predvolene 1000).
-
-## Layout
-
-```
-bazos_scraper/
-├── config.yaml            # politeness, DB path, page limits, web port
-├── categories.yaml        # generated category catalog
-├── data/bazos.db          # SQLite database (created on first run)
-├── requirements.txt
-├── README.md
-├── changelog.md           # changes per phase
-├── docs/
-│   └── site_structure.md  # Phase 1 findings (selectors, URL patterns, robots)
-├── src/
-│   ├── config.py           # config loader + defaults
-│   ├── fetcher.py          # polite HTTP layer (query-string guard)
-│   ├── parser.py           # listing parser
-│   ├── categories.py       # catalog loader
-│   ├── text.py             # normalize_text / parse_terms / highlight
-│   ├── geo.py              # PSČ/city -> kraj lookup + classify_location
-│   ├── db.py               # SQLite storage
-│   ├── queries.py          # web query layer + shared filter parser
-│   ├── saved.py            # saved searches + watched categories
-│   ├── batch.py            # watched-category batch update
-│   ├── backfill.py         # resumable full-category download + coverage
-│   ├── jobs.py             # shared scrape lock / coordinator
-│   ├── scheduler.py        # automatic check (scheduler + instance lock)
-│   ├── scraper.py          # incremental scraper
-│   ├── cli.py              # command line
-│   ├── web/                # Flask app (app.py, templates/, static/)
-│   ├── data/psc_kraje.csv  # generated PSČ -> kraj data
-│   ├── data/psc_kraje_overrides.csv  # Bratislava PSČ, loaded after the above
-│   ├── data/obce_kraje.csv # generated municipality -> kraj (city fallback)
-│   ├── build_psc_kraje.py  # PSČ / obec data generator
-│   ├── fetch_samples.py    # Phase 1 downloader
-│   └── build_categories.py # catalog generator
-└── tests/
-    ├── conftest.py
-    ├── test_*.py
-    └── fixtures/          # downloaded raw HTML + robots.txt
-```
-
-## Setup
-
-Python 3.11+ (tested on 3.14).
-
-```
-python -m pip install -r requirements.txt
-```
-
-**Windows console tip.** The console codepage can mangle Slovak diacritics and
-`€` in CLI output. Enable Python's UTF-8 mode for the session first:
-
-```
-set PYTHONUTF8=1
-```
-
-(or `chcp 65001` for the raw console codepage; in PowerShell use
-`$env:PYTHONUTF8=1`). Stored data is always correct UTF-8 either way.
-
-## Run the recon downloader
-
-```
-python src/fetch_samples.py
-```
-
-It will (re)download `robots.txt`, category page 1 + page 2, a category page
-with non-numeric prices, and two detail pages into `tests/fixtures/`.
-
-## Tests and catalog
-
-```
-python -m pytest tests -q                          # all offline tests
-python src/build_categories.py                     # regenerate categories.yaml
-python src/build_categories.py --verify            # + parse 3 random categories
-python src/build_psc_kraje.py                      # regenerate PSČ -> kraj data
-```
-
-## Usage (Phase 3 CLI)
-
-Run from the project root. Scraping is incremental: a run stops as soon as it
-reaches listings that are already in the database (TOP-only pages do not stop
-it).
-
-```
+```bash
 # find categories (search ignores case and diacritics)
 python -m src.cli categories --search notebook
 python -m src.cli categories --parent pc
@@ -363,131 +195,158 @@ python -m src.cli refresh-kraj
 python -m src.cli stats
 ```
 
+| command | purpose |
+| --- | --- |
+| `categories` | list/search the catalog (`--search`, `--parent`) |
+| `scrape` | scrape categories (`--category` repeatable, `--max-pages`, `--full`) |
+| `show` | show stored listings (`--category`, `--new`, `--sort`, `--min-price`, `--max-price`, `--psc-prefix`, `--limit`) |
+| `mark-seen` | mark listings reviewed (`--category` or `--all`) |
+| `refresh-kraj` | recompute region for all stored listings |
+| `stats` | per-category totals, new count and last run |
+
 `show --sort` accepts `price`, `-price`, `date`, `-date`, `first_seen`,
 `-first_seen`; listings without a numeric price always sort last.
 
-## Usage (Phase 4 web UI)
+## HTTP API
 
-```
-python -m src.web        # prints http://127.0.0.1:5000
-```
-
-Open the printed URL. The page lets you pick a category (searchable, with
-`total / new` counts), hit **Aktualizovať** to run an incremental scrape in the
-background, then filter/sort the stored listings. Filters are stored in the
-page's URL query string, so views are bookmarkable. Row actions (mark seen,
-hide, favourite) and bulk actions use the JSON API without reloading.
-
-Endpoints:
+All `POST`/`PUT` bodies must be JSON (otherwise `415`). Starting any scrape
+while another holds the lock returns `409` with a Slovak message.
 
 | route | method | purpose |
 | --- | --- | --- |
-| `/` | GET | main page (filters, results) |
-| `/api/scrape` | POST | start a scrape (JSON `{category_key, full}`); 409 if one is running |
-| `/api/scrape/status` | GET | current scrape state |
-| `/api/listings/<id>/<seen\|hide\|favorite>` | POST | row action |
-| `/api/mark-seen` | POST | bulk `{ids:[...]}` or `{category_key}` |
+| `/` | GET | main page (filters + results) |
+| `/api/scrape` | POST | start a single-category scrape `{category_key, full}` |
+| `/api/scrape/status` | GET | single-scrape state |
+| `/api/listings/<id>/<seen\|hide\|favorite>` | POST | toggle a row action |
+| `/api/mark-seen` | POST | bulk `{ids: [...]}` or `{category_key}` |
+| `/api/saved-searches` | GET / POST | list / create `{name, category_key, filters, sort}` |
+| `/api/saved-searches/<id>` | PUT / DELETE | rename or update filters / delete |
+| `/api/watched` | GET / POST / DELETE | list / watch `{category_key}` / unwatch |
+| `/api/batch/start` | POST | start `{force, deep}` |
+| `/api/batch/cancel` | POST | request cancellation |
+| `/api/batch/status` | GET | batch progress |
+| `/api/backfill/start` | POST | start/resume a whole-category download `{category_key, restart?}` |
+| `/api/backfill/status` | GET | backfill progress |
+| `/api/backfill/cancel` | POST | cancel (resumable) |
+| `/api/coverage` | GET | `?category_key=` → `{stored, estimate, backfill_status, complete, …}` |
+| `/api/scheduler` | GET | scheduler state (incl. `seconds_until_next_run`) |
+| `/api/scheduler/enable` | POST | enable (does not run immediately) |
+| `/api/scheduler/disable` | POST | disable |
+| `/api/scheduler/interval` | POST | set `{minutes}` (30–1440) |
+| `/api/scheduler/run-now` | POST | start a batch now (`trigger=manual`) |
+| `/api/new-count` | GET | unseen, non-hidden listings in watched categories |
+| `/favicon.ico` | GET | app icon |
 
-The server binds only to `127.0.0.1` (port from `config.yaml`, default 5000)
-and talks only to the local SQLite database.
+## Project layout
 
-## Uložené hľadania a sledovanie
+```
+bazos_scraper/
+├── config.yaml            # politeness, DB path, page limits, age window, web port
+├── categories.yaml        # generated category catalog
+├── icon.png               # app icon (favicon)
+├── requirements.txt
+├── README.md
+├── changelog.md           # change history
+├── THIRD_PARTY.md         # third-party assets and licences
+├── data/
+│   └── bazos.db           # SQLite database (created on first run, gitignored)
+├── docs/
+│   └── site_structure.md  # bazos.sk selectors, URL patterns, robots.txt
+├── src/
+│   ├── config.py           # config loader + defaults
+│   ├── fetcher.py          # polite HTTP layer (query-string guard)
+│   ├── parser.py           # listing parser
+│   ├── categories.py       # catalog loader (cached)
+│   ├── text.py             # normalize_text / parse_terms / highlight
+│   ├── geo.py              # PSČ/city -> kraj lookup + classify_location
+│   ├── db.py               # SQLite storage + migrations
+│   ├── queries.py          # query layer + shared filter parser
+│   ├── saved.py            # saved searches + watched categories
+│   ├── batch.py            # watched-category batch update
+│   ├── backfill.py         # resumable whole-category download + coverage
+│   ├── jobs.py             # shared scrape lock / coordinator
+│   ├── scheduler.py        # automatic check + single-instance lock
+│   ├── scraper.py          # incremental scraper
+│   ├── cli.py              # command line
+│   ├── web/                # Flask app (app.py, templates/, static/)
+│   ├── data/               # generated PSČ/obec -> kraj data
+│   ├── build_psc_kraje.py  # regenerates the location data
+│   ├── build_categories.py # regenerates categories.yaml
+│   └── fetch_samples.py    # downloads sample pages for the tests
+├── tests/
+│   ├── conftest.py
+│   ├── test_*.py           # offline tests (no network)
+│   └── fixtures/           # downloaded raw HTML + robots.txt
+└── tools/                  # stylesheet build only (Tailwind CSS + Basecoat)
+```
 
-Ľavý panel v rozhraní má dve sekcie.
+## Location data
 
-**Uložené hľadania.** Tlačidlom *Uložiť aktuálne hľadanie* uložíte práve
-nastavené filtre pod názvom (1–60 znakov, jedinečný). Ukladá sa kategória,
-kľúčové slová, ceny, typ ceny, PSČ prefix, kraj a okno „pridané za“; `sort`
-zvlášť. **Neukladá sa** `only_new`, `include_hidden`, `only_favorites`,
-`include_unknown_location` ani číslo stránky – sú to prechodné filtre.
-Pri položke sú akcie *nové* (otvorí hľadanie s `new=1`), *Premenovať*,
-*Aktualizovať filtre* (prepíše uložené filtre aktuálnymi) a *Zmazať*.
-Odznak pri názve ukazuje počet nových (`seen = 0`, bez skrytých) inzerátov.
-
-**Sledované kategórie.** Tlačidlom *Sledovať túto kategóriu* pridáte aktuálnu
-kategóriu; zoznam ukazuje `celkom / nových` a čas posledného úspešného behu.
-Ak sledujete sekciu aj jej podkategóriu, zobrazí sa upozornenie na zbytočné
-sťahovanie (napr. `pc aj pc/notebook sa prekrývajú - zbytočné sťahovanie`).
-
-**Aktualizovať všetky sledované** spustí dávku (`POST /api/batch/start`).
-Voliteľne *vynútiť* (ignorovať interval) a *hlbšie prehľadanie*. Dávka beží
-sekvenčne, medzi kategóriami dodržiava bežné oneskorenie a používa **jeden
-globálny zámok** – počas dávky (ani počas jednej kategórie) nemôže bežať iné
-sťahovanie a naopak (409). Kategória, ktorej posledný úspešný beh skončil pred
-menej ako `min_batch_interval_minutes` (predvolene 15), sa preskočí
-(`skipped_recent`), ak nepoužijete *vynútiť*. Pri HTTP 403/429 sa dávka hneď
-preruší, zvyšné kategórie sú `not_run` a zobrazí sa výrazné upozornenie.
-Priebeh sa obnovuje každú sekundu, tlačidlom *Zrušiť* možno dávku zastaviť
-medzi stránkami aj medzi kategóriami.
-
-Limity (v `config.yaml`): `max_saved_searches` (50),
-`max_watched_categories` (40), `min_batch_interval_minutes` (15).
-
-## PSČ -> kraj data
-
-`src/data/psc_kraje.csv` is generated by `src/build_psc_kraje.py` from the real
+`src/data/psc_kraje.csv` is generated by `src/build_psc_kraje.py` from the
 public dataset <https://github.com/gunsoft/obce-okresy-kraje-slovenska>
-(4208 municipalities with PSČ and region). 1352 exact PSČ rows plus 137
+(4208 municipalities with PSČ and region): 1352 exact PSČ rows plus 137
 three-digit prefix fallbacks; rows that span more than one region are marked
 `uncertain`.
 
-That dataset omits the Bratislava city PSČ (80xxx-85xxx, e.g. `81101`), so
-`src/data/psc_kraje_overrides.csv` is generated from a second real source, the
+That dataset omits the Bratislava city PSČ (80xxx–85xxx), so
+`src/data/psc_kraje_overrides.csv` is generated from the
 [GeoNames](https://download.geonames.org/export/zip/SK.zip) postal-code export
-(CC BY 4.0), and is loaded *after* the main file. Every 8xx prefix present in
-GeoNames maps to `Bratislavský kraj` only, so 41 three-digit prefixes
-(810-845, 850-854) are added with `confidence=prefix`; the whole-city code
-`800 00` is added from Wikipedia. Shared prefixes near the border (`906`,
-`908`, `925`) stay `uncertain`. The UI labels the region as *približné*
-(approximate).
+(CC BY 4.0) and loaded *after* the main file. `src/data/obce_kraje.csv` maps a
+normalized municipality name to a region and is used as a fallback when the PSČ
+does not yield one; names that occur in more than one region are never used.
 
-`src/data/obce_kraje.csv` is generated from the same gunsoft dataset: a
-normalized municipality name -> kraj map used as a fallback when the PSČ does
-not yield a region. Names that occur in more than one kraj are stored as
-`ambiguous` and deliberately never used. City names are normalized with
-`text.normalize_text` plus the abbreviations found in the scraped data
-(`n.` / `n/` -> `nad`, e.g. `Nové Mesto n.Váhom` -> `Nové Mesto nad Váhom`).
+Regenerate everything and backfill stored rows with:
 
-Re-run `python src/build_psc_kraje.py` to regenerate all three files, then
-backfill stored listings with `python -m src.cli refresh-kraj`.
-
-### Location status
+```bash
+python src/build_psc_kraje.py
+python -m src.cli refresh-kraj
+```
 
 Each listing stores `psc_status` (`valid`, `placeholder`, `foreign`,
-`unmatched`, `missing`) and `kraj_source` (`psc`, `city`, `NULL`):
+`unmatched`, `missing`) and `kraj_source` (`psc`, `city`, `NULL`). When a
+region or PSČ filter is active, the UI keeps rows with an unknown location by
+default (the *Zahrnúť inzeráty s neznámym alebo neplatným PSČ* checkbox);
+turn it off to see only confirmed locations.
 
-* `placeholder` – PSČ in the configurable `placeholder_psc` list in
-  `config.yaml` (default `12345`, `00000`, `11111`, `99999`, `01234`, `54321`);
-* `foreign` – well-formed 5-digit code outside the Slovak `0xx`/`8xx`/`9xx`
-  ranges (e.g. `11000`, a Czech PSČ);
-* `unmatched` – well-formed Slovak PSČ missing from our dataset;
-* `missing` – empty PSČ.
+## Politeness and robots.txt
 
-When a kraj or PSČ filter is active, the web UI keeps rows with an unknown
-location in the results by default (`include_unknown_location`, the
-"Zahrnúť inzeráty s neznámym alebo neplatným PSČ" checkbox). Turn it off to
-see only confirmed locations; choose the "Kraj neznámy" option to see only
-the unknown ones. Results report the confirmed/unknown split.
+Enforced by `src/fetcher.py` from `config.yaml`:
 
-## Politeness
-
-Configured in `config.yaml` and enforced by `src/fetcher.py`:
-
-* honest, descriptive `User-Agent`
-* at least `request_delay_seconds` (default 1.5 s) between requests
-* connect/read timeouts (10 s / 30 s)
-* retry with exponential backoff on connection errors and HTTP 5xx
-* abort the whole run immediately on HTTP 403 / 429
-* refuse to fetch any URL containing a query string (`?`)
-
-## robots.txt
+* honest, descriptive `User-Agent`;
+* at least `request_delay_seconds` (default 1.5 s) between requests;
+* connect/read timeouts (10 s / 30 s);
+* retry with exponential backoff on connection errors and HTTP 5xx;
+* abort the whole run immediately on HTTP 403 / 429;
+* refuse to fetch any URL containing a query string (`?`).
 
 bazos.sk disallows the query parameters used for server-side sorting
 (`order=`), price filtering (`cenaod=`, `cenado=`) and search (`hledat=`).
-Those URLs are documented but **not fetched**. Sorting and keyword/price
-filtering should be implemented locally in later phases. See
-`docs/site_structure.md` §5–6.
+Those URLs are therefore **not fetched** — sorting and filtering are done
+locally in SQLite. See [`docs/site_structure.md`](docs/site_structure.md) §5–6.
 
 ## Privacy
 
 Never store seller names, phone numbers or e-mail addresses.
+
+## Tests
+
+All tests are offline (no network); they use the saved HTML fixtures and mock
+the HTTP layer.
+
+```bash
+python -m pytest tests -q
+```
+
+## Development
+
+The stylesheet (`src/web/static/app.css`) is generated and committed; the app
+does not need Node at runtime. After changing `src/web/static/theme.css`,
+templates or `app.js` class names, rebuild it:
+
+```bash
+cd tools
+npm install       # once
+npm run build
+```
+
+See [`tools/README.md`](tools/README.md) and [`THIRD_PARTY.md`](THIRD_PARTY.md).

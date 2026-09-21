@@ -1,4 +1,4 @@
-"""Background scheduler for watched-category batches (Phase 6).
+"""Background scheduler for watched-category batches.
 
 Runs at most one batch at a time through the shared
 :class:`jobs.ScrapeCoordinator` lock. The clock and the sleep/wake mechanism

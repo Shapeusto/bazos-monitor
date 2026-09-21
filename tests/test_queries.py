@@ -231,7 +231,7 @@ def test_psc_prefix_and_kraj(db):
 
 
 # ---------------------------------------------------------------------------
-# Phase 5: unknown-location handling
+# Unknown-location handling
 # ---------------------------------------------------------------------------
 
 UNKNOWN_SEED = [

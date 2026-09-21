@@ -1,4 +1,4 @@
-"""Shared scrape coordinator (Phase 5).
+"""Shared scrape coordinator.
 
 A single global lock guarantees that at most one scrape runs at a time,
 whether it is a single-category scrape or a batch update of watched

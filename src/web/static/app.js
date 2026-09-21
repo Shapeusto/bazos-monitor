@@ -1,4 +1,4 @@
-/* bazos monitor - vanilla JS, no frameworks. Phase 7b visual redesign.
+/* bazos monitor - vanilla JS, no frameworks.
    Talks only to the local Flask API; no external requests. */
 (function () {
   "use strict";

@@ -1,1 +1,1 @@
-"""bazos.sk scraper package (Phase 3)."""
+"""bazos.sk scraper package."""
