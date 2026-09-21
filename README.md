@@ -350,3 +350,7 @@ npm run build
 ```
 
 See [`tools/README.md`](tools/README.md) and [`THIRD_PARTY.md`](THIRD_PARTY.md).
+
+## License
+
+Released under the [MIT License](LICENSE).
