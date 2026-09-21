@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Tailwind + Basecoat build entrypoint for the bazos_scraper web UI.
+   Build with:  cd tools && npm run build   (see tools/README.md)
+   The generated ../src/web/static/app.css is committed; the running Flask
+   app does not need Node.
+   ========================================================================== */
+
+@import "tailwindcss";
+@import "basecoat-css/vega";
+@import "../src/web/static/theme.css";
+
+/* Scan the Jinja templates and the vanilla JS for utility classes. */
+@source "../src/web/templates";
+@source "../src/web/static/app.js";
+
+/* App-specific semantic colours. Values live in theme.css so the theme can be
+   swapped in one place. */
+@theme {
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-highlight: var(--highlight);
+  --color-price-drop: var(--price-drop);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Basecoat tooltips are invisible ::before pseudo-elements that still
+       contribute to layout; clip the horizontal overflow they cause without
+       creating a scroll container (which would break position: sticky). */
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  mark {
+    background-color: var(--highlight);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 0.1em;
+  }
+
+  /* Tabular figures for prices, dates and view counts. */
+  .tnum,
+  .price,
+  .price-was {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Visible focus ring everywhere (accessibility). */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  :root {
+    --app-header-h: 3.5rem;
+  }
+
+  /* --- App shell ---------------------------------------------------------- */
+  /* The Basecoat sidebar nav is fixed; start it below the sticky header. */
+  .sidebar > nav {
+    top: var(--app-header-h);
+  }
+
+  .brand {
+    @apply flex items-center gap-2 font-semibold tracking-tight;
+  }
+
+  .brand-mark {
+    @apply bg-primary text-primary-foreground flex size-7 shrink-0 items-center justify-center rounded-md;
+  }
+
+  /* --- Category combobox -------------------------------------------------- */
+  .combo {
+    @apply relative min-w-0 flex-1;
+  }
+
+  .combo-list {
+    @apply bg-popover text-popover-foreground absolute z-50 mt-1 max-h-80 w-full overflow-y-auto rounded-md border p-1 shadow-md;
+  }
+
+  .combo-option {
+    @apply flex cursor-pointer items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm;
+  }
+
+  .combo-option:hover,
+  .combo-option.active {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .combo-option.combo-group-option {
+    @apply text-muted-foreground font-semibold uppercase tracking-wider;
+    font-size: 0.68rem;
+  }
+
+  .combo-option .count {
+    @apply text-muted-foreground text-xs;
+  }
+
+  /* --- Sidebar blocks ----------------------------------------------------- */
+  .side-item {
+    @apply border-border bg-background flex flex-col gap-1 rounded-md border p-2;
+  }
+
+  .side-row {
+    @apply flex items-center justify-between gap-2;
+  }
+
+  .side-link {
+    @apply text-foreground hover:text-primary min-w-0 flex-1 truncate text-sm font-medium;
+  }
+
+  .side-sub {
+    @apply text-muted-foreground text-xs;
+  }
+
+  .side-actions {
+    @apply flex flex-wrap items-center gap-1 pt-0.5;
+  }
+
+  .side-empty {
+    @apply text-muted-foreground text-sm;
+  }
+
+  .side-status {
+    @apply text-muted-foreground min-h-[1.1em] text-xs;
+  }
+
+  .side-status.warn {
+    @apply text-destructive font-medium;
+  }
+
+  .side-status.ok {
+    @apply text-success font-medium;
+  }
+
+  .overlap-warnings {
+    @apply text-warning mt-2 flex flex-col gap-1 text-xs;
+  }
+
+  /* --- Status lines ------------------------------------------------------- */
+  .status-line {
+    @apply text-muted-foreground flex items-center gap-2 text-sm;
+  }
+
+  .status-line.warn {
+    @apply text-destructive font-medium;
+  }
+
+  .status-line.ok {
+    @apply text-success font-medium;
+  }
+
+  .spinner {
+    @apply inline-block size-3.5 animate-spin;
+  }
+
+  /* --- Filter chips ------------------------------------------------------- */
+  .chip {
+    @apply border-border bg-secondary text-secondary-foreground hover:bg-secondary/70 inline-flex items-center gap-1 rounded-full border py-0.5 pl-2.5 pr-1 text-xs font-medium transition-colors;
+  }
+
+  .chip button {
+    @apply hover:bg-background/60 flex size-4 items-center justify-center rounded-full;
+  }
+
+  .chip-label {
+    @apply text-muted-foreground;
+  }
+
+  /* --- Results table ------------------------------------------------------ */
+  .table-listings {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .table-listings thead th {
+    @apply bg-card text-muted-foreground border-border sticky z-20 h-10 border-b px-3 text-left align-middle text-xs font-medium uppercase tracking-wider;
+    top: var(--app-header-h);
+  }
+
+  .table-listings tbody td {
+    @apply border-border border-b px-3 py-2.5 align-top;
+  }
+
+  .table-listings tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .table-listings tbody tr:hover {
+    @apply bg-muted/50;
+  }
+
+  .table-listings tbody tr.hidden-row {
+    @apply opacity-50;
+  }
+
+  .table-listings tbody tr.seen-row .col-title a {
+    @apply font-normal;
+  }
+
+  .col-price,
+  .col-date,
+  .col-views,
+  .col-loc,
+  .col-actions {
+    @apply whitespace-nowrap;
+  }
+
+  .col-desc {
+    @apply text-muted-foreground max-w-[26rem];
+  }
+
+  .col-actions {
+    @apply text-right;
+  }
+
+  .price {
+    @apply text-foreground font-semibold;
+  }
+
+  .price-was {
+    @apply text-muted-foreground text-xs line-through;
+  }
+
+  .price-drop {
+    @apply text-price-drop inline-flex items-center gap-0.5 text-xs font-medium;
+  }
+
+  .price-up {
+    @apply text-muted-foreground inline-flex items-center gap-0.5 text-xs font-medium;
+  }
+
+  .row-actions {
+    @apply inline-flex items-center gap-0.5;
+  }
+
+  .act.fav.on {
+    @apply text-warning;
+  }
+
+  /* --- Mobile listing cards ---------------------------------------------- */
+  .listing-card {
+    @apply border-border bg-card text-card-foreground flex flex-col gap-2 rounded-lg border p-3 shadow-xs;
+  }
+
+  .listing-card.hidden-row {
+    @apply opacity-50;
+  }
+
+  .listing-card.seen-row .listing-title {
+    @apply font-normal;
+  }
+
+  .listing-title {
+    @apply text-foreground font-medium;
+  }
+
+  /* --- Misc --------------------------------------------------------------- */
+  .alert[data-variant="warning"] {
+    @apply text-warning-foreground bg-warning;
+  }
+
+  .alert[data-variant="warning"] > section {
+    @apply text-warning-foreground/90;
+  }
+
+  .muted-panel {
+    @apply bg-muted text-muted-foreground rounded-md p-3 text-sm whitespace-pre-line;
+  }
+
+  .batch-item {
+    @apply flex items-baseline gap-2 text-xs;
+  }
+
+  .batch-item .batch-icon {
+    @apply inline-flex w-4 shrink-0 justify-center;
+  }
+
+  .batch-done .batch-icon {
+    @apply text-success;
+  }
+
+  .batch-blocked .batch-icon,
+  .batch-failed .batch-icon {
+    @apply text-destructive;
+  }
+
+  .batch-skipped_recent .batch-icon,
+  .batch-pending .batch-icon {
+    @apply text-muted-foreground;
+  }
+
+  .batch-running .batch-icon {
+    @apply text-primary;
+  }
+
+  .skeleton-row {
+    @apply bg-muted h-4 w-full rounded;
+  }
+}

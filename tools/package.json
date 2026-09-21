@@ -1,0 +1,16 @@
+{
+  "name": "bazos-scraper-ui-build",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build-time only tooling for the bazos_scraper web UI (Tailwind CSS + Basecoat). The running Flask app does not need Node.",
+  "scripts": {
+    "build": "tailwindcss -i ./input.css -o ../src/web/static/app.css --minify"
+  },
+  "devDependencies": {
+    "@fontsource/geist-sans": "5.3.0",
+    "@tailwindcss/cli": "4.3.3",
+    "basecoat-css": "1.0.2",
+    "lucide-static": "1.47.0",
+    "tailwindcss": "4.3.3"
+  }
+}

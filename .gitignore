@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local runtime data (personal + large)
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# Node build deps (app.css is committed, node_modules is not)
+tools/node_modules/
+
+# Archives / OS cruft
+*.rar
+*.zip
+.DS_Store
+Thumbs.db

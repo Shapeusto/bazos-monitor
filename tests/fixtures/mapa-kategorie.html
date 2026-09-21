@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<title>Mapa kategórií | Bazos.sk</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Bezplatná inzercia, online bazár - kúpte si nový byt alebo predaj staré auto, toto všetko hravo zvládne náš Bazoš - Vaše inzeráty.">
+<meta name="google-play-app" content="app-id=cz.ackee.bazos">
+<meta name="apple-itunes-app" content="app-id=1195042966">
+<meta property="fb:admins" content="1055875657">
+<meta property="og:image" content="https://www.bazos.sk/obrazky/bazoslogoface.png">
+<link rel="stylesheet" href="https://www.bazos.sk/bazos67hp.css" type="text/css"><link rel="preload" as="image" href="https://www.bazos.sk/obrazky/bazos.svg">
+<link rel="icon" href="https://www.bazos.sk/favicon.svg" type="image/svg+xml">
+<link rel="icon" HREF="https://www.bazos.sk/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="https://www.bazos.sk/apple-touch-icon.png">
+<link rel="search" type="application/opensearchdescription+xml" href="https://www.bazos.sk/search.xml" title="Bazoš.sk">
+
+<script>
+var xhr = new XMLHttpRequest();
+var naseptavac_value = '';
+function naseptavac(value) {
+  if (value=='')  {
+  	naseptavac_value = '';
+  	document.getElementById('vysledek').innerHTML='';
+  	}
+else {
+	if (naseptavac_value == value) {
+		return false;
+	}
+	naseptavac_value = value;
+	setTimeout(function () {
+		if (naseptavac_value != value) {
+			return false;
+		}
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4 && naseptavac_value == value){
+				document.getElementById('vysledek').innerHTML = this.responseText;
+			}
+ 		 };
+		xhr.open("POST", '/suggest.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('rubnas=HP&qnas='+encodeURIComponent(naseptavac_value));
+	}, 250);
+}
+}
+
+var naseptavacpsc_value = '';
+function naseptavacpsc(value) {
+  if (value=='')  {
+  	naseptavacpsc_value = '';
+  	document.getElementById('vysledekpsc').innerHTML='<table cellpadding=\"3\" cellspacing=\"0\" class=\"tablenaspsc\"><tr><td class=\"act\" onclick=\"getLocation();\"><b>Inzeráty v okolí</b></td></tr></table>';
+  	}
+else {
+	if (naseptavacpsc_value == value) {
+		return false;
+	}
+	naseptavacpsc_value = value;
+	setTimeout(function () {
+		if (naseptavacpsc_value != value) {
+			return false;
+		}
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4 && naseptavacpsc_value == value){
+				document.getElementById('vysledekpsc').innerHTML = this.responseText;
+			}
+ 		 };
+		xhr.open("POST", '/suggestpsc.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('qnaspsc='+encodeURIComponent(naseptavacpsc_value));
+	}, 250);
+}
+}
+
+function getLocation() {
+if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(showPosition);}
+else {document.getElementById('hlokalita').value = '';}
+}
+function showPosition(position) {
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4){
+				document.getElementById('hlokalita').value = this.responseText;
+				document.forms['formt'].submit();
+			}
+ 		 };
+		xhr.open("POST", '/zip.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('latitude='+encodeURIComponent(position.coords.latitude)+'&longitude='+encodeURIComponent(position.coords.longitude));
+}
+
+function odeslatakci(postaction,value1,value2,value3) {
+document.getElementById('postaction').value = postaction;
+document.getElementById("postv1").value = value1;
+document.getElementById("postv2").value = value2;
+document.getElementById("postv3").value = value3;
+document.formaction.submit();
+}
+</script>
+</head>
+
+<body>
+
+<div class="sirka">
+
+
+<div class="listalogor">
+<div class="listalogol"><a href="https://www.bazos.sk/" title="Bazos.sk - Inzercia, inzeráty"><img src="https://www.bazos.sk/obrazky/bazos.svg" width="199" height="34" alt="Bazos.sk - Inzercia, inzeráty"></a></div>
+<div class="listalogom"> <b>... inzercia pre každého</b></div>
+<div class="listalogop"><a href="https://www.bazos.sk/oblubene.php"><b>Obľúbené inzeráty</b></a> <a href="https://www.bazos.sk/moje-inzeraty.php"><b>Moje inzeráty</b></a> <a href="/pridat-inzerat.php"><b><span class=pridati>Pridať inzerát</span></b></a></div>
+</div>
+
+<form name="formt" id="formt" method=get action="/search.php">
+<div class="listah">
+<div class="rubriky">
+<b>
+Čo: <span class=vysokoli><span id="vysledek"></span><input type="search" onkeyup="naseptavac(this.value);" id=hledat name=hledat size="17" maxlength="256" value="" autocomplete="off" title="Čo? Hľadaný výraz" ></span>
+
+<select name="rubriky" onchange='this.form.submit();' title="Vyber rubriku">
+<option value="www" selected>Všetky rubriky</option>
+<option value="auto">Auto</option>
+<option value="deti">Deti</option>
+<option value="dom">Dom a záhrada</option>
+<option value="elektro">Elektro</option>
+<option value="foto">Foto</option>
+<option value="hudba">Hudba</option>
+<option value="knihy">Knihy</option>
+<option value="mobil">Mobily</option>
+<option value="motocykle">Motocykle</option>
+<option value="nabytok">Nábytok</option>
+<option value="oblecenie">Oblečenie</option>
+<option value="pc">PC</option>
+<option value="praca">Práca</option>
+<option value="reality">Reality</option>
+<option value="sluzby">Služby</option>
+<option value="sport">Šport</option>
+<option value="stroje">Stroje</option>
+<option value="vstupenky">Vstupenky</option>
+<option value="zvierata">Zvieratá</option>
+<option value="ostatne">Ostatné</option>
+</select>
+
+PSČ (miesto): <span class=vysokolipsc><span id="vysledekpsc"></span><input type="search" name="hlokalita" id="hlokalita" onkeyup="naseptavacpsc(this.value);" onclick="naseptavacpsc(this.value);" value="" size="5" maxlength="25" autocomplete="off" title="Kde? PSČ (miesto)" style="-webkit-appearance: none;"></span>
+Okolie: <input name="humkreis" title="Okolie v km" value="25" size="3" style="width: 25px;"> km
+Cena od: <input name=cenaod title="Cena od €" maxlength="12" size="4" value=""> - do: <input name=cenado title="Cena do €" maxlength="12" size="4" value=""> €  <input type="submit" name="Submit" value="Hľadať">
+<input type="hidden" name="order" id="order"><input type="hidden" name="kitx" value="ano"></b>
+</div>
+</div>
+</form>
+<div class="drobky"><a href=https://www.bazos.sk/>Hlavná stránka</a> > <h1 class="nadpiskategorie">Mapa kategórií</h1></div><br>
+
+
+<div class="flexmain"><div class="menuleft"><div class="nadpismenu">Inzercia</div>
+<div class="barvalmenu">
+<div class="barvaleva">
+<div align="center">
+
+<br>
+<a href="https://auto.bazos.sk/"><b>Auto</b></a>
+Inzeráty Celkom: 236379<br>
+Za 24 hodín: 14362<br><br>
+
+<br>
+<a href="https://deti.bazos.sk/"><b>Deti</b></a>
+Inzeráty Celkom: 85194<br>
+Za 24 hodín: 2686<br><br>
+
+<br>
+<a href="https://dom.bazos.sk/"><b>Dom a záhrada</b></a>
+Inzeráty Celkom: 71645<br>
+Za 24 hodín: 2837<br><br>
+
+<br>
+<a href="https://elektro.bazos.sk/"><b>Elektro</b></a>
+Inzeráty Celkom: 48231<br>
+Za 24 hodín: 1878<br><br>
+
+<br>
+<a href="https://foto.bazos.sk/"><b>Foto</b></a>
+Inzeráty Celkom: 8333<br>
+Za 24 hodín: 348<br><br>
+
+<br>
+<a href="https://hudba.bazos.sk/"><b>Hudba</b></a>
+Inzeráty Celkom: 16111<br>
+Za 24 hodín: 661<br><br>
+
+<br>
+<a href="https://knihy.bazos.sk/"><b>Knihy</b></a>
+Inzeráty Celkom: 22223<br>
+Za 24 hodín: 498<br><br>
+
+<br>
+<a href="https://mobil.bazos.sk/"><b>Mobily</b></a>
+Inzeráty Celkom: 17222<br>
+Za 24 hodín: 1290<br><br>
+
+<br>
+<a href="https://motocykle.bazos.sk/"><b>Motocykle</b></a>
+Inzeráty Celkom: 34990<br>
+Za 24 hodín: 1691<br><br>
+
+<br>
+<a href="https://nabytok.bazos.sk/"><b>Nábytok</b></a>
+Inzeráty Celkom: 47273<br>
+Za 24 hodín: 1937<br><br>
+
+<br>
+<a href="https://oblecenie.bazos.sk/"><b>Oblečenie</b></a>
+Inzeráty Celkom: 68296<br>
+Za 24 hodín: 2112<br><br>
+
+<br>
+<a href="https://pc.bazos.sk/"><b>PC</b></a>
+Inzeráty Celkom: 34507<br>
+Za 24 hodín: 1883<br><br>
+
+<br>
+<a href="https://praca.bazos.sk/"><b>Práca</b></a>
+Inzeráty Celkom: 9476<br>
+Za 24 hodín: 1335<br><br>
+
+<br>
+<a href="https://reality.bazos.sk/"><b>Reality</b></a>
+Inzeráty Celkom: 62623<br>
+Za 24 hodín: 4204<br><br>
+
+<br>
+<a href="https://sluzby.bazos.sk/"><b>Služby</b></a>
+Inzeráty Celkom: 18013<br>
+Za 24 hodín: 2758<br><br>
+
+<br>
+<a href="https://stroje.bazos.sk/"><b>Stroje</b></a>
+Inzeráty Celkom: 44804<br>
+Za 24 hodín: 2157<br><br>
+
+<br>
+<a href="https://sport.bazos.sk/"><b>Šport</b></a>
+Inzeráty Celkom: 62437<br>
+Za 24 hodín: 2706<br><br>
+
+<br>
+<a href="https://vstupenky.bazos.sk/"><b>Vstupenky</b></a>
+Inzeráty Celkom: 1869<br>
+Za 24 hodín: 114<br><br>
+
+<br>
+<a href="https://zvierata.bazos.sk/"><b>Zvieratá</b></a>
+Inzeráty Celkom: 24539<br>
+Za 24 hodín: 1423<br><br>
+
+<br>
+<a href="https://ostatne.bazos.sk/"><b>Ostatné</b></a>
+Inzeráty Celkom: 89371<br>
+Za 24 hodín: 2837<br><br>
+
+</div>
+</div></div>
+
+<br><br>
+
+
+
+</div><div class="maincontent">
+
+<div class="bilytext">
+
+<div class="mapaflex"><div class="mapaflexcell"><picture><source srcset="/obrazky/auto.webp" type="image/webp"><source srcset="/obrazky/auto.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Auto"></picture><span class="maparubriky"><a href="https://auto.bazos.sk/">Auto</a></span><br><a href="https://auto.bazos.sk//">Osobné autá</a><br><a href="https://auto.bazos.sk/alfa/">Alfa Romeo</a><br><a href="https://auto.bazos.sk/audi/">Audi</a><br><a href="https://auto.bazos.sk/bmw/">BMW</a><br><a href="https://auto.bazos.sk/chevrolet/">Chevrolet</a><br><a href="https://auto.bazos.sk/citroen/">Citroën</a><br><a href="https://auto.bazos.sk/dacia/">Dacia</a><br><a href="https://auto.bazos.sk/fiat/">Fiat</a><br><a href="https://auto.bazos.sk/ford/">Ford</a><br><a href="https://auto.bazos.sk/honda/">Honda</a><br><a href="https://auto.bazos.sk/hyundai/">Hyundai</a><br><a href="https://auto.bazos.sk/kia/">Kia</a><br><a href="https://auto.bazos.sk/mazda/">Mazda</a><br><a href="https://auto.bazos.sk/mercedes/">Mercedes-Benz</a><br><a href="https://auto.bazos.sk/mitsubishi/">Mitsubishi</a><br><a href="https://auto.bazos.sk/nissan/">Nissan</a><br><a href="https://auto.bazos.sk/opel/">Opel</a><br><a href="https://auto.bazos.sk/peugeot/">Peugeot</a><br><a href="https://auto.bazos.sk/renault/">Renault</a><br><a href="https://auto.bazos.sk/seat/">Seat</a><br><a href="https://auto.bazos.sk/suzuki/">Suzuki</a><br><a href="https://auto.bazos.sk/skoda/">Škoda</a><br><a href="https://auto.bazos.sk/toyota/">Toyota</a><br><a href="https://auto.bazos.sk/volkswagen/">Volkswagen</a><br><a href="https://auto.bazos.sk/volvo/">Volvo</a><br><a href="https://auto.bazos.sk/havarovana/">Havarované</a><br><a href="https://auto.bazos.sk/ostatni/">Ostatné značky</a><br><a href="https://auto.bazos.sk/nahradnidily/">Náhradné diely</a><br><a href="https://auto.bazos.sk/pneumatiky/">Pneumatiky, kolesá</a><br><a href="https://auto.bazos.sk/prislusenstvo/">Príslušenstvo</a><br><a href="https://auto.bazos.sk/tuning/">Tuning</a><br><a href="https://auto.bazos.sk/veterany/">Veterány</a><br><a href="https://auto.bazos.sk//">Úžitkové automobily</a><br><a href="https://auto.bazos.sk/autobusy/">Autobusy</a><br><a href="https://auto.bazos.sk/dodavka/">Dodávky</a><br><a href="https://auto.bazos.sk/karavany/">Karavany, obytné autá</a><br><a href="https://auto.bazos.sk/mikrobus/">Mikrobusy</a><br><a href="https://auto.bazos.sk/nakladne/">Nákladné autá</a><br><a href="https://auto.bazos.sk/pickup/">Pick-up</a><br><a href="https://auto.bazos.sk/voziky/">Vozíky, prívesy</a><br><a href="https://auto.bazos.sk/ostatniuzitkova/">Ostatná užitková</a><br><a href="https://auto.bazos.sk/havarovanauzitkova/">Havarované užitková</a><br><a href="https://auto.bazos.sk/nahradnidilyuzitkova/">Náhradné diely užitková</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/deti.webp" type="image/webp"><source srcset="/obrazky/deti.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Deti"></picture><span class="maparubriky"><a href="https://deti.bazos.sk/">Deti</a></span><br><a href="https://deti.bazos.sk/autosedacky/">Autosedačky</a><br><a href="https://deti.bazos.sk/baby/">Baby monitory</a><br><a href="https://deti.bazos.sk/bicykle/">Bicykle</a><br><a href="https://deti.bazos.sk/hracky/">Hračky</a><br><a href="https://deti.bazos.sk/choditka/">Chodítka a hopsadlá</a><br><a href="https://deti.bazos.sk/kociky/">Kočíky</a><br><a href="https://deti.bazos.sk/kojenecke/">Kojenecké potreby</a><br><a href="https://deti.bazos.sk/lego/">Lego</a><br><a href="https://deti.bazos.sk/nabytok/">Nábytok pre deti</a><br><a href="https://deti.bazos.sk/nositka/">Nosiče</a><br><a href="https://deti.bazos.sk/odrazadla/">Odrážadlá</a><br><a href="https://deti.bazos.sk/sedacky/">Sedačky na bicykel</a><br><a href="https://deti.bazos.sk/skolske/">Školské potreby</a><br><a href="https://deti.bazos.sk/sportove/">Športové potreby</a><br><a href="https://deti.bazos.sk/ostatne/">Ostatné</a><br><a href="https://deti.bazos.sk//">Oblečenie</a><br><a href="https://deti.bazos.sk/dupacky/">Body, dupačky a overaly</a><br><a href="https://deti.bazos.sk/bundy/">Bundy a kabátiky</a><br><a href="https://deti.bazos.sk/ciapky/">Čiapky a klobúčiky</a><br><a href="https://deti.bazos.sk/kombinezy/">Kombinézy</a><br><a href="https://deti.bazos.sk/komplety/">Komplety</a><br><a href="https://deti.bazos.sk/mikiny/">Mikiny a svetre</a><br><a href="https://deti.bazos.sk/nohavice/">Nohavice, kraťasy a tepláky</a><br><a href="https://deti.bazos.sk/obuv/">Obuv</a><br><a href="https://deti.bazos.sk/plavky/">Plavky</a><br><a href="https://deti.bazos.sk/ponozky/">Ponožky a pančušky</a><br><a href="https://deti.bazos.sk/pyzamka/">Pyžamká a župančeky</a><br><a href="https://deti.bazos.sk/rukavice/">Rukavice a šály</a><br><a href="https://deti.bazos.sk/bielizen/">Spodná bielizeň</a><br><a href="https://deti.bazos.sk/suknicky/">Sukničky a šatočky</a><br><a href="https://deti.bazos.sk/tricka/">Tričká a košieľky</a><br><a href="https://deti.bazos.sk/oblecenie/">Ostatné oblečenie</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/dom.webp" type="image/webp"><source srcset="/obrazky/dom.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Dom a záhrada"></picture><span class="maparubriky"><a href="https://dom.bazos.sk/">Dom a záhrada</a></span><br><a href="https://dom.bazos.sk/bazeny/">Bazény</a><br><a href="https://dom.bazos.sk/cerpadla/">Čerpadlá</a><br><a href="https://dom.bazos.sk/dvere/">Dvere, brány</a><br><a href="https://dom.bazos.sk/klimatizacie/">Klimatizácie</a><br><a href="https://dom.bazos.sk/kosacky/">Kosačky</a><br><a href="https://dom.bazos.sk/kotle/">Kotle, Kachle, Bojlery</a><br><a href="https://dom.bazos.sk/malotraktory/">Malotraktory, Kultivátory</a><br><a href="https://dom.bazos.sk/miesacky/">Miešačky</a><br><a href="https://dom.bazos.sk/naradie/">Náradie</a><br><a href="https://dom.bazos.sk/okna/">Okná</a><br><a href="https://dom.bazos.sk/pily/">Píly</a><br><a href="https://dom.bazos.sk/radiatory/">Radiátory</a><br><a href="https://dom.bazos.sk/rastliny/">Rastliny</a><br><a href="https://dom.bazos.sk/snezna/">Snežná technika</a><br><a href="https://dom.bazos.sk/stavebny/">Stavebný materiál</a><br><a href="https://dom.bazos.sk/vybavenie/">Vybavenie dielne</a><br><a href="https://dom.bazos.sk/vysavace/">Vysávače/Fúkače</a><br><a href="https://dom.bazos.sk/technika/">Záhradná technika</a><br><a href="https://dom.bazos.sk/grily/">Záhradné grily</a><br><a href="https://dom.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/elektro.webp" type="image/webp"><source srcset="/obrazky/elektro.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Elektro"></picture><span class="maparubriky"><a href="https://elektro.bazos.sk/">Elektro</a></span><br><a href="https://elektro.bazos.sk//">Biela technika</a><br><a href="https://elektro.bazos.sk/digestory/">Digestory</a><br><a href="https://elektro.bazos.sk/chladnicky/">Chladničky</a><br><a href="https://elektro.bazos.sk/mikrovlnky/">Mikrovlnné rúry</a><br><a href="https://elektro.bazos.sk/mraznicky/">Mrazničky</a><br><a href="https://elektro.bazos.sk/pracky/">Práčky</a><br><a href="https://elektro.bazos.sk/sporaky/">Sporáky</a><br><a href="https://elektro.bazos.sk/susicky/">Sušičky</a><br><a href="https://elektro.bazos.sk/umyvacky/">Umývačky riadu</a><br><a href="https://elektro.bazos.sk/ostatnebila/">Ostatné - biela</a><br><a href="https://elektro.bazos.sk//">Audio Video</a><br><a href="https://elektro.bazos.sk/autoradia/">Autorádiá</a><br><a href="https://elektro.bazos.sk/kina/">Domáce kiná</a><br><a href="https://elektro.bazos.sk/hifi/">Hifi systémy, Rádiá</a><br><a href="https://elektro.bazos.sk/projektory/">Projektory</a><br><a href="https://elektro.bazos.sk/repro/">Repro sústavy</a><br><a href="https://elektro.bazos.sk/sluchadla/">Slúchadlá</a><br><a href="https://elektro.bazos.sk/televizory/">Televízory</a><br><a href="https://elektro.bazos.sk/dvd/">Video, DVD prehrávače</a><br><a href="https://elektro.bazos.sk/zosilnovace/">Zosilňovače</a><br><a href="https://elektro.bazos.sk/ostatneav/">Ostatné audio video</a><br><a href="https://elektro.bazos.sk//">Drobné elektro</a><br><a href="https://elektro.bazos.sk/depilatory/">Epilátory, Depilátory</a><br><a href="https://elektro.bazos.sk/feny/">Fény, Kulmy</a><br><a href="https://elektro.bazos.sk/holiace/">Holiace strojčeky</a><br><a href="https://elektro.bazos.sk/kavovary/">Kávovary</a><br><a href="https://elektro.bazos.sk/nabijacky/">Nabíjačky batérií</a><br><a href="https://elektro.bazos.sk/mixery/">Ručné šľahače, Mixéry</a><br><a href="https://elektro.bazos.sk/lampy/">Svietidlá, Lampy</a><br><a href="https://elektro.bazos.sk/sijacie/">Šijacie stroje</a><br><a href="https://elektro.bazos.sk/vysavace/">Vysávače</a><br><a href="https://elektro.bazos.sk/vysielacky/">Vysielačky</a><br><a href="https://elektro.bazos.sk/zvlhcovace/">Zvlhčovače vzduchu</a><br><a href="https://elektro.bazos.sk/zehlicky/">Žehličky</a><br><a href="https://elektro.bazos.sk/ostatne/">Ostatné drobné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/foto.webp" type="image/webp"><source srcset="/obrazky/foto.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Foto"></picture><span class="maparubriky"><a href="https://foto.bazos.sk/">Foto</a></span><br><a href="https://foto.bazos.sk/kinofilm/">Analógové fotoaparáty</a><br><a href="https://foto.bazos.sk/digitalne/">Digitálne fotoaparáty</a><br><a href="https://foto.bazos.sk/drony/">Drony</a><br><a href="https://foto.bazos.sk/videokamery/">Videokamery</a><br><a href="https://foto.bazos.sk/zrkadlovky/">Zrkadlovky</a><br><a href="https://foto.bazos.sk//">Príslušenstvo</a><br><a href="https://foto.bazos.sk/baterie/">Batérie</a><br><a href="https://foto.bazos.sk/blesky/">Blesky a osvetlenie</a><br><a href="https://foto.bazos.sk/brasne/">Brašne a púzdra</a><br><a href="https://foto.bazos.sk/kable/">Dátové káble</a><br><a href="https://foto.bazos.sk/filtre/">Filtre</a><br><a href="https://foto.bazos.sk/nabijacky/">Nabíjačky</a><br><a href="https://foto.bazos.sk/objektivy/">Objektívy</a><br><a href="https://foto.bazos.sk/karty/">Pamäťové karty</a><br><a href="https://foto.bazos.sk/stativy/">Statívy</a><br><a href="https://foto.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/hudba.webp" type="image/webp"><source srcset="/obrazky/hudba.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Hudba"></picture><span class="maparubriky"><a href="https://hudba.bazos.sk/">Hudba</a></span><br><a href="https://hudba.bazos.sk/bicie/">Bicie nástroje</a><br><a href="https://hudba.bazos.sk/dychove/">Dychové nástroje</a><br><a href="https://hudba.bazos.sk/klavesove/">Klávesové nástroje</a><br><a href="https://hudba.bazos.sk/slacikove/">Sláčikové nástroje</a><br><a href="https://hudba.bazos.sk/strunove/">Strunové nástroje</a><br><a href="https://hudba.bazos.sk/nastroje/">Ostatné nástroje</a><br><a href="https://hudba.bazos.sk/nahravky/">DVD, CD, MC, LP</a><br><a href="https://hudba.bazos.sk/skupiny/">Hudobníci a skupiny</a><br><a href="https://hudba.bazos.sk/koncerty/">Koncerty</a><br><a href="https://hudba.bazos.sk/noty/">Noty, texty</a><br><a href="https://hudba.bazos.sk/skusobne/">Skúšobne</a><br><a href="https://hudba.bazos.sk/svetelna/">Svetelná technika</a><br><a href="https://hudba.bazos.sk/zvukova/">Zvuková technika</a><br><a href="https://hudba.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/knihy.webp" type="image/webp"><source srcset="/obrazky/knihy.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Knihy"></picture><span class="maparubriky"><a href="https://knihy.bazos.sk/">Knihy</a></span><br><a href="https://knihy.bazos.sk//">Beletria</a><br><a href="https://knihy.bazos.sk/beletria/">Beletria</a><br><a href="https://knihy.bazos.sk/detektivky/">Detektívky, trilery</a><br><a href="https://knihy.bazos.sk/historicke/">Historické romány</a><br><a href="https://knihy.bazos.sk/zabavna/">Humor</a><br><a href="https://knihy.bazos.sk/zeny/">Knihy pre ženy</a><br><a href="https://knihy.bazos.sk/komiksy/">Komiksy</a><br><a href="https://knihy.bazos.sk/poezia/">Poézia</a><br><a href="https://knihy.bazos.sk/scifi/">Sci-fi, Fantasy</a><br><a href="https://knihy.bazos.sk/zivotopisy/">Životopisy</a><br><a href="https://knihy.bazos.sk//">Pre deti a mládež</a><br><a href="https://knihy.bazos.sk/najmensi/">Pre najmenších</a><br><a href="https://knihy.bazos.sk/detska/">Pre deti</a><br><a href="https://knihy.bazos.sk/mladez/">Pre mládež</a><br><a href="https://knihy.bazos.sk//">Náučná a odborná</a><br><a href="https://knihy.bazos.sk/mapy/">Cestovanie, mapy</a><br><a href="https://knihy.bazos.sk/vztahy/">Dieťa, rodina a vzťahy</a><br><a href="https://knihy.bazos.sk/encyklopedie/">Encyklopédie</a><br><a href="https://knihy.bazos.sk/ezoterika/">Ezoterika</a><br><a href="https://knihy.bazos.sk/hobby/">Hobby, odborné knihy</a><br><a href="https://knihy.bazos.sk/kucharky/">Kuchárky</a><br><a href="https://knihy.bazos.sk/pocitacova/">Počítačová literatúra</a><br><a href="https://knihy.bazos.sk/rozvoj/">Rozvoj osobnosti</a><br><a href="https://knihy.bazos.sk/ucebnicezs/">Učebnice, skriptá - ZŠ</a><br><a href="https://knihy.bazos.sk/ucebnice/">Učebnice, skriptá - SŠ</a><br><a href="https://knihy.bazos.sk/skripta/">Učebnice, skriptá - VŠ</a><br><a href="https://knihy.bazos.sk/ucebnicejazykove/">Učebnice, skriptá - Jazykové</a><br><a href="https://knihy.bazos.sk/zdravi/">Zdravý životný štýl</a><br><a href="https://knihy.bazos.sk//">Ostatné</a><br><a href="https://knihy.bazos.sk/cudzojazycna/">Cudzojazyčná literatúra</a><br><a href="https://knihy.bazos.sk/casopisy/">Časopisy</a><br><a href="https://knihy.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/mobil.webp" type="image/webp"><source srcset="/obrazky/mobil.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Mobily"></picture><span class="maparubriky"><a href="https://mobil.bazos.sk/">Mobily</a></span><br><a href="https://mobil.bazos.sk/apple/">Apple</a><br><a href="https://mobil.bazos.sk/google/">Google</a><br><a href="https://mobil.bazos.sk/huawei/">Huawei, Honor</a><br><a href="https://mobil.bazos.sk/motorola/">Motorola, Lenovo</a><br><a href="https://mobil.bazos.sk/nokia/">Nokia, Microsoft</a><br><a href="https://mobil.bazos.sk/realme/">Realme</a><br><a href="https://mobil.bazos.sk/samsung/">Samsung</a><br><a href="https://mobil.bazos.sk/ericsson/">Sony</a><br><a href="https://mobil.bazos.sk/xiaomi/">Xiaomi</a><br><a href="https://mobil.bazos.sk/mobily/">Ostatné značky</a><br><a href="https://mobil.bazos.sk//">Príslušenstvo</a><br><a href="https://mobil.bazos.sk/baterie/">Batérie</a><br><a href="https://mobil.bazos.sk/bezdrotove/">Bezdrôtové telefóny</a><br><a href="https://mobil.bazos.sk/kabely/">Dátové kabely</a><br><a href="https://mobil.bazos.sk/faxy/">Faxy</a><br><a href="https://mobil.bazos.sk/headsety/">Headsety</a><br><a href="https://mobil.bazos.sk/hf/">HF Sady do auta</a><br><a href="https://mobil.bazos.sk/smartwatch/">Inteligentné hodinky</a><br><a href="https://mobil.bazos.sk/telefony/">Klasické telefóny</a><br><a href="https://mobil.bazos.sk/kryty/">Kryty</a><br><a href="https://mobil.bazos.sk/nabijacky/">Nabíjačky</a><br><a href="https://mobil.bazos.sk/karty/">Pamäťové karty</a><br><a href="https://mobil.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/motocykle.webp" type="image/webp"><source srcset="/obrazky/motocykle.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Motocykle"></picture><span class="maparubriky"><a href="https://motocykle.bazos.sk/">Motocykle</a></span><br><a href="https://motocykle.bazos.sk/cestne/">Cestné motocykle</a><br><a href="https://motocykle.bazos.sk/cestovne/">Cestovné motocykle</a><br><a href="https://motocykle.bazos.sk/chopper/">Chopper</a><br><a href="https://motocykle.bazos.sk/enduro/">Enduro</a><br><a href="https://motocykle.bazos.sk/minibike/">Minibike</a><br><a href="https://motocykle.bazos.sk/mopedy/">Mopedy</a><br><a href="https://motocykle.bazos.sk/skutre/">Skútre</a><br><a href="https://motocykle.bazos.sk/snezne/">Skútre snežné</a><br><a href="https://motocykle.bazos.sk/vodne/">Skútre vodné</a><br><a href="https://motocykle.bazos.sk/stvorkolky/">Štvorkolky</a><br><a href="https://motocykle.bazos.sk/trojkolky/">Trojkolky</a><br><a href="https://motocykle.bazos.sk/veterany/">Veterány</a><br><a href="https://motocykle.bazos.sk/diely/">Náhradné diely</a><br><a href="https://motocykle.bazos.sk/helmy/">Oblečenie, obuv, helmy</a><br><a href="https://motocykle.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/nabytok.webp" type="image/webp"><source srcset="/obrazky/nabytok.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Nábytok"></picture><span class="maparubriky"><a href="https://nabytok.bazos.sk/">Nábytok</a></span><br><a href="https://nabytok.bazos.sk/jedalenske/">Jedálenské kúty</a><br><a href="https://nabytok.bazos.sk/kniznice/">Knižnice</a><br><a href="https://nabytok.bazos.sk/koberce/">Koberce a podlahová krytina</a><br><a href="https://nabytok.bazos.sk/kresla/">Kreslá a gauče</a><br><a href="https://nabytok.bazos.sk/kuchyne/">Kuchyne</a><br><a href="https://nabytok.bazos.sk/kupelne/">Kúpeľne</a><br><a href="https://nabytok.bazos.sk/lampy/">Lampy, osvetlenie</a><br><a href="https://nabytok.bazos.sk/matrace/">Matrace</a><br><a href="https://nabytok.bazos.sk/obyvacie/">Obývacie steny</a><br><a href="https://nabytok.bazos.sk/postele/">Postele</a><br><a href="https://nabytok.bazos.sk/sedacie/">Sedacie súpravy</a><br><a href="https://nabytok.bazos.sk/skrine/">Skrine</a><br><a href="https://nabytok.bazos.sk/spalne/">Spálne</a><br><a href="https://nabytok.bazos.sk/stolicky/">Stoličky</a><br><a href="https://nabytok.bazos.sk/stoly/">Stoly</a><br><a href="https://nabytok.bazos.sk/zahradny/">Záhradný nábytok</a><br><a href="https://nabytok.bazos.sk/doplnky/">Doplnky</a><br><a href="https://nabytok.bazos.sk/nabytok/">Ostatný nábytok</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/oblecenie.webp" type="image/webp"><source srcset="/obrazky/oblecenie.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Oblečenie"></picture><span class="maparubriky"><a href="https://oblecenie.bazos.sk/">Oblečenie</a></span><br><a href="https://oblecenie.bazos.sk/bluzky/">Blúzky</a><br><a href="https://oblecenie.bazos.sk/bundy/">Bundy a Kabáty</a><br><a href="https://oblecenie.bazos.sk/ciapky/">Čiapky, Šatky</a><br><a href="https://oblecenie.bazos.sk/doplnky/">Doplnky</a><br><a href="https://oblecenie.bazos.sk/dzinsy/">Džínsy</a><br><a href="https://oblecenie.bazos.sk/pradlo/">Funkčné prádlo</a><br><a href="https://oblecenie.bazos.sk/hodinky/">Hodinky</a><br><a href="https://oblecenie.bazos.sk/kabelky/">Kabelky</a><br><a href="https://oblecenie.bazos.sk/kosele/">Košele</a><br><a href="https://oblecenie.bazos.sk/kozene/">Kožené oblečenie</a><br><a href="https://oblecenie.bazos.sk/mikiny/">Mikiny</a><br><a href="https://oblecenie.bazos.sk/nohavice/">Nohavice</a><br><a href="https://oblecenie.bazos.sk/obleky/">Obleky, Saká</a><br><a href="https://oblecenie.bazos.sk/plavky/">Plavky</a><br><a href="https://oblecenie.bazos.sk/plecniaky/">Plecniaky a kufre</a><br><a href="https://oblecenie.bazos.sk/rukavice/">Rukavice a Šály</a><br><a href="https://oblecenie.bazos.sk/saty/">Šaty, Kostýmy</a><br><a href="https://oblecenie.bazos.sk/sortky/">Šortky</a><br><a href="https://oblecenie.bazos.sk/sperky/">Šperky</a><br><a href="https://oblecenie.bazos.sk/bielizen/">Spodná bielizeň</a><br><a href="https://oblecenie.bazos.sk/sportove/">Športové oblečenie</a><br><a href="https://oblecenie.bazos.sk/sukne/">Sukne</a><br><a href="https://oblecenie.bazos.sk/svadobne/">Svadobné šaty</a><br><a href="https://oblecenie.bazos.sk/svetre/">Svetre</a><br><a href="https://oblecenie.bazos.sk/tehulky/">Tehotenské oblečenie</a><br><a href="https://oblecenie.bazos.sk/obuv/">Topánky, obuv</a><br><a href="https://oblecenie.bazos.sk/tricka/">Tričká, roláky, tielka</a><br><a href="https://oblecenie.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/ostatne.webp" type="image/webp"><source srcset="/obrazky/ostatne.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Ostatné"></picture><span class="maparubriky"><a href="https://ostatne.bazos.sk/">Ostatné</a></span><br><a href="https://ostatne.bazos.sk/numizmatika/">Mince, bankovky</a><br><a href="https://ostatne.bazos.sk/modelarstvo/">Modelárstvo</a><br><a href="https://ostatne.bazos.sk/potraviny/">Potraviny</a><br><a href="https://ostatne.bazos.sk/sklo/">Sklo, keramika</a><br><a href="https://ostatne.bazos.sk/starozitnosti/">Starožitnosti</a><br><a href="https://ostatne.bazos.sk/umelecke/">Umelecké predmety</a><br><a href="https://ostatne.bazos.sk/zberatelstvo/">Zberateľstvo</a><br><a href="https://ostatne.bazos.sk/zdravie/">Zdravie a krása</a><br><a href="https://ostatne.bazos.sk/filatelia/">Známky, pohľadnice</a><br><a href="https://ostatne.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/pc.webp" type="image/webp"><source srcset="/obrazky/pc.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="PC"></picture><span class="maparubriky"><a href="https://pc.bazos.sk/">PC</a></span><br><a href="https://pc.bazos.sk/chladic/">Chladiče</a><br><a href="https://pc.bazos.sk/cd/">DVD, Blu-ray mechaniky</a><br><a href="https://pc.bazos.sk/fdd/">FDD, ZIPy</a><br><a href="https://pc.bazos.sk/gps/">GPS navigácia</a><br><a href="https://pc.bazos.sk/graficka/">Grafické karty</a><br><a href="https://pc.bazos.sk/hdd/">Hard disky, SSD</a><br><a href="https://pc.bazos.sk/playstation/">Herné konzoly</a><br><a href="https://pc.bazos.sk/volanty/">Herné zariadenia</a><br><a href="https://pc.bazos.sk/hry/">Hry</a><br><a href="https://pc.bazos.sk/klavesnice/">Klávesnice</a><br><a href="https://pc.bazos.sk/kopirka/">Kopírovacie stroje</a><br><a href="https://pc.bazos.sk/monitor/">LCD monitory</a><br><a href="https://pc.bazos.sk/modem/">Modemy</a><br><a href="https://pc.bazos.sk/mys/">Myši</a><br><a href="https://pc.bazos.sk/notebook/">Notebooky</a><br><a href="https://pc.bazos.sk/pamet/">Pamäte</a><br><a href="https://pc.bazos.sk/pc/">PC, Počítače</a><br><a href="https://pc.bazos.sk/procesor/">Procesory</a><br><a href="https://pc.bazos.sk/scaner/">Scanery</a><br><a href="https://pc.bazos.sk/sit/">Sieťové komponenty</a><br><a href="https://pc.bazos.sk/case/">Skrine, zdroje</a><br><a href="https://pc.bazos.sk/software/">Software</a><br><a href="https://pc.bazos.sk/spotrebny/">Spotrebný materiál</a><br><a href="https://pc.bazos.sk/tablet/">Tablety, E-čítačky</a><br><a href="https://pc.bazos.sk/tlaciaren/">Tlačiarne</a><br><a href="https://pc.bazos.sk/wifi/">Wireless, WiFi</a><br><a href="https://pc.bazos.sk/motherboard/">Základné dosky</a><br><a href="https://pc.bazos.sk/ups/">Záložné zdroje</a><br><a href="https://pc.bazos.sk/sound/">Zvukové karty</a><br><a href="https://pc.bazos.sk/ostatni/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/praca.webp" type="image/webp"><source srcset="/obrazky/praca.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Práca"></picture><span class="maparubriky"><a href="https://praca.bazos.sk/">Práca</a></span><br><a href="https://praca.bazos.sk/administrativa/">Administratíva</a><br><a href="https://praca.bazos.sk/brigada/">Brigády</a><br><a href="https://praca.bazos.sk/potravinarstvo/">Chémia a potravinárstvo</a><br><a href="https://praca.bazos.sk/logistika/">Doprava a logistika</a><br><a href="https://praca.bazos.sk/financie/">Financie a ekonomika</a><br><a href="https://praca.bazos.sk/it/">IT a telekomunikácie</a><br><a href="https://praca.bazos.sk/management/">Management</a><br><a href="https://praca.bazos.sk/marketing/">Marketing a reklama</a><br><a href="https://praca.bazos.sk/obchod/">Obchod a predaj</a><br><a href="https://praca.bazos.sk/bezpecnost/">Obrana a bezpečnosť</a><br><a href="https://praca.bazos.sk/ubytovanie/">Pohostinstvá a ubytovanie</a><br><a href="https://praca.bazos.sk/polnohospodarstvo/">Poľnohospodárstvo</a><br><a href="https://praca.bazos.sk/domacnost/">Práca v domácnosti</a><br><a href="https://praca.bazos.sk/pravo/">Právo, legislatíva</a><br><a href="https://praca.bazos.sk/priemysel/">Priemysel a výroba</a><br><a href="https://praca.bazos.sk/remeslo/">Remeselné práce</a><br><a href="https://praca.bazos.sk/sluzby/">Servis a služby</a><br><a href="https://praca.bazos.sk/stavebnictvo/">Stavebníctvo</a><br><a href="https://praca.bazos.sk/technika/">Technika a energetika</a><br><a href="https://praca.bazos.sk/tlac/">Tlač a polygrafia</a><br><a href="https://praca.bazos.sk/vyskum/">Výskum a vývoj</a><br><a href="https://praca.bazos.sk/personalistika/">Vzdelávánie a personalistika</a><br><a href="https://praca.bazos.sk/zdravotnictvo/">Zdravotníctvo</a><br><a href="https://praca.bazos.sk/ostatni/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/reality.webp" type="image/webp"><source srcset="/obrazky/reality.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Reality"></picture><span class="maparubriky"><a href="https://reality.bazos.sk/">Reality</a></span><br><a href="https://reality.bazos.sk/byt/">Byty</a><br><a href="https://reality.bazos.sk/dom/">Domy</a><br><a href="https://reality.bazos.sk/projekty/">Nové projekty</a><br><a href="https://reality.bazos.sk/podnajom/">Podnájom</a><br><a href="https://reality.bazos.sk/garaz/">Garáže</a><br><a href="https://reality.bazos.sk/restauracie/">Hotely, reštaurácie</a><br><a href="https://reality.bazos.sk/chata/">Chalupy</a><br><a href="https://reality.bazos.sk/kancelar/">Kancelárie</a><br><a href="https://reality.bazos.sk/priestory/">Obchodné priestory</a><br><a href="https://reality.bazos.sk/pozemok/">Pozemky</a><br><a href="https://reality.bazos.sk/sklad/">Sklady</a><br><a href="https://reality.bazos.sk/zahrada/">Záhrady</a><br><a href="https://reality.bazos.sk/ostatni/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/sluzby.webp" type="image/webp"><source srcset="/obrazky/sluzby.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Služby"></picture><span class="maparubriky"><a href="https://sluzby.bazos.sk/">Služby</a></span><br><a href="https://sluzby.bazos.sk/automoto/">Auto Moto</a><br><a href="https://sluzby.bazos.sk/cestovanie/">Cestovanie</a><br><a href="https://sluzby.bazos.sk/domaca/">Domáce práce</a><br><a href="https://sluzby.bazos.sk/ezoterika/">Ezoterika</a><br><a href="https://sluzby.bazos.sk/it/">IT, webdesign</a><br><a href="https://sluzby.bazos.sk/ustajnenie/">Kone - služby</a><br><a href="https://sluzby.bazos.sk/skolenia/">Kurzy a školenia</a><br><a href="https://sluzby.bazos.sk/opravy/">Opravy a servis</a><br><a href="https://sluzby.bazos.sk/organizovanie/">Organizovanie akcií</a><br><a href="https://sluzby.bazos.sk/pozicovne/">Požičovne</a><br><a href="https://sluzby.bazos.sk/pravo/">Právo a bezpečnosť</a><br><a href="https://sluzby.bazos.sk/prekladatelstvo/">Prekladateľstvo</a><br><a href="https://sluzby.bazos.sk/stahovanie/">Preprava a sťahovanie</a><br><a href="https://sluzby.bazos.sk/realitne/">Realitné služby</a><br><a href="https://sluzby.bazos.sk/reklama/">Reklama na auto</a><br><a href="https://sluzby.bazos.sk/reklamne/">Reklamné plochy - ostatné</a><br><a href="https://sluzby.bazos.sk/remesla/">Remeselné a stavebné práce</a><br><a href="https://sluzby.bazos.sk/zvierata/">Služby pre zvieratá</a><br><a href="https://sluzby.bazos.sk/sprostredkovatelske/">Sprostredkovateľské služby</a><br><a href="https://sluzby.bazos.sk/strazenie/">Stráženie detí</a><br><a href="https://sluzby.bazos.sk/tvoriva/">Tvorivá práca</a><br><a href="https://sluzby.bazos.sk/ubytovanie/">Ubytovanie</a><br><a href="https://sluzby.bazos.sk/financne/">Účtovníctvo, poradenstvo</a><br><a href="https://sluzby.bazos.sk/upratovanie/">Upratovanie</a><br><a href="https://sluzby.bazos.sk/vyroba/">Výroba</a><br><a href="https://sluzby.bazos.sk/vyuka/">Výuka hudby</a><br><a href="https://sluzby.bazos.sk/doucovanie/">Výuka, doučovanie</a><br><a href="https://sluzby.bazos.sk/zdravie/">Zdravie a krása</a><br><a href="https://sluzby.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/sport.webp" type="image/webp"><source srcset="/obrazky/sport.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Šport"></picture><span class="maparubriky"><a href="https://sport.bazos.sk/">Šport</a></span><br><a href="https://sport.bazos.sk/fitness/">Fitness, jogging</a><br><a href="https://sport.bazos.sk/futbal/">Futbal</a><br><a href="https://sport.bazos.sk/golf/">Golf</a><br><a href="https://sport.bazos.sk/korcule/">In-lines, Skateboarding</a><br><a href="https://sport.bazos.sk/kemping/">Kemping</a><br><a href="https://sport.bazos.sk/letectvo/">Letectvo</a><br><a href="https://sport.bazos.sk/loptove/">Loptové hry</a><br><a href="https://sport.bazos.sk/paintball/">Paintball, airsoft</a><br><a href="https://sport.bazos.sk/lov/">Poľovníctvo</a><br><a href="https://sport.bazos.sk/rybareni/">Rybolov</a><br><a href="https://sport.bazos.sk/hry/">Spoločenské hry</a><br><a href="https://sport.bazos.sk/tenis/">Tenis, squash, badminton</a><br><a href="https://sport.bazos.sk/turistika/">Turistika, horolezectvo</a><br><a href="https://sport.bazos.sk/vodni/">Vodné športy, potápanie</a><br><a href="https://sport.bazos.sk/ostatni/">Všetko ostatné</a><br><a href="https://sport.bazos.sk//">Cyklistika</a><br><a href="https://sport.bazos.sk/kolobezky/">Kolobežky</a><br><a href="https://sport.bazos.sk/cestne/">Cestné bicykle</a><br><a href="https://sport.bazos.sk/horska/">Horské bicykle</a><br><a href="https://sport.bazos.sk/elektrobicykle/">Elektrobicykle</a><br><a href="https://sport.bazos.sk/soucastky/">Súčiastky a diely</a><br><a href="https://sport.bazos.sk/cyklistika/">Ostatná cyklistika</a><br><a href="https://sport.bazos.sk//">Zimné športy</a><br><a href="https://sport.bazos.sk/bezky/">Bežkovanie</a><br><a href="https://sport.bazos.sk/hokej/">Hokej, korčuľovanie</a><br><a href="https://sport.bazos.sk/lyze/">Lyžovanie</a><br><a href="https://sport.bazos.sk/skialpy/">Skialpy</a><br><a href="https://sport.bazos.sk/snowboard/">Snowboarding</a><br><a href="https://sport.bazos.sk/zimni/">Ostatné zimné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/stroje.webp" type="image/webp"><source srcset="/obrazky/stroje.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Stroje"></picture><span class="maparubriky"><a href="https://stroje.bazos.sk/">Stroje</a></span><br><a href="https://stroje.bazos.sk/cerpadla/">Čerpadlá</a><br><a href="https://stroje.bazos.sk/cistiace/">Čistiace stroje</a><br><a href="https://stroje.bazos.sk/drevoobrabacie/">Drevoobrábacie stroje</a><br><a href="https://stroje.bazos.sk/generatory/">Generátory</a><br><a href="https://stroje.bazos.sk/historicke/">Historické stroje</a><br><a href="https://stroje.bazos.sk/komunalna/">Komunálna technika</a><br><a href="https://stroje.bazos.sk/kovoobrabacie/">Kovoobrábacie stroje</a><br><a href="https://stroje.bazos.sk/lesna/">Lesná technika</a><br><a href="https://stroje.bazos.sk/motory/">Motory</a><br><a href="https://stroje.bazos.sk/polnohospodarska/">Poľnohospodárska technika</a><br><a href="https://stroje.bazos.sk/potravinarske/">Potravinárske stroje</a><br><a href="https://stroje.bazos.sk/skladova/">Skladová technika</a><br><a href="https://stroje.bazos.sk/stavebne/">Stavebné stroje</a><br><a href="https://stroje.bazos.sk/textilne/">Textilné stroje</a><br><a href="https://stroje.bazos.sk/tlaciarenske/">Tlačiarenské stroje</a><br><a href="https://stroje.bazos.sk/prevadzkarne/">Vybavenie prevádzkarne</a><br><a href="https://stroje.bazos.sk/linka/">Výrobná linka</a><br><a href="https://stroje.bazos.sk/diely/">Náhradné diely</a><br><a href="https://stroje.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/vstupenky.webp" type="image/webp"><source srcset="/obrazky/vstupenky.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Vstupenky"></picture><span class="maparubriky"><a href="https://vstupenky.bazos.sk/">Vstupenky</a></span><br><a href="https://vstupenky.bazos.sk/poukazky/">Darčekové poukážky</a><br><a href="https://vstupenky.bazos.sk/znamky/">Diaľničné známky</a><br><a href="https://vstupenky.bazos.sk/listky/">Cestovné lístky</a><br><a href="https://vstupenky.bazos.sk/letenky/">Letenky</a><br><a href="https://vstupenky.bazos.sk/permanentky/">Permanentky</a><br><a href="https://vstupenky.bazos.sk/divadlo/">Divadlo</a><br><a href="https://vstupenky.bazos.sk/festivaly/">Festivaly</a><br><a href="https://vstupenky.bazos.sk/hudba/">Hudba, Koncerty</a><br><a href="https://vstupenky.bazos.sk/deti/">Pre deti</a><br><a href="https://vstupenky.bazos.sk/spolocenske/">Spoločenské akcie</a><br><a href="https://vstupenky.bazos.sk/sport/">Šport</a><br><a href="https://vstupenky.bazos.sk/vystavy/">Výstavy</a><br><a href="https://vstupenky.bazos.sk/ostatne/">Ostatné</a><br></div><br><div class="mapaflexcell"><picture><source srcset="/obrazky/zvierata.webp" type="image/webp"><source srcset="/obrazky/zvierata.png" type="image/jpeg"><img src="/obrazky/zvirata.png" class="mapaimg" alt="Zvieratá"></picture><span class="maparubriky"><a href="https://zvierata.bazos.sk/">Zvieratá</a></span><br><a href="https://zvierata.bazos.sk/ryba/">Akvarijné rybičky</a><br><a href="https://zvierata.bazos.sk/cicavec/">Drobné cicavce</a><br><a href="https://zvierata.bazos.sk/kon/">Kone</a><br><a href="https://zvierata.bazos.sk/konepotreby/">Kone - potreby</a><br><a href="https://zvierata.bazos.sk/macka/">Mačky</a><br><a href="https://zvierata.bazos.sk/pes/">Psy</a><br><a href="https://zvierata.bazos.sk/zviera/">Terárijné zvieratá</a><br><a href="https://zvierata.bazos.sk/vtak/">Vtáctvo</a><br><a href="https://zvierata.bazos.sk/ostatnidomaci/">Ostatné domáce zvieratá</a><br><a href="https://zvierata.bazos.sk/kryti/">Krytie</a><br><a href="https://zvierata.bazos.sk/strateni/">Stratení a nájdení</a><br><a href="https://zvierata.bazos.sk/potreby/">Chovateľské potreby</a><br><a href="https://zvierata.bazos.sk//">Hospodárska zvieratá</a><br><a href="https://zvierata.bazos.sk/dobytok/">Dobytok</a><br><a href="https://zvierata.bazos.sk/hydina/">Hydina</a><br><a href="https://zvierata.bazos.sk/kralik/">Králiky</a><br><a href="https://zvierata.bazos.sk/koza/">Ovce a kozy</a><br><a href="https://zvierata.bazos.sk/prase/">Prasatá</a><br><a href="https://zvierata.bazos.sk/ostatnihospodarska/">Ostatné hospodárske zvieratá</a><br></div><br></div>
+<br>
+
+
+</div>
+
+
+
+</div></div><br>
+
+&copy;2026 Bazoš - <b>Inzercia, bazár</b><br>
+<a href="https://www.bazos.sk/pomoc.php">Pomoc</a>, <a href="https://www.bazos.sk/otazky.php">Otázky</a>, <a href="https://www.bazos.sk/hodnotenie.php">Hodnotenie</a>, <a href="https://www.bazos.sk/kontakt.php">Kontakt</a>, <a href="https://www.bazos.sk/reklama.php">Reklama</a>, <a href="https://www.bazos.sk/podmienky.php">Podmienky</a>, <a href="https://www.bazos.sk/ochrana-udajov.php">Ochrana údajov</a>, <a href="https://www.bazos.sk/rss.php">RSS</a>, <form name="formvkm" id="formvkm" method="post" style="display: inline;"><input type="hidden" name="vkm" value="m"><input type="submit" class="vkm" value="Mobilná verzia"></form><br>
+Inzeráty celkom:<b>
+1003536</b>, inzercia za 24 hodín: <b>49717</b><br><br>
+<a href="https://www.bazos.sk/mapa-kategorie.php">Mapa kategórií</a>, <a href="https://www.bazos.sk/mapa-search.php">Najvyhľadávanejšie výrazy</a>, Tmavý motív: <form name="formdark" action="https://www.bazos.sk" method="post" style="display: inline;"><input type="hidden" name="darkmode" value="1"><input type="submit" class="vkm" value="vypnutý"></form><br>
+Krajiny: <a href="https://www.bazos.sk">Slovensko</a>, <a href="https://www.bazos.cz">Česká republika</a>, <a href="https://www.bazos.pl">Poľsko</a>, <a href="https://www.bazos.at">Rakúsko</a>
+<br>
+
+<br>
+</div>
+
+<script src="https://www.bazos.sk/cookie-consent.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"sk","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"cookie_domain": "bazos.sk"});
+});
+</script>
+<a href="#" id="open_preferences_center"> </a>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLZSNE9Z0C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HLZSNE9Z0C');
+</script>
+
+</body>
+</html>

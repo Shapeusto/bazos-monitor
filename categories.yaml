@@ -1,0 +1,2815 @@
+categories:
+- key: auto
+  label: Auto
+  host: auto.bazos.sk
+  path: /
+  parent_key: null
+  url: https://auto.bazos.sk/
+- key: deti
+  label: Deti
+  host: deti.bazos.sk
+  path: /
+  parent_key: null
+  url: https://deti.bazos.sk/
+- key: dom
+  label: Dom a záhrada
+  host: dom.bazos.sk
+  path: /
+  parent_key: null
+  url: https://dom.bazos.sk/
+- key: elektro
+  label: Elektro
+  host: elektro.bazos.sk
+  path: /
+  parent_key: null
+  url: https://elektro.bazos.sk/
+- key: foto
+  label: Foto
+  host: foto.bazos.sk
+  path: /
+  parent_key: null
+  url: https://foto.bazos.sk/
+- key: hudba
+  label: Hudba
+  host: hudba.bazos.sk
+  path: /
+  parent_key: null
+  url: https://hudba.bazos.sk/
+- key: knihy
+  label: Knihy
+  host: knihy.bazos.sk
+  path: /
+  parent_key: null
+  url: https://knihy.bazos.sk/
+- key: mobil
+  label: Mobily
+  host: mobil.bazos.sk
+  path: /
+  parent_key: null
+  url: https://mobil.bazos.sk/
+- key: motocykle
+  label: Motocykle
+  host: motocykle.bazos.sk
+  path: /
+  parent_key: null
+  url: https://motocykle.bazos.sk/
+- key: nabytok
+  label: Nábytok
+  host: nabytok.bazos.sk
+  path: /
+  parent_key: null
+  url: https://nabytok.bazos.sk/
+- key: oblecenie
+  label: Oblečenie
+  host: oblecenie.bazos.sk
+  path: /
+  parent_key: null
+  url: https://oblecenie.bazos.sk/
+- key: ostatne
+  label: Ostatné
+  host: ostatne.bazos.sk
+  path: /
+  parent_key: null
+  url: https://ostatne.bazos.sk/
+- key: pc
+  label: PC
+  host: pc.bazos.sk
+  path: /
+  parent_key: null
+  url: https://pc.bazos.sk/
+- key: praca
+  label: Práca
+  host: praca.bazos.sk
+  path: /
+  parent_key: null
+  url: https://praca.bazos.sk/
+- key: reality
+  label: Reality
+  host: reality.bazos.sk
+  path: /
+  parent_key: null
+  url: https://reality.bazos.sk/
+- key: sluzby
+  label: Služby
+  host: sluzby.bazos.sk
+  path: /
+  parent_key: null
+  url: https://sluzby.bazos.sk/
+- key: sport
+  label: Šport
+  host: sport.bazos.sk
+  path: /
+  parent_key: null
+  url: https://sport.bazos.sk/
+- key: stroje
+  label: Stroje
+  host: stroje.bazos.sk
+  path: /
+  parent_key: null
+  url: https://stroje.bazos.sk/
+- key: vstupenky
+  label: Vstupenky
+  host: vstupenky.bazos.sk
+  path: /
+  parent_key: null
+  url: https://vstupenky.bazos.sk/
+- key: zvierata
+  label: Zvieratá
+  host: zvierata.bazos.sk
+  path: /
+  parent_key: null
+  url: https://zvierata.bazos.sk/
+- key: auto/alfa
+  label: Auto > Alfa Romeo
+  host: auto.bazos.sk
+  path: /alfa/
+  parent_key: auto
+  url: https://auto.bazos.sk/alfa/
+- key: auto/audi
+  label: Auto > Audi
+  host: auto.bazos.sk
+  path: /audi/
+  parent_key: auto
+  url: https://auto.bazos.sk/audi/
+- key: auto/autobusy
+  label: Auto > Autobusy
+  host: auto.bazos.sk
+  path: /autobusy/
+  parent_key: auto
+  url: https://auto.bazos.sk/autobusy/
+- key: auto/bmw
+  label: Auto > BMW
+  host: auto.bazos.sk
+  path: /bmw/
+  parent_key: auto
+  url: https://auto.bazos.sk/bmw/
+- key: auto/chevrolet
+  label: Auto > Chevrolet
+  host: auto.bazos.sk
+  path: /chevrolet/
+  parent_key: auto
+  url: https://auto.bazos.sk/chevrolet/
+- key: auto/citroen
+  label: Auto > Citroën
+  host: auto.bazos.sk
+  path: /citroen/
+  parent_key: auto
+  url: https://auto.bazos.sk/citroen/
+- key: auto/dacia
+  label: Auto > Dacia
+  host: auto.bazos.sk
+  path: /dacia/
+  parent_key: auto
+  url: https://auto.bazos.sk/dacia/
+- key: auto/dodavka
+  label: Auto > Dodávky
+  host: auto.bazos.sk
+  path: /dodavka/
+  parent_key: auto
+  url: https://auto.bazos.sk/dodavka/
+- key: auto/fiat
+  label: Auto > Fiat
+  host: auto.bazos.sk
+  path: /fiat/
+  parent_key: auto
+  url: https://auto.bazos.sk/fiat/
+- key: auto/ford
+  label: Auto > Ford
+  host: auto.bazos.sk
+  path: /ford/
+  parent_key: auto
+  url: https://auto.bazos.sk/ford/
+- key: auto/havarovana
+  label: Auto > Havarované
+  host: auto.bazos.sk
+  path: /havarovana/
+  parent_key: auto
+  url: https://auto.bazos.sk/havarovana/
+- key: auto/havarovanauzitkova
+  label: Auto > Havarované užitková
+  host: auto.bazos.sk
+  path: /havarovanauzitkova/
+  parent_key: auto
+  url: https://auto.bazos.sk/havarovanauzitkova/
+- key: auto/honda
+  label: Auto > Honda
+  host: auto.bazos.sk
+  path: /honda/
+  parent_key: auto
+  url: https://auto.bazos.sk/honda/
+- key: auto/hyundai
+  label: Auto > Hyundai
+  host: auto.bazos.sk
+  path: /hyundai/
+  parent_key: auto
+  url: https://auto.bazos.sk/hyundai/
+- key: auto/karavany
+  label: Auto > Karavany, obytné autá
+  host: auto.bazos.sk
+  path: /karavany/
+  parent_key: auto
+  url: https://auto.bazos.sk/karavany/
+- key: auto/kia
+  label: Auto > Kia
+  host: auto.bazos.sk
+  path: /kia/
+  parent_key: auto
+  url: https://auto.bazos.sk/kia/
+- key: auto/mazda
+  label: Auto > Mazda
+  host: auto.bazos.sk
+  path: /mazda/
+  parent_key: auto
+  url: https://auto.bazos.sk/mazda/
+- key: auto/mercedes
+  label: Auto > Mercedes-Benz
+  host: auto.bazos.sk
+  path: /mercedes/
+  parent_key: auto
+  url: https://auto.bazos.sk/mercedes/
+- key: auto/mikrobus
+  label: Auto > Mikrobusy
+  host: auto.bazos.sk
+  path: /mikrobus/
+  parent_key: auto
+  url: https://auto.bazos.sk/mikrobus/
+- key: auto/mitsubishi
+  label: Auto > Mitsubishi
+  host: auto.bazos.sk
+  path: /mitsubishi/
+  parent_key: auto
+  url: https://auto.bazos.sk/mitsubishi/
+- key: auto/nahradnidily
+  label: Auto > Náhradné diely
+  host: auto.bazos.sk
+  path: /nahradnidily/
+  parent_key: auto
+  url: https://auto.bazos.sk/nahradnidily/
+- key: auto/nahradnidilyuzitkova
+  label: Auto > Náhradné diely užitková
+  host: auto.bazos.sk
+  path: /nahradnidilyuzitkova/
+  parent_key: auto
+  url: https://auto.bazos.sk/nahradnidilyuzitkova/
+- key: auto/nakladne
+  label: Auto > Nákladné autá
+  host: auto.bazos.sk
+  path: /nakladne/
+  parent_key: auto
+  url: https://auto.bazos.sk/nakladne/
+- key: auto/nissan
+  label: Auto > Nissan
+  host: auto.bazos.sk
+  path: /nissan/
+  parent_key: auto
+  url: https://auto.bazos.sk/nissan/
+- key: auto/opel
+  label: Auto > Opel
+  host: auto.bazos.sk
+  path: /opel/
+  parent_key: auto
+  url: https://auto.bazos.sk/opel/
+- key: auto/ostatni
+  label: Auto > Ostatné značky
+  host: auto.bazos.sk
+  path: /ostatni/
+  parent_key: auto
+  url: https://auto.bazos.sk/ostatni/
+- key: auto/ostatniuzitkova
+  label: Auto > Ostatná užitková
+  host: auto.bazos.sk
+  path: /ostatniuzitkova/
+  parent_key: auto
+  url: https://auto.bazos.sk/ostatniuzitkova/
+- key: auto/peugeot
+  label: Auto > Peugeot
+  host: auto.bazos.sk
+  path: /peugeot/
+  parent_key: auto
+  url: https://auto.bazos.sk/peugeot/
+- key: auto/pickup
+  label: Auto > Pick-up
+  host: auto.bazos.sk
+  path: /pickup/
+  parent_key: auto
+  url: https://auto.bazos.sk/pickup/
+- key: auto/pneumatiky
+  label: Auto > Pneumatiky, kolesá
+  host: auto.bazos.sk
+  path: /pneumatiky/
+  parent_key: auto
+  url: https://auto.bazos.sk/pneumatiky/
+- key: auto/prislusenstvo
+  label: Auto > Príslušenstvo
+  host: auto.bazos.sk
+  path: /prislusenstvo/
+  parent_key: auto
+  url: https://auto.bazos.sk/prislusenstvo/
+- key: auto/renault
+  label: Auto > Renault
+  host: auto.bazos.sk
+  path: /renault/
+  parent_key: auto
+  url: https://auto.bazos.sk/renault/
+- key: auto/seat
+  label: Auto > Seat
+  host: auto.bazos.sk
+  path: /seat/
+  parent_key: auto
+  url: https://auto.bazos.sk/seat/
+- key: auto/skoda
+  label: Auto > Škoda
+  host: auto.bazos.sk
+  path: /skoda/
+  parent_key: auto
+  url: https://auto.bazos.sk/skoda/
+- key: auto/suzuki
+  label: Auto > Suzuki
+  host: auto.bazos.sk
+  path: /suzuki/
+  parent_key: auto
+  url: https://auto.bazos.sk/suzuki/
+- key: auto/toyota
+  label: Auto > Toyota
+  host: auto.bazos.sk
+  path: /toyota/
+  parent_key: auto
+  url: https://auto.bazos.sk/toyota/
+- key: auto/tuning
+  label: Auto > Tuning
+  host: auto.bazos.sk
+  path: /tuning/
+  parent_key: auto
+  url: https://auto.bazos.sk/tuning/
+- key: auto/veterany
+  label: Auto > Veterány
+  host: auto.bazos.sk
+  path: /veterany/
+  parent_key: auto
+  url: https://auto.bazos.sk/veterany/
+- key: auto/volkswagen
+  label: Auto > VW
+  host: auto.bazos.sk
+  path: /volkswagen/
+  parent_key: auto
+  url: https://auto.bazos.sk/volkswagen/
+- key: auto/volvo
+  label: Auto > Volvo
+  host: auto.bazos.sk
+  path: /volvo/
+  parent_key: auto
+  url: https://auto.bazos.sk/volvo/
+- key: auto/voziky
+  label: Auto > Vozíky, prívesy
+  host: auto.bazos.sk
+  path: /voziky/
+  parent_key: auto
+  url: https://auto.bazos.sk/voziky/
+- key: deti/autosedacky
+  label: Deti > Autosedačky
+  host: deti.bazos.sk
+  path: /autosedacky/
+  parent_key: deti
+  url: https://deti.bazos.sk/autosedacky/
+- key: deti/baby
+  label: Deti > Baby monitory
+  host: deti.bazos.sk
+  path: /baby/
+  parent_key: deti
+  url: https://deti.bazos.sk/baby/
+- key: deti/bicykle
+  label: Deti > Bicykle
+  host: deti.bazos.sk
+  path: /bicykle/
+  parent_key: deti
+  url: https://deti.bazos.sk/bicykle/
+- key: deti/bielizen
+  label: Deti > Spodná bielizeň
+  host: deti.bazos.sk
+  path: /bielizen/
+  parent_key: deti
+  url: https://deti.bazos.sk/bielizen/
+- key: deti/bundy
+  label: Deti > Bundy a kabátiky
+  host: deti.bazos.sk
+  path: /bundy/
+  parent_key: deti
+  url: https://deti.bazos.sk/bundy/
+- key: deti/choditka
+  label: Deti > Chodítka a hopsadlá
+  host: deti.bazos.sk
+  path: /choditka/
+  parent_key: deti
+  url: https://deti.bazos.sk/choditka/
+- key: deti/ciapky
+  label: Deti > Čiapky a klobúčiky
+  host: deti.bazos.sk
+  path: /ciapky/
+  parent_key: deti
+  url: https://deti.bazos.sk/ciapky/
+- key: deti/dupacky
+  label: Deti > Body, dupačky a overaly
+  host: deti.bazos.sk
+  path: /dupacky/
+  parent_key: deti
+  url: https://deti.bazos.sk/dupacky/
+- key: deti/hracky
+  label: Deti > Hračky
+  host: deti.bazos.sk
+  path: /hracky/
+  parent_key: deti
+  url: https://deti.bazos.sk/hracky/
+- key: deti/kociky
+  label: Deti > Kočíky
+  host: deti.bazos.sk
+  path: /kociky/
+  parent_key: deti
+  url: https://deti.bazos.sk/kociky/
+- key: deti/kojenecke
+  label: Deti > Kojenecké potreby
+  host: deti.bazos.sk
+  path: /kojenecke/
+  parent_key: deti
+  url: https://deti.bazos.sk/kojenecke/
+- key: deti/kombinezy
+  label: Deti > Kombinézy
+  host: deti.bazos.sk
+  path: /kombinezy/
+  parent_key: deti
+  url: https://deti.bazos.sk/kombinezy/
+- key: deti/komplety
+  label: Deti > Komplety
+  host: deti.bazos.sk
+  path: /komplety/
+  parent_key: deti
+  url: https://deti.bazos.sk/komplety/
+- key: deti/lego
+  label: Deti > Lego
+  host: deti.bazos.sk
+  path: /lego/
+  parent_key: deti
+  url: https://deti.bazos.sk/lego/
+- key: deti/mikiny
+  label: Deti > Mikiny a svetre
+  host: deti.bazos.sk
+  path: /mikiny/
+  parent_key: deti
+  url: https://deti.bazos.sk/mikiny/
+- key: deti/nabytok
+  label: Deti > Nábytok pre deti
+  host: deti.bazos.sk
+  path: /nabytok/
+  parent_key: deti
+  url: https://deti.bazos.sk/nabytok/
+- key: deti/nohavice
+  label: Deti > Nohavice, kraťasy a tepláky
+  host: deti.bazos.sk
+  path: /nohavice/
+  parent_key: deti
+  url: https://deti.bazos.sk/nohavice/
+- key: deti/nositka
+  label: Deti > Nosiče
+  host: deti.bazos.sk
+  path: /nositka/
+  parent_key: deti
+  url: https://deti.bazos.sk/nositka/
+- key: deti/oblecenie
+  label: Deti > Ostatné oblečenie
+  host: deti.bazos.sk
+  path: /oblecenie/
+  parent_key: deti
+  url: https://deti.bazos.sk/oblecenie/
+- key: deti/obuv
+  label: Deti > Obuv
+  host: deti.bazos.sk
+  path: /obuv/
+  parent_key: deti
+  url: https://deti.bazos.sk/obuv/
+- key: deti/odrazadla
+  label: Deti > Odrážadlá
+  host: deti.bazos.sk
+  path: /odrazadla/
+  parent_key: deti
+  url: https://deti.bazos.sk/odrazadla/
+- key: deti/ostatne
+  label: Deti > Ostatné
+  host: deti.bazos.sk
+  path: /ostatne/
+  parent_key: deti
+  url: https://deti.bazos.sk/ostatne/
+- key: deti/plavky
+  label: Deti > Plavky
+  host: deti.bazos.sk
+  path: /plavky/
+  parent_key: deti
+  url: https://deti.bazos.sk/plavky/
+- key: deti/ponozky
+  label: Deti > Ponožky a pančušky
+  host: deti.bazos.sk
+  path: /ponozky/
+  parent_key: deti
+  url: https://deti.bazos.sk/ponozky/
+- key: deti/pyzamka
+  label: Deti > Pyžamká a župančeky
+  host: deti.bazos.sk
+  path: /pyzamka/
+  parent_key: deti
+  url: https://deti.bazos.sk/pyzamka/
+- key: deti/rukavice
+  label: Deti > Rukavice a šály
+  host: deti.bazos.sk
+  path: /rukavice/
+  parent_key: deti
+  url: https://deti.bazos.sk/rukavice/
+- key: deti/sedacky
+  label: Deti > Sedačky na bicykel
+  host: deti.bazos.sk
+  path: /sedacky/
+  parent_key: deti
+  url: https://deti.bazos.sk/sedacky/
+- key: deti/skolske
+  label: Deti > Školské potreby
+  host: deti.bazos.sk
+  path: /skolske/
+  parent_key: deti
+  url: https://deti.bazos.sk/skolske/
+- key: deti/sportove
+  label: Deti > Športové potreby
+  host: deti.bazos.sk
+  path: /sportove/
+  parent_key: deti
+  url: https://deti.bazos.sk/sportove/
+- key: deti/suknicky
+  label: Deti > Sukničky a šatočky
+  host: deti.bazos.sk
+  path: /suknicky/
+  parent_key: deti
+  url: https://deti.bazos.sk/suknicky/
+- key: deti/tricka
+  label: Deti > Tričká a košieľky
+  host: deti.bazos.sk
+  path: /tricka/
+  parent_key: deti
+  url: https://deti.bazos.sk/tricka/
+- key: dom/bazeny
+  label: Dom a záhrada > Bazény
+  host: dom.bazos.sk
+  path: /bazeny/
+  parent_key: dom
+  url: https://dom.bazos.sk/bazeny/
+- key: dom/cerpadla
+  label: Dom a záhrada > Čerpadlá
+  host: dom.bazos.sk
+  path: /cerpadla/
+  parent_key: dom
+  url: https://dom.bazos.sk/cerpadla/
+- key: dom/dvere
+  label: Dom a záhrada > Dvere, brány
+  host: dom.bazos.sk
+  path: /dvere/
+  parent_key: dom
+  url: https://dom.bazos.sk/dvere/
+- key: dom/grily
+  label: Dom a záhrada > Záhradné grily
+  host: dom.bazos.sk
+  path: /grily/
+  parent_key: dom
+  url: https://dom.bazos.sk/grily/
+- key: dom/klimatizacie
+  label: Dom a záhrada > Klimatizácie
+  host: dom.bazos.sk
+  path: /klimatizacie/
+  parent_key: dom
+  url: https://dom.bazos.sk/klimatizacie/
+- key: dom/kosacky
+  label: Dom a záhrada > Kosačky
+  host: dom.bazos.sk
+  path: /kosacky/
+  parent_key: dom
+  url: https://dom.bazos.sk/kosacky/
+- key: dom/kotle
+  label: Dom a záhrada > Kotle, Bojlery
+  host: dom.bazos.sk
+  path: /kotle/
+  parent_key: dom
+  url: https://dom.bazos.sk/kotle/
+- key: dom/malotraktory
+  label: Dom a záhrada > Malotraktory, Kultivátory
+  host: dom.bazos.sk
+  path: /malotraktory/
+  parent_key: dom
+  url: https://dom.bazos.sk/malotraktory/
+- key: dom/miesacky
+  label: Dom a záhrada > Miešačky
+  host: dom.bazos.sk
+  path: /miesacky/
+  parent_key: dom
+  url: https://dom.bazos.sk/miesacky/
+- key: dom/naradie
+  label: Dom a záhrada > Náradie
+  host: dom.bazos.sk
+  path: /naradie/
+  parent_key: dom
+  url: https://dom.bazos.sk/naradie/
+- key: dom/okna
+  label: Dom a záhrada > Okná
+  host: dom.bazos.sk
+  path: /okna/
+  parent_key: dom
+  url: https://dom.bazos.sk/okna/
+- key: dom/ostatne
+  label: Dom a záhrada > Ostatné
+  host: dom.bazos.sk
+  path: /ostatne/
+  parent_key: dom
+  url: https://dom.bazos.sk/ostatne/
+- key: dom/pily
+  label: Dom a záhrada > Píly
+  host: dom.bazos.sk
+  path: /pily/
+  parent_key: dom
+  url: https://dom.bazos.sk/pily/
+- key: dom/radiatory
+  label: Dom a záhrada > Radiátory
+  host: dom.bazos.sk
+  path: /radiatory/
+  parent_key: dom
+  url: https://dom.bazos.sk/radiatory/
+- key: dom/rastliny
+  label: Dom a záhrada > Rastliny
+  host: dom.bazos.sk
+  path: /rastliny/
+  parent_key: dom
+  url: https://dom.bazos.sk/rastliny/
+- key: dom/snezna
+  label: Dom a záhrada > Snežná technika
+  host: dom.bazos.sk
+  path: /snezna/
+  parent_key: dom
+  url: https://dom.bazos.sk/snezna/
+- key: dom/stavebny
+  label: Dom a záhrada > Stavebný materiál
+  host: dom.bazos.sk
+  path: /stavebny/
+  parent_key: dom
+  url: https://dom.bazos.sk/stavebny/
+- key: dom/technika
+  label: Dom a záhrada > Záhradná technika
+  host: dom.bazos.sk
+  path: /technika/
+  parent_key: dom
+  url: https://dom.bazos.sk/technika/
+- key: dom/vybavenie
+  label: Dom a záhrada > Vybavenie dielne
+  host: dom.bazos.sk
+  path: /vybavenie/
+  parent_key: dom
+  url: https://dom.bazos.sk/vybavenie/
+- key: dom/vysavace
+  label: Dom a záhrada > Vysávače/Fúkače
+  host: dom.bazos.sk
+  path: /vysavace/
+  parent_key: dom
+  url: https://dom.bazos.sk/vysavace/
+- key: elektro/autoradia
+  label: Elektro > Autorádia
+  host: elektro.bazos.sk
+  path: /autoradia/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/autoradia/
+- key: elektro/chladnicky
+  label: Elektro > Chladničky
+  host: elektro.bazos.sk
+  path: /chladnicky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/chladnicky/
+- key: elektro/depilatory
+  label: Elektro > Epilátory, Depilátory
+  host: elektro.bazos.sk
+  path: /depilatory/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/depilatory/
+- key: elektro/digestory
+  label: Elektro > Digestory
+  host: elektro.bazos.sk
+  path: /digestory/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/digestory/
+- key: elektro/dvd
+  label: Elektro > Video, DVD prehrávače
+  host: elektro.bazos.sk
+  path: /dvd/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/dvd/
+- key: elektro/feny
+  label: Elektro > Fény, Kulmy
+  host: elektro.bazos.sk
+  path: /feny/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/feny/
+- key: elektro/hifi
+  label: Elektro > Hifi systémy, Rádiá
+  host: elektro.bazos.sk
+  path: /hifi/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/hifi/
+- key: elektro/holiace
+  label: Elektro > Holiace strojčeky
+  host: elektro.bazos.sk
+  path: /holiace/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/holiace/
+- key: elektro/kavovary
+  label: Elektro > Kávovary
+  host: elektro.bazos.sk
+  path: /kavovary/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/kavovary/
+- key: elektro/kina
+  label: Elektro > Domáce kiná
+  host: elektro.bazos.sk
+  path: /kina/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/kina/
+- key: elektro/lampy
+  label: Elektro > Svietidlá, Lampy
+  host: elektro.bazos.sk
+  path: /lampy/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/lampy/
+- key: elektro/mikrovlnky
+  label: Elektro > Mikrovlnné rúry
+  host: elektro.bazos.sk
+  path: /mikrovlnky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/mikrovlnky/
+- key: elektro/mixery
+  label: Elektro > Ručné šľahače, Mixéry
+  host: elektro.bazos.sk
+  path: /mixery/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/mixery/
+- key: elektro/mraznicky
+  label: Elektro > Mrazničky
+  host: elektro.bazos.sk
+  path: /mraznicky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/mraznicky/
+- key: elektro/nabijacky
+  label: Elektro > Nabíjačky batérií
+  host: elektro.bazos.sk
+  path: /nabijacky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/nabijacky/
+- key: elektro/ostatne
+  label: Elektro > Ostatné drobné
+  host: elektro.bazos.sk
+  path: /ostatne/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/ostatne/
+- key: elektro/ostatneav
+  label: Elektro > Ostatné audio video
+  host: elektro.bazos.sk
+  path: /ostatneav/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/ostatneav/
+- key: elektro/ostatnebila
+  label: Elektro > Ostatné - biela
+  host: elektro.bazos.sk
+  path: /ostatnebila/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/ostatnebila/
+- key: elektro/pracky
+  label: Elektro > Práčky
+  host: elektro.bazos.sk
+  path: /pracky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/pracky/
+- key: elektro/projektory
+  label: Elektro > Projektory
+  host: elektro.bazos.sk
+  path: /projektory/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/projektory/
+- key: elektro/repro
+  label: Elektro > Repro sústavy
+  host: elektro.bazos.sk
+  path: /repro/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/repro/
+- key: elektro/sijacie
+  label: Elektro > Šijacie stroje
+  host: elektro.bazos.sk
+  path: /sijacie/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/sijacie/
+- key: elektro/sluchadla
+  label: Elektro > Slúchadlá
+  host: elektro.bazos.sk
+  path: /sluchadla/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/sluchadla/
+- key: elektro/sporaky
+  label: Elektro > Sporáky
+  host: elektro.bazos.sk
+  path: /sporaky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/sporaky/
+- key: elektro/susicky
+  label: Elektro > Sušičky
+  host: elektro.bazos.sk
+  path: /susicky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/susicky/
+- key: elektro/televizory
+  label: Elektro > Televízory
+  host: elektro.bazos.sk
+  path: /televizory/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/televizory/
+- key: elektro/umyvacky
+  label: Elektro > Umývačky riadu
+  host: elektro.bazos.sk
+  path: /umyvacky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/umyvacky/
+- key: elektro/vysavace
+  label: Elektro > Vysávače
+  host: elektro.bazos.sk
+  path: /vysavace/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/vysavace/
+- key: elektro/vysielacky
+  label: Elektro > Vysielačky
+  host: elektro.bazos.sk
+  path: /vysielacky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/vysielacky/
+- key: elektro/zehlicky
+  label: Elektro > Žehličky
+  host: elektro.bazos.sk
+  path: /zehlicky/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/zehlicky/
+- key: elektro/zosilnovace
+  label: Elektro > Zosilňovače
+  host: elektro.bazos.sk
+  path: /zosilnovace/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/zosilnovace/
+- key: elektro/zvlhcovace
+  label: Elektro > Zvlhčovače vzduchu
+  host: elektro.bazos.sk
+  path: /zvlhcovace/
+  parent_key: elektro
+  url: https://elektro.bazos.sk/zvlhcovace/
+- key: foto/baterie
+  label: Foto > Batérie
+  host: foto.bazos.sk
+  path: /baterie/
+  parent_key: foto
+  url: https://foto.bazos.sk/baterie/
+- key: foto/blesky
+  label: Foto > Blesky a osvetlenie
+  host: foto.bazos.sk
+  path: /blesky/
+  parent_key: foto
+  url: https://foto.bazos.sk/blesky/
+- key: foto/brasne
+  label: Foto > Brašne a púzdra
+  host: foto.bazos.sk
+  path: /brasne/
+  parent_key: foto
+  url: https://foto.bazos.sk/brasne/
+- key: foto/digitalne
+  label: Foto > Fotoaparáty
+  host: foto.bazos.sk
+  path: /digitalne/
+  parent_key: foto
+  url: https://foto.bazos.sk/digitalne/
+- key: foto/drony
+  label: Foto > Drony
+  host: foto.bazos.sk
+  path: /drony/
+  parent_key: foto
+  url: https://foto.bazos.sk/drony/
+- key: foto/filtre
+  label: Foto > Filtre
+  host: foto.bazos.sk
+  path: /filtre/
+  parent_key: foto
+  url: https://foto.bazos.sk/filtre/
+- key: foto/kable
+  label: Foto > Dátové káble
+  host: foto.bazos.sk
+  path: /kable/
+  parent_key: foto
+  url: https://foto.bazos.sk/kable/
+- key: foto/karty
+  label: Foto > Pamäťové karty
+  host: foto.bazos.sk
+  path: /karty/
+  parent_key: foto
+  url: https://foto.bazos.sk/karty/
+- key: foto/kinofilm
+  label: Foto > Analógové fotoaparáty
+  host: foto.bazos.sk
+  path: /kinofilm/
+  parent_key: foto
+  url: https://foto.bazos.sk/kinofilm/
+- key: foto/nabijacky
+  label: Foto > Nabíjačky
+  host: foto.bazos.sk
+  path: /nabijacky/
+  parent_key: foto
+  url: https://foto.bazos.sk/nabijacky/
+- key: foto/objektivy
+  label: Foto > Objektívy
+  host: foto.bazos.sk
+  path: /objektivy/
+  parent_key: foto
+  url: https://foto.bazos.sk/objektivy/
+- key: foto/ostatne
+  label: Foto > Ostatné
+  host: foto.bazos.sk
+  path: /ostatne/
+  parent_key: foto
+  url: https://foto.bazos.sk/ostatne/
+- key: foto/stativy
+  label: Foto > Statívy
+  host: foto.bazos.sk
+  path: /stativy/
+  parent_key: foto
+  url: https://foto.bazos.sk/stativy/
+- key: foto/videokamery
+  label: Foto > Videokamery
+  host: foto.bazos.sk
+  path: /videokamery/
+  parent_key: foto
+  url: https://foto.bazos.sk/videokamery/
+- key: foto/zrkadlovky
+  label: Foto > Zrkadlovky
+  host: foto.bazos.sk
+  path: /zrkadlovky/
+  parent_key: foto
+  url: https://foto.bazos.sk/zrkadlovky/
+- key: hudba/bicie
+  label: Hudba > Bicie nástroje
+  host: hudba.bazos.sk
+  path: /bicie/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/bicie/
+- key: hudba/dychove
+  label: Hudba > Dychové nástroje
+  host: hudba.bazos.sk
+  path: /dychove/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/dychove/
+- key: hudba/klavesove
+  label: Hudba > Klávesové nástroje
+  host: hudba.bazos.sk
+  path: /klavesove/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/klavesove/
+- key: hudba/koncerty
+  label: Hudba > Koncerty
+  host: hudba.bazos.sk
+  path: /koncerty/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/koncerty/
+- key: hudba/nahravky
+  label: Hudba > DVD, CD, MC, LP
+  host: hudba.bazos.sk
+  path: /nahravky/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/nahravky/
+- key: hudba/nastroje
+  label: Hudba > Ostatné nástroje
+  host: hudba.bazos.sk
+  path: /nastroje/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/nastroje/
+- key: hudba/noty
+  label: Hudba > Noty, texty
+  host: hudba.bazos.sk
+  path: /noty/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/noty/
+- key: hudba/ostatne
+  label: Hudba > Ostatné
+  host: hudba.bazos.sk
+  path: /ostatne/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/ostatne/
+- key: hudba/skupiny
+  label: Hudba > Hudobníci a skupiny
+  host: hudba.bazos.sk
+  path: /skupiny/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/skupiny/
+- key: hudba/skusobne
+  label: Hudba > Skúšobne
+  host: hudba.bazos.sk
+  path: /skusobne/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/skusobne/
+- key: hudba/slacikove
+  label: Hudba > Sláčikové nástroje
+  host: hudba.bazos.sk
+  path: /slacikove/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/slacikove/
+- key: hudba/strunove
+  label: Hudba > Strunové nástroje
+  host: hudba.bazos.sk
+  path: /strunove/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/strunove/
+- key: hudba/svetelna
+  label: Hudba > Svetelná technika
+  host: hudba.bazos.sk
+  path: /svetelna/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/svetelna/
+- key: hudba/zvukova
+  label: Hudba > Zvuková technika
+  host: hudba.bazos.sk
+  path: /zvukova/
+  parent_key: hudba
+  url: https://hudba.bazos.sk/zvukova/
+- key: knihy/beletria
+  label: Knihy > Beletria
+  host: knihy.bazos.sk
+  path: /beletria/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/beletria/
+- key: knihy/casopisy
+  label: Knihy > Časopisy
+  host: knihy.bazos.sk
+  path: /casopisy/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/casopisy/
+- key: knihy/cudzojazycna
+  label: Knihy > Cudzojazyčná literatúra
+  host: knihy.bazos.sk
+  path: /cudzojazycna/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/cudzojazycna/
+- key: knihy/detektivky
+  label: Knihy > Detektívky, trilery
+  host: knihy.bazos.sk
+  path: /detektivky/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/detektivky/
+- key: knihy/detska
+  label: Knihy > Pre deti
+  host: knihy.bazos.sk
+  path: /detska/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/detska/
+- key: knihy/encyklopedie
+  label: Knihy > Encyklopédie
+  host: knihy.bazos.sk
+  path: /encyklopedie/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/encyklopedie/
+- key: knihy/ezoterika
+  label: Knihy > Ezoterika
+  host: knihy.bazos.sk
+  path: /ezoterika/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/ezoterika/
+- key: knihy/historicke
+  label: Knihy > Historické romány
+  host: knihy.bazos.sk
+  path: /historicke/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/historicke/
+- key: knihy/hobby
+  label: Knihy > Hobby, odborné knihy
+  host: knihy.bazos.sk
+  path: /hobby/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/hobby/
+- key: knihy/komiksy
+  label: Knihy > Komiksy
+  host: knihy.bazos.sk
+  path: /komiksy/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/komiksy/
+- key: knihy/kucharky
+  label: Knihy > Kuchárky
+  host: knihy.bazos.sk
+  path: /kucharky/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/kucharky/
+- key: knihy/mapy
+  label: Knihy > Cestovanie, mapy
+  host: knihy.bazos.sk
+  path: /mapy/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/mapy/
+- key: knihy/mladez
+  label: Knihy > Pre mládež
+  host: knihy.bazos.sk
+  path: /mladez/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/mladez/
+- key: knihy/najmensi
+  label: Knihy > Pre najmenších
+  host: knihy.bazos.sk
+  path: /najmensi/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/najmensi/
+- key: knihy/ostatne
+  label: Knihy > Ostatné
+  host: knihy.bazos.sk
+  path: /ostatne/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/ostatne/
+- key: knihy/pocitacova
+  label: Knihy > Počítačová literatúra
+  host: knihy.bazos.sk
+  path: /pocitacova/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/pocitacova/
+- key: knihy/poezia
+  label: Knihy > Poézia
+  host: knihy.bazos.sk
+  path: /poezia/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/poezia/
+- key: knihy/rozvoj
+  label: Knihy > Rozvoj osobnosti
+  host: knihy.bazos.sk
+  path: /rozvoj/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/rozvoj/
+- key: knihy/scifi
+  label: Knihy > Sci-fi, Fantasy
+  host: knihy.bazos.sk
+  path: /scifi/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/scifi/
+- key: knihy/skripta
+  label: Knihy > Učebnice, skriptá - VŠ
+  host: knihy.bazos.sk
+  path: /skripta/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/skripta/
+- key: knihy/ucebnice
+  label: Knihy > Učebnice
+  host: knihy.bazos.sk
+  path: /ucebnice/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/ucebnice/
+- key: knihy/ucebnicejazykove
+  label: Knihy > Učebnice, skriptá - Jazykové
+  host: knihy.bazos.sk
+  path: /ucebnicejazykove/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/ucebnicejazykove/
+- key: knihy/ucebnicezs
+  label: Knihy > Učebnice, skriptá - ZŠ
+  host: knihy.bazos.sk
+  path: /ucebnicezs/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/ucebnicezs/
+- key: knihy/vztahy
+  label: Knihy > Dieťa, rodina a vzťahy
+  host: knihy.bazos.sk
+  path: /vztahy/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/vztahy/
+- key: knihy/zabavna
+  label: Knihy > Humor
+  host: knihy.bazos.sk
+  path: /zabavna/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/zabavna/
+- key: knihy/zdravi
+  label: Knihy > Zdravý životný štýl
+  host: knihy.bazos.sk
+  path: /zdravi/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/zdravi/
+- key: knihy/zeny
+  label: Knihy > Knihy pre ženy
+  host: knihy.bazos.sk
+  path: /zeny/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/zeny/
+- key: knihy/zivotopisy
+  label: Knihy > Životopisy
+  host: knihy.bazos.sk
+  path: /zivotopisy/
+  parent_key: knihy
+  url: https://knihy.bazos.sk/zivotopisy/
+- key: mobil/apple
+  label: Mobily > Apple
+  host: mobil.bazos.sk
+  path: /apple/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/apple/
+- key: mobil/baterie
+  label: Mobily > Batérie
+  host: mobil.bazos.sk
+  path: /baterie/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/baterie/
+- key: mobil/bezdrotove
+  label: Mobily > Bezdrôtové telefóny
+  host: mobil.bazos.sk
+  path: /bezdrotove/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/bezdrotove/
+- key: mobil/ericsson
+  label: Mobily > Sony
+  host: mobil.bazos.sk
+  path: /ericsson/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/ericsson/
+- key: mobil/faxy
+  label: Mobily > Faxy
+  host: mobil.bazos.sk
+  path: /faxy/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/faxy/
+- key: mobil/google
+  label: Mobily > Google
+  host: mobil.bazos.sk
+  path: /google/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/google/
+- key: mobil/headsety
+  label: Mobily > Headsety
+  host: mobil.bazos.sk
+  path: /headsety/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/headsety/
+- key: mobil/hf
+  label: Mobily > HF Sady do auta
+  host: mobil.bazos.sk
+  path: /hf/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/hf/
+- key: mobil/huawei
+  label: Mobily > Huawei, Honor
+  host: mobil.bazos.sk
+  path: /huawei/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/huawei/
+- key: mobil/kabely
+  label: Mobily > Dátové kabely
+  host: mobil.bazos.sk
+  path: /kabely/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/kabely/
+- key: mobil/karty
+  label: Mobily > Pamäťové karty
+  host: mobil.bazos.sk
+  path: /karty/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/karty/
+- key: mobil/kryty
+  label: Mobily > Kryty
+  host: mobil.bazos.sk
+  path: /kryty/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/kryty/
+- key: mobil/mobily
+  label: Mobily > Ostatné značky
+  host: mobil.bazos.sk
+  path: /mobily/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/mobily/
+- key: mobil/motorola
+  label: Mobily > Motorola, Lenovo
+  host: mobil.bazos.sk
+  path: /motorola/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/motorola/
+- key: mobil/nabijacky
+  label: Mobily > Nabíjačky
+  host: mobil.bazos.sk
+  path: /nabijacky/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/nabijacky/
+- key: mobil/nokia
+  label: Mobily > Nokia, Microsoft
+  host: mobil.bazos.sk
+  path: /nokia/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/nokia/
+- key: mobil/ostatne
+  label: Mobily > Ostatné
+  host: mobil.bazos.sk
+  path: /ostatne/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/ostatne/
+- key: mobil/realme
+  label: Mobily > Realme
+  host: mobil.bazos.sk
+  path: /realme/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/realme/
+- key: mobil/samsung
+  label: Mobily > Samsung
+  host: mobil.bazos.sk
+  path: /samsung/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/samsung/
+- key: mobil/smartwatch
+  label: Mobily > Inteligentné hodinky
+  host: mobil.bazos.sk
+  path: /smartwatch/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/smartwatch/
+- key: mobil/telefony
+  label: Mobily > Klasické telefóny
+  host: mobil.bazos.sk
+  path: /telefony/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/telefony/
+- key: mobil/xiaomi
+  label: Mobily > Xiaomi
+  host: mobil.bazos.sk
+  path: /xiaomi/
+  parent_key: mobil
+  url: https://mobil.bazos.sk/xiaomi/
+- key: motocykle/cestne
+  label: Motocykle > Cestné motocykle
+  host: motocykle.bazos.sk
+  path: /cestne/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/cestne/
+- key: motocykle/cestovne
+  label: Motocykle > Cestovné motocykle
+  host: motocykle.bazos.sk
+  path: /cestovne/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/cestovne/
+- key: motocykle/chopper
+  label: Motocykle > Chopper
+  host: motocykle.bazos.sk
+  path: /chopper/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/chopper/
+- key: motocykle/diely
+  label: Motocykle > Náhradné diely
+  host: motocykle.bazos.sk
+  path: /diely/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/diely/
+- key: motocykle/enduro
+  label: Motocykle > Enduro
+  host: motocykle.bazos.sk
+  path: /enduro/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/enduro/
+- key: motocykle/helmy
+  label: Motocykle > Oblečenie, obuv, helmy
+  host: motocykle.bazos.sk
+  path: /helmy/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/helmy/
+- key: motocykle/minibike
+  label: Motocykle > Minibike
+  host: motocykle.bazos.sk
+  path: /minibike/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/minibike/
+- key: motocykle/mopedy
+  label: Motocykle > Mopedy
+  host: motocykle.bazos.sk
+  path: /mopedy/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/mopedy/
+- key: motocykle/ostatne
+  label: Motocykle > Ostatné
+  host: motocykle.bazos.sk
+  path: /ostatne/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/ostatne/
+- key: motocykle/skutre
+  label: Motocykle > Skútre
+  host: motocykle.bazos.sk
+  path: /skutre/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/skutre/
+- key: motocykle/snezne
+  label: Motocykle > Skútre snežné
+  host: motocykle.bazos.sk
+  path: /snezne/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/snezne/
+- key: motocykle/stvorkolky
+  label: Motocykle > Štvorkolky
+  host: motocykle.bazos.sk
+  path: /stvorkolky/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/stvorkolky/
+- key: motocykle/trojkolky
+  label: Motocykle > Trojkolky
+  host: motocykle.bazos.sk
+  path: /trojkolky/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/trojkolky/
+- key: motocykle/veterany
+  label: Motocykle > Veterány
+  host: motocykle.bazos.sk
+  path: /veterany/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/veterany/
+- key: motocykle/vodne
+  label: Motocykle > Skútre vodné
+  host: motocykle.bazos.sk
+  path: /vodne/
+  parent_key: motocykle
+  url: https://motocykle.bazos.sk/vodne/
+- key: nabytok/doplnky
+  label: Nábytok > Doplnky
+  host: nabytok.bazos.sk
+  path: /doplnky/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/doplnky/
+- key: nabytok/jedalenske
+  label: Nábytok > Jedálenské kúty
+  host: nabytok.bazos.sk
+  path: /jedalenske/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/jedalenske/
+- key: nabytok/kniznice
+  label: Nábytok > Knižnice
+  host: nabytok.bazos.sk
+  path: /kniznice/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/kniznice/
+- key: nabytok/koberce
+  label: Nábytok > Koberce a podlahová krytina
+  host: nabytok.bazos.sk
+  path: /koberce/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/koberce/
+- key: nabytok/kresla
+  label: Nábytok > Kreslá a gauče
+  host: nabytok.bazos.sk
+  path: /kresla/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/kresla/
+- key: nabytok/kuchyne
+  label: Nábytok > Kuchyne
+  host: nabytok.bazos.sk
+  path: /kuchyne/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/kuchyne/
+- key: nabytok/kupelne
+  label: Nábytok > Kúpeľne
+  host: nabytok.bazos.sk
+  path: /kupelne/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/kupelne/
+- key: nabytok/lampy
+  label: Nábytok > Lampy, osvetlenie
+  host: nabytok.bazos.sk
+  path: /lampy/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/lampy/
+- key: nabytok/matrace
+  label: Nábytok > Matrace
+  host: nabytok.bazos.sk
+  path: /matrace/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/matrace/
+- key: nabytok/nabytok
+  label: Nábytok > Ostatný nábytok
+  host: nabytok.bazos.sk
+  path: /nabytok/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/nabytok/
+- key: nabytok/obyvacie
+  label: Nábytok > Obývacie steny
+  host: nabytok.bazos.sk
+  path: /obyvacie/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/obyvacie/
+- key: nabytok/postele
+  label: Nábytok > Postele
+  host: nabytok.bazos.sk
+  path: /postele/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/postele/
+- key: nabytok/sedacie
+  label: Nábytok > Sedacie súpravy
+  host: nabytok.bazos.sk
+  path: /sedacie/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/sedacie/
+- key: nabytok/skrine
+  label: Nábytok > Skrine
+  host: nabytok.bazos.sk
+  path: /skrine/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/skrine/
+- key: nabytok/spalne
+  label: Nábytok > Spálne
+  host: nabytok.bazos.sk
+  path: /spalne/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/spalne/
+- key: nabytok/stolicky
+  label: Nábytok > Stoličky
+  host: nabytok.bazos.sk
+  path: /stolicky/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/stolicky/
+- key: nabytok/stoly
+  label: Nábytok > Stoly
+  host: nabytok.bazos.sk
+  path: /stoly/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/stoly/
+- key: nabytok/zahradny
+  label: Nábytok > Záhradný nábytok
+  host: nabytok.bazos.sk
+  path: /zahradny/
+  parent_key: nabytok
+  url: https://nabytok.bazos.sk/zahradny/
+- key: oblecenie/bielizen
+  label: Oblečenie > Spodná bielizeň
+  host: oblecenie.bazos.sk
+  path: /bielizen/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/bielizen/
+- key: oblecenie/bluzky
+  label: Oblečenie > Blúzky
+  host: oblecenie.bazos.sk
+  path: /bluzky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/bluzky/
+- key: oblecenie/bundy
+  label: Oblečenie > Bundy a Kabáty
+  host: oblecenie.bazos.sk
+  path: /bundy/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/bundy/
+- key: oblecenie/ciapky
+  label: Oblečenie > Čiapky, Šatky
+  host: oblecenie.bazos.sk
+  path: /ciapky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/ciapky/
+- key: oblecenie/doplnky
+  label: Oblečenie > Doplnky
+  host: oblecenie.bazos.sk
+  path: /doplnky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/doplnky/
+- key: oblecenie/dzinsy
+  label: Oblečenie > Džínsy
+  host: oblecenie.bazos.sk
+  path: /dzinsy/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/dzinsy/
+- key: oblecenie/hodinky
+  label: Oblečenie > Hodinky
+  host: oblecenie.bazos.sk
+  path: /hodinky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/hodinky/
+- key: oblecenie/kabelky
+  label: Oblečenie > Kabelky
+  host: oblecenie.bazos.sk
+  path: /kabelky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/kabelky/
+- key: oblecenie/kosele
+  label: Oblečenie > Košele
+  host: oblecenie.bazos.sk
+  path: /kosele/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/kosele/
+- key: oblecenie/kozene
+  label: Oblečenie > Kožené oblečenie
+  host: oblecenie.bazos.sk
+  path: /kozene/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/kozene/
+- key: oblecenie/mikiny
+  label: Oblečenie > Mikiny
+  host: oblecenie.bazos.sk
+  path: /mikiny/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/mikiny/
+- key: oblecenie/nohavice
+  label: Oblečenie > Nohavice
+  host: oblecenie.bazos.sk
+  path: /nohavice/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/nohavice/
+- key: oblecenie/obleky
+  label: Oblečenie > Obleky, Saká
+  host: oblecenie.bazos.sk
+  path: /obleky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/obleky/
+- key: oblecenie/obuv
+  label: Oblečenie > Obuv
+  host: oblecenie.bazos.sk
+  path: /obuv/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/obuv/
+- key: oblecenie/ostatne
+  label: Oblečenie > Ostatné
+  host: oblecenie.bazos.sk
+  path: /ostatne/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/ostatne/
+- key: oblecenie/plavky
+  label: Oblečenie > Plavky
+  host: oblecenie.bazos.sk
+  path: /plavky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/plavky/
+- key: oblecenie/plecniaky
+  label: Oblečenie > Plecniaky a kufre
+  host: oblecenie.bazos.sk
+  path: /plecniaky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/plecniaky/
+- key: oblecenie/pradlo
+  label: Oblečenie > Funkčné prádlo
+  host: oblecenie.bazos.sk
+  path: /pradlo/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/pradlo/
+- key: oblecenie/rukavice
+  label: Oblečenie > Rukavice a Šály
+  host: oblecenie.bazos.sk
+  path: /rukavice/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/rukavice/
+- key: oblecenie/saty
+  label: Oblečenie > Šaty, Kostýmy
+  host: oblecenie.bazos.sk
+  path: /saty/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/saty/
+- key: oblecenie/sortky
+  label: Oblečenie > Šortky
+  host: oblecenie.bazos.sk
+  path: /sortky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/sortky/
+- key: oblecenie/sperky
+  label: Oblečenie > Šperky
+  host: oblecenie.bazos.sk
+  path: /sperky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/sperky/
+- key: oblecenie/sportove
+  label: Oblečenie > Športové oblečenie
+  host: oblecenie.bazos.sk
+  path: /sportove/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/sportove/
+- key: oblecenie/sukne
+  label: Oblečenie > Sukne
+  host: oblecenie.bazos.sk
+  path: /sukne/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/sukne/
+- key: oblecenie/svadobne
+  label: Oblečenie > Svadobné šaty
+  host: oblecenie.bazos.sk
+  path: /svadobne/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/svadobne/
+- key: oblecenie/svetre
+  label: Oblečenie > Svetre
+  host: oblecenie.bazos.sk
+  path: /svetre/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/svetre/
+- key: oblecenie/tehulky
+  label: Oblečenie > Tehotenské oblečenie
+  host: oblecenie.bazos.sk
+  path: /tehulky/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/tehulky/
+- key: oblecenie/tricka
+  label: Oblečenie > Tričká, roláky, tielka
+  host: oblecenie.bazos.sk
+  path: /tricka/
+  parent_key: oblecenie
+  url: https://oblecenie.bazos.sk/tricka/
+- key: ostatne/filatelia
+  label: Ostatné > Známky, pohľadnice
+  host: ostatne.bazos.sk
+  path: /filatelia/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/filatelia/
+- key: ostatne/modelarstvo
+  label: Ostatné > Modelárstvo
+  host: ostatne.bazos.sk
+  path: /modelarstvo/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/modelarstvo/
+- key: ostatne/numizmatika
+  label: Ostatné > Mince, bankovky
+  host: ostatne.bazos.sk
+  path: /numizmatika/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/numizmatika/
+- key: ostatne/ostatne
+  label: Ostatné > Ostatné
+  host: ostatne.bazos.sk
+  path: /ostatne/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/ostatne/
+- key: ostatne/potraviny
+  label: Ostatné > Potraviny
+  host: ostatne.bazos.sk
+  path: /potraviny/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/potraviny/
+- key: ostatne/sklo
+  label: Ostatné > Sklo, keramika
+  host: ostatne.bazos.sk
+  path: /sklo/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/sklo/
+- key: ostatne/starozitnosti
+  label: Ostatné > Starožitnosti
+  host: ostatne.bazos.sk
+  path: /starozitnosti/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/starozitnosti/
+- key: ostatne/umelecke
+  label: Ostatné > Umelecké predmety
+  host: ostatne.bazos.sk
+  path: /umelecke/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/umelecke/
+- key: ostatne/zberatelstvo
+  label: Ostatné > Zberateľstvo
+  host: ostatne.bazos.sk
+  path: /zberatelstvo/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/zberatelstvo/
+- key: ostatne/zdravie
+  label: Ostatné > Zdravie a krása
+  host: ostatne.bazos.sk
+  path: /zdravie/
+  parent_key: ostatne
+  url: https://ostatne.bazos.sk/zdravie/
+- key: pc/case
+  label: PC > Skrine, zdroje
+  host: pc.bazos.sk
+  path: /case/
+  parent_key: pc
+  url: https://pc.bazos.sk/case/
+- key: pc/cd
+  label: PC > DVD, Blu-ray mechaniky
+  host: pc.bazos.sk
+  path: /cd/
+  parent_key: pc
+  url: https://pc.bazos.sk/cd/
+- key: pc/chladic
+  label: PC > Chladiče
+  host: pc.bazos.sk
+  path: /chladic/
+  parent_key: pc
+  url: https://pc.bazos.sk/chladic/
+- key: pc/fdd
+  label: PC > FDD, ZIPy
+  host: pc.bazos.sk
+  path: /fdd/
+  parent_key: pc
+  url: https://pc.bazos.sk/fdd/
+- key: pc/gps
+  label: PC > GPS navigácia
+  host: pc.bazos.sk
+  path: /gps/
+  parent_key: pc
+  url: https://pc.bazos.sk/gps/
+- key: pc/graficka
+  label: PC > Grafické karty
+  host: pc.bazos.sk
+  path: /graficka/
+  parent_key: pc
+  url: https://pc.bazos.sk/graficka/
+- key: pc/hdd
+  label: PC > Hard disky, SSD
+  host: pc.bazos.sk
+  path: /hdd/
+  parent_key: pc
+  url: https://pc.bazos.sk/hdd/
+- key: pc/hry
+  label: PC > Hry
+  host: pc.bazos.sk
+  path: /hry/
+  parent_key: pc
+  url: https://pc.bazos.sk/hry/
+- key: pc/klavesnice
+  label: PC > Klávesnice
+  host: pc.bazos.sk
+  path: /klavesnice/
+  parent_key: pc
+  url: https://pc.bazos.sk/klavesnice/
+- key: pc/kopirka
+  label: PC > Kopírovacie stroje
+  host: pc.bazos.sk
+  path: /kopirka/
+  parent_key: pc
+  url: https://pc.bazos.sk/kopirka/
+- key: pc/modem
+  label: PC > Modemy
+  host: pc.bazos.sk
+  path: /modem/
+  parent_key: pc
+  url: https://pc.bazos.sk/modem/
+- key: pc/monitor
+  label: PC > LCD monitory
+  host: pc.bazos.sk
+  path: /monitor/
+  parent_key: pc
+  url: https://pc.bazos.sk/monitor/
+- key: pc/motherboard
+  label: PC > Základné dosky
+  host: pc.bazos.sk
+  path: /motherboard/
+  parent_key: pc
+  url: https://pc.bazos.sk/motherboard/
+- key: pc/mys
+  label: PC > Myši
+  host: pc.bazos.sk
+  path: /mys/
+  parent_key: pc
+  url: https://pc.bazos.sk/mys/
+- key: pc/notebook
+  label: PC > Notebooky
+  host: pc.bazos.sk
+  path: /notebook/
+  parent_key: pc
+  url: https://pc.bazos.sk/notebook/
+- key: pc/ostatni
+  label: PC > Ostatné
+  host: pc.bazos.sk
+  path: /ostatni/
+  parent_key: pc
+  url: https://pc.bazos.sk/ostatni/
+- key: pc/pamet
+  label: PC > Pamäte
+  host: pc.bazos.sk
+  path: /pamet/
+  parent_key: pc
+  url: https://pc.bazos.sk/pamet/
+- key: pc/pc
+  label: PC > Počítače
+  host: pc.bazos.sk
+  path: /pc/
+  parent_key: pc
+  url: https://pc.bazos.sk/pc/
+- key: pc/playstation
+  label: PC > Herné konzoly
+  host: pc.bazos.sk
+  path: /playstation/
+  parent_key: pc
+  url: https://pc.bazos.sk/playstation/
+- key: pc/procesor
+  label: PC > Procesory
+  host: pc.bazos.sk
+  path: /procesor/
+  parent_key: pc
+  url: https://pc.bazos.sk/procesor/
+- key: pc/scaner
+  label: PC > Scanery
+  host: pc.bazos.sk
+  path: /scaner/
+  parent_key: pc
+  url: https://pc.bazos.sk/scaner/
+- key: pc/sit
+  label: PC > Sieťové komponenty
+  host: pc.bazos.sk
+  path: /sit/
+  parent_key: pc
+  url: https://pc.bazos.sk/sit/
+- key: pc/software
+  label: PC > Software
+  host: pc.bazos.sk
+  path: /software/
+  parent_key: pc
+  url: https://pc.bazos.sk/software/
+- key: pc/sound
+  label: PC > Zvukové karty
+  host: pc.bazos.sk
+  path: /sound/
+  parent_key: pc
+  url: https://pc.bazos.sk/sound/
+- key: pc/spotrebny
+  label: PC > Spotrebný materiál
+  host: pc.bazos.sk
+  path: /spotrebny/
+  parent_key: pc
+  url: https://pc.bazos.sk/spotrebny/
+- key: pc/tablet
+  label: PC > Tablety, E-čítačky
+  host: pc.bazos.sk
+  path: /tablet/
+  parent_key: pc
+  url: https://pc.bazos.sk/tablet/
+- key: pc/tlaciaren
+  label: PC > Tlačiarne
+  host: pc.bazos.sk
+  path: /tlaciaren/
+  parent_key: pc
+  url: https://pc.bazos.sk/tlaciaren/
+- key: pc/ups
+  label: PC > Záložné zdroje
+  host: pc.bazos.sk
+  path: /ups/
+  parent_key: pc
+  url: https://pc.bazos.sk/ups/
+- key: pc/volanty
+  label: PC > Herné zariadenia
+  host: pc.bazos.sk
+  path: /volanty/
+  parent_key: pc
+  url: https://pc.bazos.sk/volanty/
+- key: pc/wifi
+  label: PC > Wireless, WiFi
+  host: pc.bazos.sk
+  path: /wifi/
+  parent_key: pc
+  url: https://pc.bazos.sk/wifi/
+- key: praca/administrativa
+  label: Práca > Administratíva
+  host: praca.bazos.sk
+  path: /administrativa/
+  parent_key: praca
+  url: https://praca.bazos.sk/administrativa/
+- key: praca/bezpecnost
+  label: Práca > Obrana a bezpečnosť
+  host: praca.bazos.sk
+  path: /bezpecnost/
+  parent_key: praca
+  url: https://praca.bazos.sk/bezpecnost/
+- key: praca/brigada
+  label: Práca > Brigády
+  host: praca.bazos.sk
+  path: /brigada/
+  parent_key: praca
+  url: https://praca.bazos.sk/brigada/
+- key: praca/domacnost
+  label: Práca > Práca v domácnosti
+  host: praca.bazos.sk
+  path: /domacnost/
+  parent_key: praca
+  url: https://praca.bazos.sk/domacnost/
+- key: praca/financie
+  label: Práca > Financie a ekonomika
+  host: praca.bazos.sk
+  path: /financie/
+  parent_key: praca
+  url: https://praca.bazos.sk/financie/
+- key: praca/it
+  label: Práca > IT a telekomunikácie
+  host: praca.bazos.sk
+  path: /it/
+  parent_key: praca
+  url: https://praca.bazos.sk/it/
+- key: praca/logistika
+  label: Práca > Doprava a logistika
+  host: praca.bazos.sk
+  path: /logistika/
+  parent_key: praca
+  url: https://praca.bazos.sk/logistika/
+- key: praca/management
+  label: Práca > Management
+  host: praca.bazos.sk
+  path: /management/
+  parent_key: praca
+  url: https://praca.bazos.sk/management/
+- key: praca/marketing
+  label: Práca > Marketing a reklama
+  host: praca.bazos.sk
+  path: /marketing/
+  parent_key: praca
+  url: https://praca.bazos.sk/marketing/
+- key: praca/obchod
+  label: Práca > Obchod a predaj
+  host: praca.bazos.sk
+  path: /obchod/
+  parent_key: praca
+  url: https://praca.bazos.sk/obchod/
+- key: praca/ostatni
+  label: Práca > Ostatné
+  host: praca.bazos.sk
+  path: /ostatni/
+  parent_key: praca
+  url: https://praca.bazos.sk/ostatni/
+- key: praca/personalistika
+  label: Práca > Vzdelávánie a personalistika
+  host: praca.bazos.sk
+  path: /personalistika/
+  parent_key: praca
+  url: https://praca.bazos.sk/personalistika/
+- key: praca/polnohospodarstvo
+  label: Práca > Poľnohospodárstvo
+  host: praca.bazos.sk
+  path: /polnohospodarstvo/
+  parent_key: praca
+  url: https://praca.bazos.sk/polnohospodarstvo/
+- key: praca/potravinarstvo
+  label: Práca > Chémia a potravinárstvo
+  host: praca.bazos.sk
+  path: /potravinarstvo/
+  parent_key: praca
+  url: https://praca.bazos.sk/potravinarstvo/
+- key: praca/pravo
+  label: Práca > Právo, legislatíva
+  host: praca.bazos.sk
+  path: /pravo/
+  parent_key: praca
+  url: https://praca.bazos.sk/pravo/
+- key: praca/priemysel
+  label: Práca > Priemysel a výroba
+  host: praca.bazos.sk
+  path: /priemysel/
+  parent_key: praca
+  url: https://praca.bazos.sk/priemysel/
+- key: praca/remeslo
+  label: Práca > Remeselné práce
+  host: praca.bazos.sk
+  path: /remeslo/
+  parent_key: praca
+  url: https://praca.bazos.sk/remeslo/
+- key: praca/sluzby
+  label: Práca > Servis a služby
+  host: praca.bazos.sk
+  path: /sluzby/
+  parent_key: praca
+  url: https://praca.bazos.sk/sluzby/
+- key: praca/stavebnictvo
+  label: Práca > Stavebníctvo
+  host: praca.bazos.sk
+  path: /stavebnictvo/
+  parent_key: praca
+  url: https://praca.bazos.sk/stavebnictvo/
+- key: praca/technika
+  label: Práca > Technika a energetika
+  host: praca.bazos.sk
+  path: /technika/
+  parent_key: praca
+  url: https://praca.bazos.sk/technika/
+- key: praca/tlac
+  label: Práca > Tlač a polygrafia
+  host: praca.bazos.sk
+  path: /tlac/
+  parent_key: praca
+  url: https://praca.bazos.sk/tlac/
+- key: praca/ubytovanie
+  label: Práca > Pohostinstvá a ubytovanie
+  host: praca.bazos.sk
+  path: /ubytovanie/
+  parent_key: praca
+  url: https://praca.bazos.sk/ubytovanie/
+- key: praca/vyskum
+  label: Práca > Výskum a vývoj
+  host: praca.bazos.sk
+  path: /vyskum/
+  parent_key: praca
+  url: https://praca.bazos.sk/vyskum/
+- key: praca/zdravotnictvo
+  label: Práca > Zdravotníctvo
+  host: praca.bazos.sk
+  path: /zdravotnictvo/
+  parent_key: praca
+  url: https://praca.bazos.sk/zdravotnictvo/
+- key: reality/byt
+  label: Reality > Byty
+  host: reality.bazos.sk
+  path: /byt/
+  parent_key: reality
+  url: https://reality.bazos.sk/byt/
+- key: reality/chata
+  label: Reality > Chalupy
+  host: reality.bazos.sk
+  path: /chata/
+  parent_key: reality
+  url: https://reality.bazos.sk/chata/
+- key: reality/dom
+  label: Reality > Domy
+  host: reality.bazos.sk
+  path: /dom/
+  parent_key: reality
+  url: https://reality.bazos.sk/dom/
+- key: reality/garaz
+  label: Reality > Garáže
+  host: reality.bazos.sk
+  path: /garaz/
+  parent_key: reality
+  url: https://reality.bazos.sk/garaz/
+- key: reality/kancelar
+  label: Reality > Kancelárie
+  host: reality.bazos.sk
+  path: /kancelar/
+  parent_key: reality
+  url: https://reality.bazos.sk/kancelar/
+- key: reality/ostatni
+  label: Reality > Ostatné
+  host: reality.bazos.sk
+  path: /ostatni/
+  parent_key: reality
+  url: https://reality.bazos.sk/ostatni/
+- key: reality/podnajom
+  label: Reality > Podnájom
+  host: reality.bazos.sk
+  path: /podnajom/
+  parent_key: reality
+  url: https://reality.bazos.sk/podnajom/
+- key: reality/pozemok
+  label: Reality > Pozemky
+  host: reality.bazos.sk
+  path: /pozemok/
+  parent_key: reality
+  url: https://reality.bazos.sk/pozemok/
+- key: reality/predam/byt
+  label: Reality > Byty predaj
+  host: reality.bazos.sk
+  path: /predam/byt/
+  parent_key: reality
+  url: https://reality.bazos.sk/predam/byt/
+- key: reality/predam/dom
+  label: Reality > Domy
+  host: reality.bazos.sk
+  path: /predam/dom/
+  parent_key: reality
+  url: https://reality.bazos.sk/predam/dom/
+- key: reality/priestory
+  label: Reality > Obchodné priestory
+  host: reality.bazos.sk
+  path: /priestory/
+  parent_key: reality
+  url: https://reality.bazos.sk/priestory/
+- key: reality/projekty
+  label: Reality > Nové projekty
+  host: reality.bazos.sk
+  path: /projekty/
+  parent_key: reality
+  url: https://reality.bazos.sk/projekty/
+- key: reality/restauracie
+  label: Reality > Hotely, reštaurácie
+  host: reality.bazos.sk
+  path: /restauracie/
+  parent_key: reality
+  url: https://reality.bazos.sk/restauracie/
+- key: reality/sklad
+  label: Reality > Sklady
+  host: reality.bazos.sk
+  path: /sklad/
+  parent_key: reality
+  url: https://reality.bazos.sk/sklad/
+- key: reality/zahrada
+  label: Reality > Záhrady
+  host: reality.bazos.sk
+  path: /zahrada/
+  parent_key: reality
+  url: https://reality.bazos.sk/zahrada/
+- key: sluzby/automoto
+  label: Služby > Auto Moto
+  host: sluzby.bazos.sk
+  path: /automoto/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/automoto/
+- key: sluzby/cestovanie
+  label: Služby > Cestovanie
+  host: sluzby.bazos.sk
+  path: /cestovanie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/cestovanie/
+- key: sluzby/domaca
+  label: Služby > Domáce práce
+  host: sluzby.bazos.sk
+  path: /domaca/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/domaca/
+- key: sluzby/doucovanie
+  label: Služby > Doučovanie
+  host: sluzby.bazos.sk
+  path: /doucovanie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/doucovanie/
+- key: sluzby/ezoterika
+  label: Služby > Ezoterika
+  host: sluzby.bazos.sk
+  path: /ezoterika/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/ezoterika/
+- key: sluzby/financne
+  label: Služby > Účtovníctvo, poradenstvo
+  host: sluzby.bazos.sk
+  path: /financne/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/financne/
+- key: sluzby/it
+  label: Služby > IT, webdesign
+  host: sluzby.bazos.sk
+  path: /it/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/it/
+- key: sluzby/opravy
+  label: Služby > Opravy a servis
+  host: sluzby.bazos.sk
+  path: /opravy/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/opravy/
+- key: sluzby/organizovanie
+  label: Služby > Organizovanie akcií
+  host: sluzby.bazos.sk
+  path: /organizovanie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/organizovanie/
+- key: sluzby/ostatne
+  label: Služby > Ostatné
+  host: sluzby.bazos.sk
+  path: /ostatne/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/ostatne/
+- key: sluzby/pozicovne
+  label: Služby > Požičovne
+  host: sluzby.bazos.sk
+  path: /pozicovne/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/pozicovne/
+- key: sluzby/pravo
+  label: Služby > Právo a bezpečnosť
+  host: sluzby.bazos.sk
+  path: /pravo/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/pravo/
+- key: sluzby/prekladatelstvo
+  label: Služby > Prekladateľstvo
+  host: sluzby.bazos.sk
+  path: /prekladatelstvo/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/prekladatelstvo/
+- key: sluzby/realitne
+  label: Služby > Realitné služby
+  host: sluzby.bazos.sk
+  path: /realitne/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/realitne/
+- key: sluzby/reklama
+  label: Služby > Reklama na auto
+  host: sluzby.bazos.sk
+  path: /reklama/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/reklama/
+- key: sluzby/reklamne
+  label: Služby > Reklamné plochy - ostatné
+  host: sluzby.bazos.sk
+  path: /reklamne/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/reklamne/
+- key: sluzby/remesla
+  label: Služby > Remeselné a stavebné práce
+  host: sluzby.bazos.sk
+  path: /remesla/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/remesla/
+- key: sluzby/skolenia
+  label: Služby > Kurzy a školenia
+  host: sluzby.bazos.sk
+  path: /skolenia/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/skolenia/
+- key: sluzby/sprostredkovatelske
+  label: Služby > Sprostredkovateľské služby
+  host: sluzby.bazos.sk
+  path: /sprostredkovatelske/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/sprostredkovatelske/
+- key: sluzby/stahovanie
+  label: Služby > Preprava a sťahovanie
+  host: sluzby.bazos.sk
+  path: /stahovanie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/stahovanie/
+- key: sluzby/strazenie
+  label: Služby > Stráženie detí
+  host: sluzby.bazos.sk
+  path: /strazenie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/strazenie/
+- key: sluzby/tvoriva
+  label: Služby > Tvorivá práca
+  host: sluzby.bazos.sk
+  path: /tvoriva/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/tvoriva/
+- key: sluzby/ubytovanie
+  label: Služby > Ubytovanie
+  host: sluzby.bazos.sk
+  path: /ubytovanie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/ubytovanie/
+- key: sluzby/upratovanie
+  label: Služby > Upratovanie
+  host: sluzby.bazos.sk
+  path: /upratovanie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/upratovanie/
+- key: sluzby/ustajnenie
+  label: Služby > Kone - služby
+  host: sluzby.bazos.sk
+  path: /ustajnenie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/ustajnenie/
+- key: sluzby/vyroba
+  label: Služby > Výroba
+  host: sluzby.bazos.sk
+  path: /vyroba/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/vyroba/
+- key: sluzby/vyuka
+  label: Služby > Výuka hudby
+  host: sluzby.bazos.sk
+  path: /vyuka/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/vyuka/
+- key: sluzby/zdravie
+  label: Služby > Zdravie a krása
+  host: sluzby.bazos.sk
+  path: /zdravie/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/zdravie/
+- key: sluzby/zvierata
+  label: Služby > Služby pre zvieratá
+  host: sluzby.bazos.sk
+  path: /zvierata/
+  parent_key: sluzby
+  url: https://sluzby.bazos.sk/zvierata/
+- key: sport/bezky
+  label: Šport > Bežkovanie
+  host: sport.bazos.sk
+  path: /bezky/
+  parent_key: sport
+  url: https://sport.bazos.sk/bezky/
+- key: sport/cestne
+  label: Šport > Cestné bicykle
+  host: sport.bazos.sk
+  path: /cestne/
+  parent_key: sport
+  url: https://sport.bazos.sk/cestne/
+- key: sport/cyklistika
+  label: Šport > Ostatná cyklistika
+  host: sport.bazos.sk
+  path: /cyklistika/
+  parent_key: sport
+  url: https://sport.bazos.sk/cyklistika/
+- key: sport/elektrobicykle
+  label: Šport > Elektrobicykle
+  host: sport.bazos.sk
+  path: /elektrobicykle/
+  parent_key: sport
+  url: https://sport.bazos.sk/elektrobicykle/
+- key: sport/fitness
+  label: Šport > Fitness, jogging
+  host: sport.bazos.sk
+  path: /fitness/
+  parent_key: sport
+  url: https://sport.bazos.sk/fitness/
+- key: sport/futbal
+  label: Šport > Futbal
+  host: sport.bazos.sk
+  path: /futbal/
+  parent_key: sport
+  url: https://sport.bazos.sk/futbal/
+- key: sport/golf
+  label: Šport > Golf
+  host: sport.bazos.sk
+  path: /golf/
+  parent_key: sport
+  url: https://sport.bazos.sk/golf/
+- key: sport/hokej
+  label: Šport > Hokej, korčuľovanie
+  host: sport.bazos.sk
+  path: /hokej/
+  parent_key: sport
+  url: https://sport.bazos.sk/hokej/
+- key: sport/horska
+  label: Šport > Horské bicykle
+  host: sport.bazos.sk
+  path: /horska/
+  parent_key: sport
+  url: https://sport.bazos.sk/horska/
+- key: sport/hry
+  label: Šport > Spoločenské hry
+  host: sport.bazos.sk
+  path: /hry/
+  parent_key: sport
+  url: https://sport.bazos.sk/hry/
+- key: sport/kemping
+  label: Šport > Kemping
+  host: sport.bazos.sk
+  path: /kemping/
+  parent_key: sport
+  url: https://sport.bazos.sk/kemping/
+- key: sport/kolobezky
+  label: Šport > Kolobežky
+  host: sport.bazos.sk
+  path: /kolobezky/
+  parent_key: sport
+  url: https://sport.bazos.sk/kolobezky/
+- key: sport/korcule
+  label: Šport > In-lines, Skateboarding
+  host: sport.bazos.sk
+  path: /korcule/
+  parent_key: sport
+  url: https://sport.bazos.sk/korcule/
+- key: sport/letectvo
+  label: Šport > Letectvo
+  host: sport.bazos.sk
+  path: /letectvo/
+  parent_key: sport
+  url: https://sport.bazos.sk/letectvo/
+- key: sport/loptove
+  label: Šport > Loptové hry
+  host: sport.bazos.sk
+  path: /loptove/
+  parent_key: sport
+  url: https://sport.bazos.sk/loptove/
+- key: sport/lov
+  label: Šport > Poľovníctvo
+  host: sport.bazos.sk
+  path: /lov/
+  parent_key: sport
+  url: https://sport.bazos.sk/lov/
+- key: sport/lyze
+  label: Šport > Lyže
+  host: sport.bazos.sk
+  path: /lyze/
+  parent_key: sport
+  url: https://sport.bazos.sk/lyze/
+- key: sport/ostatni
+  label: Šport > Všetko ostatné
+  host: sport.bazos.sk
+  path: /ostatni/
+  parent_key: sport
+  url: https://sport.bazos.sk/ostatni/
+- key: sport/paintball
+  label: Šport > Paintball, airsoft
+  host: sport.bazos.sk
+  path: /paintball/
+  parent_key: sport
+  url: https://sport.bazos.sk/paintball/
+- key: sport/rybareni
+  label: Šport > Rybolov
+  host: sport.bazos.sk
+  path: /rybareni/
+  parent_key: sport
+  url: https://sport.bazos.sk/rybareni/
+- key: sport/skialpy
+  label: Šport > Skialpy
+  host: sport.bazos.sk
+  path: /skialpy/
+  parent_key: sport
+  url: https://sport.bazos.sk/skialpy/
+- key: sport/snowboard
+  label: Šport > Snowboarding
+  host: sport.bazos.sk
+  path: /snowboard/
+  parent_key: sport
+  url: https://sport.bazos.sk/snowboard/
+- key: sport/soucastky
+  label: Šport > Súčiastky a diely
+  host: sport.bazos.sk
+  path: /soucastky/
+  parent_key: sport
+  url: https://sport.bazos.sk/soucastky/
+- key: sport/tenis
+  label: Šport > Tenis, squash, badminton
+  host: sport.bazos.sk
+  path: /tenis/
+  parent_key: sport
+  url: https://sport.bazos.sk/tenis/
+- key: sport/turistika
+  label: Šport > Turistika, horolezectvo
+  host: sport.bazos.sk
+  path: /turistika/
+  parent_key: sport
+  url: https://sport.bazos.sk/turistika/
+- key: sport/vodni
+  label: Šport > Vodné športy, potápanie
+  host: sport.bazos.sk
+  path: /vodni/
+  parent_key: sport
+  url: https://sport.bazos.sk/vodni/
+- key: sport/zimni
+  label: Šport > Ostatné zimné
+  host: sport.bazos.sk
+  path: /zimni/
+  parent_key: sport
+  url: https://sport.bazos.sk/zimni/
+- key: stroje/cerpadla
+  label: Stroje > Čerpadlá
+  host: stroje.bazos.sk
+  path: /cerpadla/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/cerpadla/
+- key: stroje/cistiace
+  label: Stroje > Čistiace stroje
+  host: stroje.bazos.sk
+  path: /cistiace/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/cistiace/
+- key: stroje/diely
+  label: Stroje > Náhradné diely
+  host: stroje.bazos.sk
+  path: /diely/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/diely/
+- key: stroje/drevoobrabacie
+  label: Stroje > Drevoobrábacie
+  host: stroje.bazos.sk
+  path: /drevoobrabacie/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/drevoobrabacie/
+- key: stroje/generatory
+  label: Stroje > Generátory
+  host: stroje.bazos.sk
+  path: /generatory/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/generatory/
+- key: stroje/historicke
+  label: Stroje > Historické stroje
+  host: stroje.bazos.sk
+  path: /historicke/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/historicke/
+- key: stroje/komunalna
+  label: Stroje > Komunálna technika
+  host: stroje.bazos.sk
+  path: /komunalna/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/komunalna/
+- key: stroje/kovoobrabacie
+  label: Stroje > Kovoobrábacie
+  host: stroje.bazos.sk
+  path: /kovoobrabacie/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/kovoobrabacie/
+- key: stroje/lesna
+  label: Stroje > Lesná technika
+  host: stroje.bazos.sk
+  path: /lesna/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/lesna/
+- key: stroje/linka
+  label: Stroje > Výrobná linka
+  host: stroje.bazos.sk
+  path: /linka/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/linka/
+- key: stroje/motory
+  label: Stroje > Motory
+  host: stroje.bazos.sk
+  path: /motory/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/motory/
+- key: stroje/ostatne
+  label: Stroje > Ostatné
+  host: stroje.bazos.sk
+  path: /ostatne/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/ostatne/
+- key: stroje/polnohospodarska
+  label: Stroje > Poľnohospodárska technika
+  host: stroje.bazos.sk
+  path: /polnohospodarska/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/polnohospodarska/
+- key: stroje/potravinarske
+  label: Stroje > Potravinárske stroje
+  host: stroje.bazos.sk
+  path: /potravinarske/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/potravinarske/
+- key: stroje/prevadzkarne
+  label: Stroje > Vybavenie prevádzkarne
+  host: stroje.bazos.sk
+  path: /prevadzkarne/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/prevadzkarne/
+- key: stroje/skladova
+  label: Stroje > Skladová technika
+  host: stroje.bazos.sk
+  path: /skladova/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/skladova/
+- key: stroje/stavebne
+  label: Stroje > Stavebné stroje
+  host: stroje.bazos.sk
+  path: /stavebne/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/stavebne/
+- key: stroje/textilne
+  label: Stroje > Textilné stroje
+  host: stroje.bazos.sk
+  path: /textilne/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/textilne/
+- key: stroje/tlaciarenske
+  label: Stroje > Tlačiarenské stroje
+  host: stroje.bazos.sk
+  path: /tlaciarenske/
+  parent_key: stroje
+  url: https://stroje.bazos.sk/tlaciarenske/
+- key: vstupenky/deti
+  label: Vstupenky > Pre deti
+  host: vstupenky.bazos.sk
+  path: /deti/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/deti/
+- key: vstupenky/divadlo
+  label: Vstupenky > Divadlo
+  host: vstupenky.bazos.sk
+  path: /divadlo/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/divadlo/
+- key: vstupenky/festivaly
+  label: Vstupenky > Festivaly
+  host: vstupenky.bazos.sk
+  path: /festivaly/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/festivaly/
+- key: vstupenky/hudba
+  label: Vstupenky > Hudba, Koncerty
+  host: vstupenky.bazos.sk
+  path: /hudba/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/hudba/
+- key: vstupenky/letenky
+  label: Vstupenky > Letenky
+  host: vstupenky.bazos.sk
+  path: /letenky/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/letenky/
+- key: vstupenky/listky
+  label: Vstupenky > Cestovné lístky
+  host: vstupenky.bazos.sk
+  path: /listky/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/listky/
+- key: vstupenky/ostatne
+  label: Vstupenky > Ostatné
+  host: vstupenky.bazos.sk
+  path: /ostatne/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/ostatne/
+- key: vstupenky/permanentky
+  label: Vstupenky > Permanentky
+  host: vstupenky.bazos.sk
+  path: /permanentky/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/permanentky/
+- key: vstupenky/poukazky
+  label: Vstupenky > Darčekové poukážky
+  host: vstupenky.bazos.sk
+  path: /poukazky/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/poukazky/
+- key: vstupenky/spolocenske
+  label: Vstupenky > Spoločenské akcie
+  host: vstupenky.bazos.sk
+  path: /spolocenske/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/spolocenske/
+- key: vstupenky/sport
+  label: Vstupenky > Šport
+  host: vstupenky.bazos.sk
+  path: /sport/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/sport/
+- key: vstupenky/vystavy
+  label: Vstupenky > Výstavy
+  host: vstupenky.bazos.sk
+  path: /vystavy/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/vystavy/
+- key: vstupenky/znamky
+  label: Vstupenky > Diaľničné známky
+  host: vstupenky.bazos.sk
+  path: /znamky/
+  parent_key: vstupenky
+  url: https://vstupenky.bazos.sk/znamky/
+- key: zvierata/cicavec
+  label: Zvieratá > Drobné cicavce
+  host: zvierata.bazos.sk
+  path: /cicavec/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/cicavec/
+- key: zvierata/dobytok
+  label: Zvieratá > Dobytok
+  host: zvierata.bazos.sk
+  path: /dobytok/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/dobytok/
+- key: zvierata/hydina
+  label: Zvieratá > Hydina
+  host: zvierata.bazos.sk
+  path: /hydina/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/hydina/
+- key: zvierata/kon
+  label: Zvieratá > Kone
+  host: zvierata.bazos.sk
+  path: /kon/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/kon/
+- key: zvierata/konepotreby
+  label: Zvieratá > Kone - potreby
+  host: zvierata.bazos.sk
+  path: /konepotreby/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/konepotreby/
+- key: zvierata/koza
+  label: Zvieratá > Ovce a kozy
+  host: zvierata.bazos.sk
+  path: /koza/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/koza/
+- key: zvierata/kralik
+  label: Zvieratá > Králiky
+  host: zvierata.bazos.sk
+  path: /kralik/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/kralik/
+- key: zvierata/kryti
+  label: Zvieratá > Krytie
+  host: zvierata.bazos.sk
+  path: /kryti/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/kryti/
+- key: zvierata/macka
+  label: Zvieratá > Mačky
+  host: zvierata.bazos.sk
+  path: /macka/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/macka/
+- key: zvierata/ostatnidomaci
+  label: Zvieratá > Ostatné domáce zvieratá
+  host: zvierata.bazos.sk
+  path: /ostatnidomaci/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/ostatnidomaci/
+- key: zvierata/ostatnihospodarska
+  label: Zvieratá > Ostatné hospodárske zvieratá
+  host: zvierata.bazos.sk
+  path: /ostatnihospodarska/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/ostatnihospodarska/
+- key: zvierata/pes
+  label: Zvieratá > Psy
+  host: zvierata.bazos.sk
+  path: /pes/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/pes/
+- key: zvierata/potreby
+  label: Zvieratá > Chovateľské potreby
+  host: zvierata.bazos.sk
+  path: /potreby/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/potreby/
+- key: zvierata/prase
+  label: Zvieratá > Prasatá
+  host: zvierata.bazos.sk
+  path: /prase/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/prase/
+- key: zvierata/ryba
+  label: Zvieratá > Akvarijné rybičky
+  host: zvierata.bazos.sk
+  path: /ryba/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/ryba/
+- key: zvierata/strateni
+  label: Zvieratá > Stratení a nájdení
+  host: zvierata.bazos.sk
+  path: /strateni/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/strateni/
+- key: zvierata/vtak
+  label: Zvieratá > Vtáctvo
+  host: zvierata.bazos.sk
+  path: /vtak/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/vtak/
+- key: zvierata/zviera
+  label: Zvieratá > Terárijné zvieratá
+  host: zvierata.bazos.sk
+  path: /zviera/
+  parent_key: zvierata
+  url: https://zvierata.bazos.sk/zviera/

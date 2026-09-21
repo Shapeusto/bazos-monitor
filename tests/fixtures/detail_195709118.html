@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<title>Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - Košice | Bazoš.sk</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Inzerát č. 195709118: Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD, Cena: 389 €, Lokalita: Košice. Popis: Predám 15.6"" kovový, nový."><meta property="og:image" content="https://www.bazos.sk/img/1/118/195709118.jpg?t=1789859041"><meta property="og:title" content="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - Košice">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bazos.sk">
+<meta property="og:description" content="Inzerát č. 195709118: Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD, Cena: 389 €, Lokalita: Košice. Popis: Predám 15.6"" kovový, nový.">
+<link rel="canonical" href="https://pc.bazos.sk/inzerat/195709118/predam-hlinikovy156-notebook-fullhd-ips-8gb-256gb-ssd.php"><meta property="fb:admins" content="1055875657">
+<meta name="ROBOTS" content="max-image-preview:large">
+<link rel="preload" as="image" href="https://www.bazos.sk/img/1/118/195709118.jpg?t=1789859041"><link rel="stylesheet" href="https://www.bazos.sk/bazos67s.css" type="text/css"><link rel="preload" as="image" href="https://www.bazos.sk/obrazky/bazos.svg">
+<link rel="stylesheet" href="https://www.bazos.sk/bazosprint.css" type="text/css" media="print">
+<link rel="icon" href="https://www.bazos.sk/favicon.svg" type="image/svg+xml">
+<link rel="icon" HREF="https://www.bazos.sk/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="https://www.bazos.sk/apple-touch-icon.png">
+
+<script async="async" src="https://www.google.com/adsense/search/ads.js"></script>
+<script type="text/javascript" charset="utf-8">
+(function(g,o){g[o]=g[o]||function(){(g[o]['q']=g[o]['q']||[]).push(
+  arguments)},g[o]['t']=1*new Date})(window,'_googCsa');
+</script><script>
+var xhr = new XMLHttpRequest();
+var naseptavac_value = '';
+function naseptavac(value) {
+  if (value=='')  {
+  	naseptavac_value = '';
+  	document.getElementById('vysledek').innerHTML='';
+  	}
+else {
+	if (naseptavac_value == value) {
+		return false;
+	}
+	naseptavac_value = value;
+	setTimeout(function () {
+		if (naseptavac_value != value) {
+			return false;
+		}
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4 && naseptavac_value == value){
+				document.getElementById('vysledek').innerHTML = this.responseText;
+			}
+ 		 };
+		xhr.open("POST", '/suggest.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('rubnas=PC&catnas=10&qnas='+encodeURIComponent(naseptavac_value));
+	}, 250);
+}
+}
+
+var naseptavacpsc_value = '';
+function naseptavacpsc(value) {
+  if (value=='')  {
+  	naseptavacpsc_value = '';
+  	document.getElementById('vysledekpsc').innerHTML='<table cellpadding=\"3\" cellspacing=\"0\" class=\"tablenaspsc\"><tr><td class=\"act\" onclick=\"getLocation();\"><b>Inzeráty v okolí</b></td></tr></table>';
+  	}
+else {
+	if (naseptavacpsc_value == value) {
+		return false;
+	}
+	naseptavacpsc_value = value;
+	setTimeout(function () {
+		if (naseptavacpsc_value != value) {
+			return false;
+		}
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4 && naseptavacpsc_value == value){
+				document.getElementById('vysledekpsc').innerHTML = this.responseText;
+			}
+ 		 };
+		xhr.open("POST", '/suggestpsc.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('qnaspsc='+encodeURIComponent(naseptavacpsc_value));
+	}, 250);
+}
+}
+
+function getLocation() {
+if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(showPosition);}
+else {document.getElementById('hlokalita').value = '';}
+}
+function showPosition(position) {
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4){
+				document.getElementById('hlokalita').value = this.responseText;
+				document.forms['formt'].submit();
+			}
+ 		 };
+		xhr.open("POST", '/zip.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('latitude='+encodeURIComponent(position.coords.latitude)+'&longitude='+encodeURIComponent(position.coords.longitude));
+}
+
+function favouriteadd(value,params,obradresa) {
+xhr.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200){
+				document.getElementById('favour').innerHTML = this.responseText;
+				document.getElementById('obrfavour').src = obradresa;
+			}
+  };
+xhr.open("POST", value);
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.send(params);
+}
+
+function odeslatrequest(value,params,overvalue) {
+xhr.onreadystatechange = function() {
+  if (this.readyState == 4){
+				document.getElementById(overvalue).innerHTML = this.responseText;
+			}
+  };
+xhr.open("POST", value);
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.send(params);
+}
+function odeslatakci(postaction,value1,value2,value3) {
+document.getElementById('postaction').value = postaction;
+document.getElementById("postv1").value = value1;
+document.getElementById("postv2").value = value2;
+document.getElementById("postv3").value = value3;
+document.formaction.submit();
+}
+</script>
+<script src="https://www.bazos.sk/flickity2.js"></script></head>
+
+<body>
+
+<div class="sirka">
+
+
+<div class="listalogor">
+<div class="listalogol"><a href="https://www.bazos.sk/" title="Bazos.sk - Inzercia, inzeráty"><img src="https://www.bazos.sk/obrazky/bazos.svg" width="199" height="34" alt="Bazos.sk - Inzercia, inzeráty"></a></div>
+<div class="listalogom"><b>... bazár pre každého</b></div>
+<div class="listalogop"><a href="https://www.bazos.sk/oblubene.php"><b>Obľúbené inzeráty</b></a> <a href="https://www.bazos.sk/moje-inzeraty.php"><b>Moje inzeráty</b></a> <a href="/pridat-inzerat.php"><b><span class=pridati>Pridať inzerát</span></b></a></div>
+</div>
+<form name="formt" id="formt" method=get action=/>
+<div class="listah">
+<div class="rubriky">
+<b>
+Čo: <span class=vysokoli><span id="vysledek"></span><input type="search" onkeyup="naseptavac(this.value);" id=hledat name=hledat size="17" maxlength="256" value="" autocomplete="off" title="Čo? Hľadaný výraz"></span>
+
+<select name="rubriky" onchange='this.form.submit();' title="Vyber rubriku">
+<option value="www">Všetky rubriky</option>
+<option value="auto">Auto</option><option value="deti">Deti</option><option value="dom">Dom a záhrada</option><option value="elektro">Elektro</option><option value="foto">Foto</option><option value="hudba">Hudba</option><option value="knihy">Knihy</option><option value="mobil">Mobily</option><option value="motocykle">Motocykle</option><option value="nabytok">Nábytok</option><option value="oblecenie">Oblečenie</option><option value="pc" selected>PC</option><option value="praca">Práca</option><option value="reality">Reality</option><option value="sluzby">Služby</option><option value="stroje">Stroje</option><option value="sport">Šport</option><option value="vstupenky">Vstupenky</option><option value="zvierata">Zvieratá</option><option value="ostatne">Ostatné</option></select>
+
+PSČ (miesto): <span class=vysokolipsc><span id="vysledekpsc"></span><input type="search" name="hlokalita" id="hlokalita" onkeyup="naseptavacpsc(this.value);" onclick="naseptavacpsc(this.value);" value="" size="5" maxlength="25" autocomplete="off" title="Kde? PSČ (miesto)" style="-webkit-appearance: none;"></span>
+Okolie: <input name="humkreis" title="Okolie v km" value="25" size="3" style="width: 25px;"> km
+Cena od: <input name=cenaod title="Cena od €" maxlength="12" size="4" value=""> - do: <input name=cenado title="Cena do €" maxlength="12" size="4" value=""> €  <input type="submit" name="Submit" value="Hľadať">
+<input type="hidden" name="order" id="order"><input type="hidden" name="crp" id="crp"><input type="hidden" id="kitx" name="kitx" value="ano"></b>
+</div>
+</div>
+</form>
+<div class="drobky"><a href=https://www.bazos.sk/>Hlavná stránka</a>  > <a href="https://pc.bazos.sk/">PC</a> > <a href="https://pc.bazos.sk/notebook/">Notebooky</a> > <b>Inzerát č. 195709118</b></div>
+<br>
+
+
+<div class="flexmain"><div class="menuleft"><div class="nadpismenu">Kategórie</div>
+<div class="barvalmenu">
+<div class="barvaleva">
+<a href="/cd/" >DVD, Blu-ray mechaniky</a>
+<a href="https://foto.bazos.sk/">Fotoaparáty</a>
+<a href="/gps/" >GPS navigácia</a>
+<a href="/graficka/" >Grafické karty</a>
+<a href="/hdd/" >Hard disky, SSD</a>
+<a href="/playstation/" >Herné konzoly</a>
+<a href="/volanty/" >Herné zariadenia</a>
+<a href="/hry/" >Hry</a>
+<a href="/chladic/" >Chladiče</a>
+<a href="/klavesnice/" >Klávesnice</a>
+<a href="/kopirka/" >Kopírovacie stroje</a>
+<a href="https://mobil.bazos.sk">Mobilné telefóny</a>
+<a href="/modem/" >Modemy</a>
+<a href="/monitor/" >LCD monitory</a>
+<a href="/mys/" >Myši</a>
+<a href="/notebook/"  id=zvyraznenikat>Notebooky</a>
+<a href="/pamet/" >Pamäte</a>
+<a href="/pc/" >PC, Počítače</a>
+<a href="/procesor/" >Procesory</a>
+<a href="/sit/" >Sieťové komponenty</a>
+<a href="/scaner/" >Scanery</a>
+<a href="/case/" >Skrine, zdroje</a>
+<a href="/software/" >Software</a>
+<a href="/spotrebny/" >Spotrebný materiál</a>
+<a href="/tablet/" >Tablety, E-čítačky</a>
+<a href="/tlaciaren/" >Tlačiarne</a>
+<a href="/wifi/" >Wireless, WiFi</a>
+<a href="/motherboard/" >Základné dosky</a>
+<a href="/ups/" >Záložné zdroje</a>
+<a href="/sound/" >Zvukové karty</a>
+<a href="/ostatni/" >Ostatné</a>
+</div></div>
+</div><div class="maincontent">
+
+
+<div class="listainzerat inzeratyflex">
+<div class="inzeratydetnadpis"><H1 class=nadpisdetail>Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD</H1><span class=velikost10> - <span title="TOP 5x Platí do 15.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span></div>
+<div class="inzeratydetdel"><span onclick="odeslatakci('edit','195709118');return false;" class="paction">Zmazať/ Upraviť/ Topovať</span></div>
+</div><br><div class="fliobal"><div class="carousel"><div class="carousel-cell"><img class="carousel-cell-image" data-flickity-lazyload="https://www.bazos.sk/img/1/118/195709118.jpg?t=1789859041" src="https://www.bazos.sk/img/1/118/195709118.jpg?t=1789859041" width="956" height="600" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD"></div><div class="carousel-cell"><img class="carousel-cell-image" data-flickity-lazyload="https://www.bazos.sk/img/2/118/195709118.jpg?t=1789859041" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - 2"></div><div class="carousel-cell"><img class="carousel-cell-image" data-flickity-lazyload="https://www.bazos.sk/img/3/118/195709118.jpg?t=1789859041" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - 3"></div><div class="carousel-cell"><img class="carousel-cell-image" data-flickity-lazyload="https://www.bazos.sk/img/4/118/195709118.jpg?t=1789859041" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - 4"></div></div><div class="flinavigace" id="nahledy1"><img onmouseover="flkty.select(0, false, true );" src="https://www.bazos.sk/img/1t/118/195709118.jpg?t=1789859041" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - 1" class="obrazekflithumb"><br><img onmouseover="flkty.select(1, false, true );" src="https://www.bazos.sk/img/2t/118/195709118.jpg?t=1789859041" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - 2" class="obrazekflithumb"><br><img onmouseover="flkty.select(2, false, true );" src="https://www.bazos.sk/img/3t/118/195709118.jpg?t=1789859041" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - 3" class="obrazekflithumb"><br><img onmouseover="flkty.select(3, false, true );" src="https://www.bazos.sk/img/4t/118/195709118.jpg?t=1789859041" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD - 4" class="obrazekflithumb"><br></div></div><script>var flkty = new Flickity( '.carousel', {fullscreen: true,lazyLoad: 1,wrapAround: true,adaptiveHeight: true});</script>
+<div class=popisdetail>Predám 15.6"" kovový, nový nepoužívaný, multimediálny NB Teclast F15 Plus2<br>
+Základom v tomto notebooku je kvalitná hliníková konštrukcia v zaujímavej tmavošedej farbe ktorá sa odlišuje od zaužívaných prevedení u konkurencie. Priestor je v tomto prípade využitý skutočne efektívne a klávesnica siaha až úplne po okraj a viacerých určite poteší fakt, že je tu aj numerická časť. Veľký je aj samotný touchpad, ktorý je hádam najväčší v danej triede Kvalitné pánty udržujú 15,6″ IPS displej s FullHD rozlíšením <br>
+<br>
+Procesor Intel Celeron N4120,ktorý so štyrmi jadrami ponúka maximálny takt až 2,6 GH.z Spoločnosť mu robí 8 GB RAM a to typu DDR4. Úložisko štartuje na M.2. SSD disku s kapacitou 256 GB, ktoré je možné kedykoľvek rozšíriť. Rovnako tak môžeš spraviť aj pomocou microSD kariet a to do veľkosti 128GB<br>
+<br>
+Notebooku nechýba WiFi, Bluetooth 4.0, 3,5 mm audio jack, 2x USB 3.0 Potešia stereo reproduktory a 5000 mAh batéria, ktorá sa postará o slušnú výdrž. Ako je bežné u notebookoch, aj tu je už predinštalovaný OS Windows 10 Home, ktorý je v slovenskom jazyku a ďalšie jazyky je možné stiahnuť prostredníctvom WiFi<br>
+<br>
+<br>
+LCD 15.6"" IPS antireflexný s FullHD rozlíšením 1920 x 1080MPx<br>
+<br>
+Procesor Intel Celeron N4120<br>
+<br>
+RAM Operačná pamäť LPDDR4 8GB<br>
+<br>
+SSD rýchly Pevný Disk o kapacite 256GB<br>
+<br>
+Grafika Intel UHD Graphics 600 GPU<br>
+<br>
+Konektivita cez WIFI 2,4G+5G, BT<br>
+<br>
+USB 3.0 x2, Čítačka pamäťových kariet, HDMI<br>
+<br>
+Batéria s výdržou cez 7 hodín...<br>
+<br>
+NB pracuje s Licenčným WIN 10 64bit v Slovenskom jazyku...<br>
+<br>
+Rozmery: 37.00 x 24.00 x 2.00 cm<br>
+<br>
+Príslušenstvo:<br>
+<br>
+AC Adaptér- nabíjačka <br>
+Fólia na displej<br>
+Krabica <br>
+<br>
+Cena 389 Eur<br>
+<br>
+Pošlem aj na dobierku 10 Eur</div><br>
+<table width="100%" cellpadding="5" cellspacing="0">
+<tr><td width="35%" valign=top class=listadvlevo>
+<table width="*" cellpadding="0" cellspacing="1">
+<tr><td height="22px" width="25%">Meno:<br><br></td><td colspan=2><b><span onclick="odeslatakci('rating','5136665','3666705','Peter');return false;" class="paction">Peter</span></b><br><br></td></tr>
+<tr id="overlaytel"><td height="22px" width="25%">Telefón:<br><br></td><td colspan=2><span class=teldetail onclick="odeslatrequest('/ad-phone.php','idi=195709118&idphone=3666705','overlaytel');"><span style="white-space: nowrap;">095... zobraz číslo</span></span><br><br></td></tr>
+<tr><td height="22px" width="25%">Lokalita:</td><td width="9%"><img src="https://www.bazos.sk/obrazky/map.svg" alt="Mapa" height="17"></td><td><a href="https://www.google.com/maps/place/48.688581,21.284552/@48.688581,21.284552,12z/data=!4m2!3m1!1s0x0:0x0" title="Približná lokalita" rel="nofollow">040 12</a> <a href="https://pc.bazos.sk/inzeraty/ko%C5%A1ice-12/4012/">Košice</a></td></tr>
+<tr><td height="22px" width="25%"><br>Videlo:</td><td colspan=2><br>126 ľudí</td></tr>
+<tr><td height="22px" width="25%"><br>Cena:</td><td colspan=2><br><b><span translate="no">   389 €</span></b></td></tr>
+</table>
+</td>
+
+<td width="*" valign=top class=listadvpravo>
+
+<table cellpadding="0" cellspacing="1">
+<tr><td height="22px"><img src="https://www.bazos.sk/obrazky/user.svg" alt="Užívateľ" height="17"></td><td><form name="formaction" method="post" style="display: inline;"><input type="hidden" id="postaction" name="postaction" value=""><input type="hidden" id="postv1" name="postv1" value=""><input type="hidden" id="postv2" name="postv2" value=""><input type="hidden" id="postv3" name="postv3" value=""></form>
+<span onclick="odeslatakci('rating','5136665','3666705','Peter');return false;" class="paction">Všetky inzeráty a hodnotenie užívateľa</span></td></tr>
+<tr><td height="22px"><img id="obrfavour" src="https://www.bazos.sk/obrazky/favourite.svg" alt="Obľúbené" height="18"></td><td><span id="favour"><a href="https://www.bazos.sk/oblubene.php" rel="nofollow">Pridať do obľúbených</a></span></td></tr>
+<tr><td height="22px"><img src="https://www.bazos.sk/obrazky/spam.svg" alt="Spam" height="17"></td><td><span onclick="odeslatakci('spam','195709118');return false;" class="paction">Označiť zlý inzerát</span></td></tr>
+<tr><td height="22px"><img src="https://www.bazos.sk/obrazky/miscat.svg" alt="Chybná kategóra" height="17"></td><td><span onclick="odeslatakci('category','195709118');return false;" class="paction">Označiť chybnú kategóriu inzerátu</span></td></tr>
+<tr><td height="22px"><img src="https://www.bazos.sk/obrazky/print.svg" alt="Vytlačiť" height="17"></td><td><a href="#" onclick="window.print()">Vytlačiť inzerát</a></td></tr>
+<tr><td height="22px"><a href="https://www.facebook.com/sharer/sharer.php?u=https://pc.bazos.sk/inzerat/195709118/predam-hlinikovy156-notebook-fullhd-ips-8gb-256gb-ssd.php" target="_blank" rel="nofollow"><img src="https://www.bazos.sk/obrazky/facebook.svg" alt="Facebook" height="22"></a></td><td><a href="https://www.facebook.com/sharer/sharer.php?u=https://pc.bazos.sk/inzerat/195709118/predam-hlinikovy156-notebook-fullhd-ips-8gb-256gb-ssd.php" target="_blank" rel="nofollow">Zdieľajte na Facebooku</a></td></tr>
+<tr><td height="22px"><img src="https://www.bazos.sk/obrazky/mail.svg" alt="Mail" height="17"></td><td><span onclick="odeslatakci('recommend','195709118');return false;" class="paction">Odporučiť kamarátovi</span></td></tr>
+<tr><td height="22px"><img src="https://www.bazos.sk/obrazky/similar.svg" alt="Podobné" height="17"></td><td><a href="https://pc.bazos.sk/inzeraty/pred%C3%A1m-%C2%A0hlin%C3%ADkov%C3%BD156/">Vyhľadať podobné inzeráty</a></td></tr>
+</table>
+
+</td></tr>
+</table>
+<br>
+
+<script>
+function autoResize(id){
+    var newheight;
+    if(document.getElementById){
+        newheight=document.getElementById(id).contentWindow.document.body.scrollHeight+1;
+    }
+    document.getElementById(id).height= (newheight) + "px";
+}
+function nahledy() {
+  var na1 = document.getElementById("nahledy1");
+  var na2 = document.getElementById("nahledy2");
+  var na3 = document.getElementById("nahledy3");
+  var na4 = document.getElementById("nahledy4");
+  if (na1.style.display === "none") {
+    na1.style.display = "block";
+    na2.style.display = "block";
+    na3.style.display = "none";
+    na4.style.display = "none";
+  } else {
+    na1.style.display = "none";
+    na2.style.display = "none";
+    na3.style.display = "block";
+    na4.style.display = "block";
+  }
+}
+</script>
+
+<div class="kontaktniformular"><div class="oranzovy" id="overlaymail"><b>Kontaktovať inzerenta e-mailom</b><br><br>
+Kontaktovať e-mailom môže iba overený užívateľ.<br>
+<br>
+Vaše telefónne číslo <span class="ztop">*</span><br>
+<input type="text" name="teloverit2" id="teloverit2" maxlength="30" autocomplete="off" onkeydown="if (event.keyCode == 13) odeslatrequest('/ad-mail.php','idi=195709118&teloverit='+encodeURIComponent(document.getElementById('teloverit2').value),'overlaymail');">
+<br><br>
+<button type="button" id="mailbutton" onclick="odeslatrequest('/ad-mail.php','idi=195709118&teloverit='+encodeURIComponent(document.getElementById('teloverit2').value),'overlaymail');">Odoslať</button>
+</div></div><br>
+
+<div class="podobne">
+
+<div id="container_one"></div><div id="container_two"></div>
+<script type="text/javascript" charset="utf-8">
+var pageOptions = {
+  'pubId': 'pub-3645948300403337',
+  'query' : " hliníkový15.6\u0022 notebook fullhd ips",
+  'channel': '4588256820',
+  'linkTarget' : '_blank',
+  'personalizedAds' : 'false',
+  'ivt': false,
+'styleId' : '6171314811',  'hl': 'sk'
+};
+
+var adblock1 = {
+  'container': 'container_one',
+  'width': 'auto',
+  'number' : 1
+};
+
+var adblock2 = {
+  'container': 'container_two',
+  'width': 'auto',
+  'number' : 2
+};
+
+_googCsa('ads', pageOptions, adblock1, adblock2);
+
+</script>
+<br>
+
+</div>
+
+
+</div></div><br>
+
+&copy;2026 Bazoš - <b>Inzercia, bazár Notebooky</b><br>
+<a href="https://www.bazos.sk/pomoc.php">Pomoc</a>, <a href="https://www.bazos.sk/otazky.php">Otázky</a>, <a href="https://www.bazos.sk/hodnotenie.php">Hodnotenie</a>, <a href="https://www.bazos.sk/kontakt.php">Kontakt</a>, <a href="https://www.bazos.sk/reklama.php">Reklama</a>, <a href="https://www.bazos.sk/podmienky.php">Podmienky</a>, <a href="https://www.bazos.sk/ochrana-udajov.php">Ochrana údajov</a>, <a href="https://www.bazos.sk/rss.php?rub=pc&cat=10">RSS</a>, <form name="formvkm" id="formvkm" method="post" style="display: inline;"><input type="hidden" name="vkm" value="m"><input type="submit" class="vkm" value="Mobilná verzia"></form><br>
+
+Inzeráty PC celkom: <b>34507</b>, za 24 hodín: <b>1883</b><br><br>
+<a href="https://www.bazos.sk/mapa-kategorie.php">Mapa kategórií</a>, <a href="https://pc.bazos.sk/mapa-search.php">Najvyhľadávanejšie výrazy</a>
+<br>
+Krajiny: <a href="https://pc.bazos.sk">Slovensko</a>, <a href="https://pc.bazos.cz">Česká republika</a>, <a href="https://komputer.bazos.pl">Poľsko</a>, <a href="https://pc.bazos.at">Rakúsko</a>
+<br>
+<br>
+</div>
+
+<script src="https://www.bazos.sk/cookie-consent.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"sk","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"cookie_domain": "bazos.sk"});
+});
+</script>
+<a href="#" id="open_preferences_center"> </a>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLZSNE9Z0C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HLZSNE9Z0C');
+</script>
+
+</body>
+</html>

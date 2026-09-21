@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bazoš monitor</title>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='icon.png') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+<script>
+  (() => {
+    try {
+      const stored = localStorage.getItem("themeMode");
+      if (stored ? stored === "dark" : matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (_) {}
+  })();
+</script>
+<link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body class="bg-background text-foreground min-h-screen">
+{% import "_icons.html" as ic %}
+
+{% macro price_cell(row) %}
+  <span class="price">{{ row.price_text or '–' }}</span>
+  {% if row.previous_price_amount is not none and row.price_amount is not none %}
+    {% if row.price_amount < row.previous_price_amount %}
+      <span class="price-drop" title="cena klesla">{{ ic.icon("arrow-down", "size-3") }}<s>{{ row.previous_price_amount }} €</s></span>
+    {% elif row.price_amount > row.previous_price_amount %}
+      <span class="price-up" title="cena stúpla">{{ ic.icon("arrow-up", "size-3") }}<s>{{ row.previous_price_amount }} €</s></span>
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{% macro row_badges(row) %}
+  {% if row.is_top %}<span class="badge border-transparent bg-warning text-warning-foreground">TOP</span>{% endif %}
+  {% if not row.seen %}<span class="badge border-transparent bg-success text-success-foreground">NEW</span>{% endif %}
+{% endmacro %}
+
+{% macro location(row) %}
+  <div>{{ row.city }}</div>
+  {% if row.psc %}<div class="text-muted-foreground tnum text-xs">{{ row.psc }}</div>{% endif %}
+  {% if row.psc_status == 'foreign' %}<span class="badge border-border bg-muted text-muted-foreground" title="inzerát mimo Slovenska">Zahraničie</span>{% elif row.psc_status and row.psc_status != 'valid' %}<span class="badge border-transparent bg-destructive/10 text-destructive" title="PSČ nie je platné">PSČ neplatné</span>{% endif %}
+  {% if row.kraj %}
+    <div class="text-muted-foreground text-xs" title="približné">{% if row.kraj_source == 'city' %}<span class="text-warning font-semibold" title="kraj odhadnutý podľa mesta">~</span> {% endif %}{{ row.kraj }}</div>
+  {% endif %}
+{% endmacro %}
+
+{% macro actions(row) %}
+  <div class="row-actions">
+    <button type="button" class="btn act" data-variant="ghost" data-size="icon-xs" data-id="{{ row.id }}" data-action="seen" aria-label="Označiť ako videné" data-tooltip="Videné" data-side="top" data-align="end">{{ ic.icon("check", "size-3.5") }}</button>
+    <button type="button" class="btn act" data-variant="ghost" data-size="icon-xs" data-id="{{ row.id }}" data-action="hide" aria-label="Skryť alebo zobraziť" data-tooltip="Skryť / zobraziť" data-side="top" data-align="end">{{ ic.icon("eye", "size-3.5") }}</button>
+    <button type="button" class="btn act fav{% if row.is_favorite %} on{% endif %}" data-variant="ghost" data-size="icon-xs" data-id="{{ row.id }}" data-action="favorite" aria-label="Obľúbené" data-tooltip="Obľúbené" data-side="top" data-align="end">{{ ic.icon("star", "size-3.5") }}</button>
+  </div>
+{% endmacro %}
+
+<header class="bg-background/95 supports-[backdrop-filter]:bg-background/80 sticky top-0 z-[60] h-14 border-b backdrop-blur">
+  <div class="mx-auto flex h-full max-w-[1600px] items-center gap-2 px-3 sm:gap-3 sm:px-4">
+    <button type="button" id="sidebar-toggle" class="btn md:hidden" data-variant="ghost" data-size="icon-sm" aria-label="Prepnúť bočný panel" aria-controls="sidebar" aria-expanded="true">
+      {{ ic.icon("panel-left", "size-4") }}
+    </button>
+    <a href="/" class="brand shrink-0">
+      <span class="brand-mark">{{ ic.icon("gauge", "size-4") }}</span>
+      <span class="hidden sm:inline">Bazoš monitor</span>
+    </a>
+    <div class="combo">
+      <label class="sr-only" for="cat-search">Kategória</label>
+      <div class="relative">
+        <span class="text-muted-foreground pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2">{{ ic.icon("search", "size-4") }}</span>
+        <input type="text" id="cat-search" class="input pl-8" autocomplete="off" spellcheck="false"
+               placeholder="Hľadať kategóriu…" value="{{ current_label }}"
+               role="combobox" aria-expanded="false" aria-controls="cat-list" aria-autocomplete="list">
+      </div>
+      <div id="cat-list" class="combo-list" role="listbox" aria-label="Kategórie" hidden></div>
+    </div>
+    <button type="button" id="scrape-btn" class="btn" data-variant="primary" data-size="sm"
+            {% if not filters.category_key %}disabled title="Vyberte konkrétnu kategóriu"{% endif %}>
+      {{ ic.icon("refresh-cw", "size-4") }}<span class="hidden sm:inline">Aktualizovať</span>
+    </button>
+    <button type="button" id="backfill-btn" class="btn" data-variant="outline" data-size="sm"
+            {% if not filters.category_key %}disabled title="Vyberte konkrétnu kategóriu"{% endif %}>
+      {{ ic.icon("download", "size-4") }}<span class="hidden sm:inline">Stiahnuť celú kategóriu</span>
+    </button>
+    <button type="button" id="theme-toggle" class="btn" data-variant="outline" data-size="icon-sm"
+            aria-label="Prepnúť svetlý / tmavý režim" data-tooltip="Svetlý / tmavý režim" data-side="bottom" data-align="end"
+            onclick="window.basecoat && window.basecoat.theme.toggle()">
+      <span class="hidden dark:block">{{ ic.icon("sun", "size-4") }}</span>
+      <span class="block dark:hidden">{{ ic.icon("moon", "size-4") }}</span>
+    </button>
+  </div>
+</header>
+
+<aside id="sidebar" class="sidebar" data-side="left" data-initial-open="true" data-breakpoint="768">
+  <nav aria-label="Bočný panel" class="border-r">
+    <header class="border-b">
+      <div class="flex items-center justify-end px-2 py-1.5">
+        <button type="button" id="sidebar-close" class="btn md:hidden" data-variant="ghost" data-size="icon-sm" aria-label="Zavrieť bočný panel">
+          {{ ic.icon("x", "size-4") }}
+        </button>
+      </div>
+    </header>
+    <section>
+      <div role="group">
+        <h3>{{ ic.icon("bookmark", "size-4") }} <span>Uložené hľadania</span></h3>
+        <ul id="saved-list" class="flex flex-col gap-2 px-2">
+          {% for s in saved_searches %}
+          <li class="side-item" data-id="{{ s.id }}" data-category="{{ s.category_key or '' }}">
+            <div class="side-row">
+              <a class="side-link" href="{{ s.href }}" title="{{ s.name }}">{{ s.name }}</a>
+              {% if s.new_count %}<span class="badge border-transparent bg-success text-success-foreground" title="nové inzeráty">{{ s.new_count }}</span>{% endif %}
+            </div>
+            <div class="side-sub">{{ s.category_label }} · {{ s.total }} inzerátov</div>
+            <div class="side-actions">
+              <a class="btn" data-variant="ghost" data-size="icon-xs" href="{{ s.href }}{% if '?' in s.href %}&amp;{% else %}?{% endif %}new=1" aria-label="Nové inzeráty" data-tooltip="Nové" data-side="top" data-align="start">{{ ic.icon("sparkles", "size-3.5") }}</a>
+              <button type="button" class="btn" data-variant="ghost" data-size="icon-xs" data-act="rename" aria-label="Premenovať" data-tooltip="Premenovať" data-side="top" data-align="start">{{ ic.icon("pencil", "size-3.5") }}</button>
+              <button type="button" class="btn" data-variant="ghost" data-size="icon-xs" data-act="update" aria-label="Aktualizovať filtre" data-tooltip="Aktualizovať filtre" data-side="top" data-align="start">{{ ic.icon("refresh-cw", "size-3.5") }}</button>
+              <button type="button" class="btn" data-variant="ghost" data-size="icon-xs" data-act="delete" aria-label="Zmazať" data-tooltip="Zmazať" data-side="top" data-align="start">{{ ic.icon("trash-2", "size-3.5") }}</button>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+        <p id="saved-empty" class="side-empty px-2" {% if saved_searches %}hidden{% endif %}>Zatiaľ žiadne uložené hľadania.</p>
+        <div class="px-2 pt-2">
+          <button type="button" id="save-search-open" class="btn w-full" data-variant="outline" data-size="sm">
+            {{ ic.icon("bookmark-plus", "size-4") }} Uložiť aktuálne hľadanie
+          </button>
+          <form id="save-search-form" class="mt-2 hidden space-y-2">
+            <input type="text" id="save-search-name" class="input" maxlength="60" placeholder="Názov hľadania" autocomplete="off">
+            <div class="flex gap-2">
+              <button type="submit" class="btn flex-1" data-variant="primary" data-size="sm">Uložiť</button>
+              <button type="button" id="save-search-cancel" class="btn" data-variant="outline" data-size="sm">Zrušiť</button>
+            </div>
+          </form>
+        </div>
+        <div id="saved-status" class="side-status px-2" role="status" aria-live="polite"></div>
+      </div>
+
+      <hr role="separator">
+
+      <div role="group">
+        <h3>{{ ic.icon("activity", "size-4") }} <span>Sledované kategórie</span></h3>
+        <ul id="watched-list" class="flex flex-col gap-2 px-2">
+          {% for w in watched %}
+          <li class="side-item" data-key="{{ w.category_key }}">
+            <div class="side-row">
+              <a class="side-link" href="/?category={{ w.category_key|urlencode }}" title="Zobraziť kategóriu {{ w.category_key }}">{{ w.label }}</a>
+              <button type="button" class="btn" data-variant="ghost" data-size="icon-xs" data-act="unwatch" aria-label="Odstrániť zo sledovaných">{{ ic.icon("x", "size-3.5") }}</button>
+            </div>
+            <div class="side-sub">{{ w.total }} / {{ w.new }} nových · {{ w.last_run or 'nikdy' }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+        <p id="watched-empty" class="side-empty px-2" {% if watched %}hidden{% endif %}>Zatiaľ žiadne sledované kategórie.</p>
+        <ul id="overlap-warnings" class="overlap-warnings px-2"></ul>
+        <div class="px-2 pt-2">
+          <button type="button" id="watch-current" class="btn w-full" data-variant="outline" data-size="sm"
+                  {% if not filters.category_key %}disabled title="Vyberte konkrétnu kategóriu"{% endif %}>
+            {{ ic.icon("plus", "size-4") }} Sledovať túto kategóriu
+          </button>
+        </div>
+        <div id="watched-status" class="side-status px-2" role="status" aria-live="polite"></div>
+      </div>
+
+      <hr role="separator">
+
+      <div role="group">
+        <h3>{{ ic.icon("list-checks", "size-4") }} <span>Aktualizovať všetko</span></h3>
+        <div class="space-y-2 px-2">
+          <label class="flex items-center gap-2 text-sm"><input type="checkbox" id="batch-force" class="input"> vynútiť (ignorovať interval)</label>
+          <label class="flex items-center gap-2 text-sm"><input type="checkbox" id="batch-deep" class="input"> hlbšie prehľadanie</label>
+          <button type="button" id="batch-start" class="btn w-full" data-variant="secondary" data-size="sm">
+            {{ ic.icon("refresh-cw", "size-4") }} Aktualizovať všetky sledované
+          </button>
+          <button type="button" id="batch-cancel" class="btn w-full" data-variant="destructive" data-size="sm" hidden>
+            {{ ic.icon("x", "size-4") }} Zrušiť
+          </button>
+          <div id="batch-progress" class="progress hidden" role="progressbar" aria-label="Priebeh dávky">
+            <span class="w-full animate-pulse"></span>
+          </div>
+          <div id="batch-warning" class="alert text-sm" role="alert" data-variant="destructive" hidden>
+            {{ ic.icon("triangle-alert", "size-4") }}<section><p></p></section>
+          </div>
+          <ul id="batch-list" class="flex max-h-60 flex-col gap-1 overflow-y-auto" hidden></ul>
+          <div id="batch-status" class="status-line" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <hr role="separator">
+
+      <div role="group" id="scheduler-block">
+        <h3>{{ ic.icon("bell", "size-4") }} <span>Automatická kontrola</span></h3>
+        <div class="space-y-2 px-2">
+          <label class="flex items-center gap-2 text-sm"><input type="checkbox" id="sched-enabled" class="input"> Zapnutá</label>
+          <label class="label" for="sched-interval-preset">Interval</label>
+          <select id="sched-interval-preset" class="select w-full">
+            <option value="30">30 min</option>
+            <option value="60">1 h</option>
+            <option value="120">2 h</option>
+            <option value="360">6 h</option>
+            <option value="720">12 h</option>
+            <option value="1440">24 h</option>
+            <option value="custom">Vlastný…</option>
+          </select>
+          <div id="sched-custom-wrap" class="hidden">
+            <label class="label" for="sched-interval-custom">Vlastný interval (min)</label>
+            <input type="number" id="sched-interval-custom" class="input" min="30" max="1440" step="1">
+          </div>
+          <p id="sched-countdown" class="side-sub"></p>
+          <p id="sched-last" class="side-sub"></p>
+          <button type="button" id="sched-run-now" class="btn w-full" data-variant="secondary" data-size="sm">
+            {{ ic.icon("play", "size-4") }} Spustiť teraz
+          </button>
+          <p class="text-muted-foreground text-xs">Kontrola beží len kým je táto aplikácia spustená.</p>
+          <div id="sched-status" class="side-status" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </nav>
+</aside>
+
+<div class="app-main">
+  <main class="mx-auto w-full max-w-[1600px] px-3 py-4 sm:px-4">
+
+    <div id="sched-banner" class="alert mb-4" role="alert" data-variant="destructive" hidden>
+      {{ ic.icon("triangle-alert", "size-4") }}<section><p></p></section>
+    </div>
+
+    <div id="backfill-panel" class="card mb-4 p-4" hidden>
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span id="backfill-spinner" class="spinner" hidden>{{ ic.icon("loader-circle", "size-4") }}</span>
+          {{ ic.icon("download", "size-4") }}
+          <strong>Stiahnutie celej kategórie</strong>
+          <span id="backfill-percent" class="badge border-border bg-muted text-muted-foreground tnum" hidden></span>
+        </div>
+        <button type="button" id="backfill-cancel" class="btn" data-variant="destructive" data-size="sm" hidden>
+          {{ ic.icon("x", "size-4") }} Zrušiť
+        </button>
+      </div>
+      <p id="backfill-text" class="text-muted-foreground mt-2 text-sm" role="status" aria-live="polite"></p>
+      <div id="backfill-progress" class="progress mt-2" role="progressbar" aria-label="Priebeh sťahovania celej kategórie" hidden>
+        <span></span>
+      </div>
+      <p id="backfill-eta" class="text-muted-foreground mt-1 text-xs" hidden></p>
+      <div id="backfill-warning" class="alert mt-2" role="alert" data-variant="destructive" hidden>
+        {{ ic.icon("triangle-alert", "size-4") }}<section><p></p></section>
+      </div>
+    </div>
+
+    <form id="filters" method="get" action="/" class="card mb-4">
+      <input type="hidden" name="category" id="cat-value" value="{{ filters.category_key or '' }}">
+      <header class="flex items-center justify-between gap-3 border-b px-4 py-3 sm:px-6">
+        <div>
+          <h2 class="card-title">{{ ic.icon("sliders-horizontal", "size-4") }} Filtre</h2>
+          <p class="text-muted-foreground text-sm">Zúžte výsledky podľa kľúčových slov, ceny a miesta.</p>
+        </div>
+        <button type="button" id="filters-toggle" class="btn" data-variant="ghost" data-size="sm" aria-expanded="true" aria-controls="filters-body">
+          <span class="filters-toggle-label">Skryť</span> {{ ic.icon("chevron-up", "size-4") }}
+        </button>
+      </header>
+      <div id="filters-body">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-5 px-4 py-4 sm:px-6 lg:grid-cols-2 xl:grid-cols-4">
+
+          <fieldset class="fieldset">
+            <legend>{{ ic.icon("tag", "size-4") }} Kľúčové slová</legend>
+            <div class="space-y-3">
+              <div class="field">
+                <label class="label" for="kw_all">Musia obsahovať všetky</label>
+                <input type="text" class="input" id="kw_all" name="kw_all" value="{{ filters.keywords_all|join(', ') }}" placeholder="napr. i5, ssd">
+              </div>
+              <div class="field">
+                <label class="label" for="kw_any">Obsahujú aspoň jedno</label>
+                <input type="text" class="input" id="kw_any" name="kw_any" value="{{ filters.keywords_any|join(', ') }}">
+              </div>
+              <div class="field">
+                <label class="label" for="kw_exclude">Nesmú obsahovať</label>
+                <input type="text" class="input" id="kw_exclude" name="kw_exclude" value="{{ filters.keywords_exclude|join(', ') }}" placeholder="napr. dell">
+              </div>
+              <div class="field">
+                <label class="label" for="kw_desc">Iba v popise</label>
+                <input type="text" class="input" id="kw_desc" name="kw_desc" value="{{ filters.keywords_desc|join(', ') }}" placeholder="napr. darujem">
+              </div>
+              <p class="text-muted-foreground text-xs">Viac výrazov oddeľte čiarkou; frázu dajte do úvodzoviek. „Iba v popise“ hľadá len v texte inzerátu, nie v názve.</p>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>{{ ic.icon("tag", "size-4") }} Cena</legend>
+            <div class="space-y-3">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="field">
+                  <label class="label" for="price_min">Od</label>
+                  <input type="number" class="input" id="price_min" name="price_min" min="0" value="{{ filters.price_min if filters.price_min is not none else '' }}">
+                </div>
+                <div class="field">
+                  <label class="label" for="price_max">Do</label>
+                  <input type="number" class="input" id="price_max" name="price_max" min="0" value="{{ filters.price_max if filters.price_max is not none else '' }}">
+                </div>
+              </div>
+              <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="no_price" value="1" class="input" {% if filters.include_no_price %}checked{% endif %}> Zahrnúť inzeráty bez číselnej ceny</label>
+              <div class="grid grid-cols-2 gap-2">
+                {% for pt in price_types %}
+                  <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="price_type" value="{{ pt }}" class="input" {% if pt in filters.price_types %}checked{% endif %}> {{ price_type_labels[pt] }}</label>
+                {% endfor %}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>{{ ic.icon("map-pin", "size-4") }} Miesto</legend>
+            <div class="space-y-3">
+              <div class="field">
+                <label class="label" for="city">Mesto</label>
+                <input type="text" class="input" id="city" name="city" value="{{ filters.city or '' }}" placeholder="napr. Košice">
+              </div>
+              <div class="field">
+                <label class="label" for="psc">PSČ</label>
+                <input type="text" class="input" id="psc" name="psc" value="{{ filters.psc_prefix or '' }}" placeholder="napr. 04">
+              </div>
+              <div class="field">
+                <label class="label" for="kraj">Kraj <span class="text-muted-foreground font-normal normal-case">(približné)</span></label>
+                <select id="kraj" name="kraj" class="select w-full">
+                  <option value="">– všetky –</option>
+                  {% for k in kraje %}
+                    <option value="{{ k }}" {% if filters.kraj == k %}selected{% endif %}>{{ k }}</option>
+                  {% endfor %}
+                  <option value="{{ kraj_unknown }}" {% if filters.kraj == kraj_unknown %}selected{% endif %}>Kraj neznámy</option>
+                </select>
+              </div>
+              <label class="flex items-start gap-2 text-sm">
+                <input type="checkbox" id="inc-unknown" {% if filters.include_unknown_location %}checked{% endif %} class="input mt-0.5">
+                <span>Zahrnúť inzeráty s neznámym alebo neplatným PSČ</span>
+                <input type="hidden" name="include_unknown_location" id="inc-unknown-value" value="0" {% if filters.include_unknown_location %}disabled{% endif %}>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>{{ ic.icon("list-filter", "size-4") }} Zobrazenie</legend>
+            <div class="space-y-3">
+              <div class="flex flex-wrap gap-x-4 gap-y-2">
+                <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="new" value="1" class="input" {% if filters.only_new %}checked{% endif %}> Iba nové</label>
+                <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="fav" value="1" class="input" {% if filters.only_favorites %}checked{% endif %}> Iba obľúbené</label>
+                <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="hidden" value="1" class="input" {% if filters.include_hidden %}checked{% endif %}> Zobraziť skryté</label>
+              </div>
+              <label class="flex items-center gap-2 text-sm">
+                <input type="checkbox" id="age-limit" class="input" {% if filters.max_age_days %}checked{% endif %}>
+                Len inzeráty z posledných {{ max_listing_age_days }} dní
+                <input type="hidden" name="days" id="age-limit-value" value="0" {% if filters.max_age_days %}disabled{% endif %}>
+              </label>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="field">
+                  <label class="label" for="added">Pridané za</label>
+                  <select id="added" name="added" class="select w-full">
+                    <option value="" {% if not filters.added %}selected{% endif %}>všetko</option>
+                    <option value="24h" {% if filters.added == '24h' %}selected{% endif %}>24 h</option>
+                    <option value="7d" {% if filters.added == '7d' %}selected{% endif %}>7 dní</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="label" for="sort">Zoradiť</label>
+                  <select id="sort" name="sort" class="select w-full">
+                    <option value="-first_seen" {% if sort == '-first_seen' %}selected{% endif %}>Najnovšie pridané</option>
+                    <option value="price" {% if sort == 'price' %}selected{% endif %}>Cena vzostupne</option>
+                    <option value="-price" {% if sort == '-price' %}selected{% endif %}>Cena zostupne</option>
+                    <option value="date" {% if sort == 'date' %}selected{% endif %}>Dátum vzostupne</option>
+                    <option value="-date" {% if sort == '-date' %}selected{% endif %}>Dátum zostupne</option>
+                    <option value="views" {% if sort == 'views' %}selected{% endif %}>Najviac zobrazení</option>
+                    <option value="relevance" {% if sort == 'relevance' %}selected{% endif %}>Relevancia (kľúčové slová)</option>
+                  </select>
+                </div>
+              </div>
+              <label class="flex items-center gap-2 text-sm"><input type="checkbox" id="deep-scrape" class="input"> Aktualizovať s hlbším prehľadaním</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div id="filter-chips" class="flex flex-wrap items-center gap-2 px-4 pb-1 sm:px-6"></div>
+
+        <div class="flex flex-wrap items-center gap-3 border-t px-4 py-3 sm:px-6">
+          <button type="submit" id="filters-submit" class="btn" data-variant="primary" data-size="sm">
+            {{ ic.icon("search", "size-4") }} Filtrovať
+          </button>
+          <a class="btn" data-variant="outline" data-size="sm" href="/">
+            {{ ic.icon("filter-x", "size-4") }} Vymazať filtre
+          </a>
+          <div id="scrape-status" class="status-line ms-auto" role="status" aria-live="polite"></div>
+        </div>
+        <div id="scrape-progress" class="progress hidden" role="progressbar" aria-label="Priebeh aktualizácie">
+          <span class="w-full animate-pulse"></span>
+        </div>
+      </div>
+    </form>
+
+    <section class="card overflow-visible">
+      <header class="flex flex-wrap items-center justify-between gap-3 border-b px-4 py-3 sm:px-6">
+        <div>
+          <h2 class="card-title">Výsledky</h2>
+          <p class="text-muted-foreground text-sm">
+            Nájdených <strong>{{ total }}</strong> inzerátov{% if filters.category_key %} v kategórii <strong>{{ current_label }}</strong>{% endif %}{% if unknown %} (z toho <strong>{{ unknown }}</strong> s neznámym miestom){% endif %}
+            {% if coverage %}<span class="coverage">· uložených <strong>{{ coverage.stored }}</strong>{% if coverage.estimate %} z ~{{ coverage.estimate }}{% endif %}{% if coverage.complete %} <span class="badge border-transparent bg-success text-success-foreground">kompletné</span>{% endif %}</span>{% endif %}
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" id="bulk-shown" class="btn" data-variant="outline" data-size="sm">
+            {{ ic.icon("check", "size-4") }} Označiť zobrazené ako videné
+          </button>
+          <button type="button" id="bulk-category" class="btn" data-variant="outline" data-size="sm" data-category="{{ filters.category_key or '' }}" {% if not filters.category_key %}disabled{% endif %}>
+            {{ ic.icon("list-checks", "size-4") }} Označiť celú kategóriu
+          </button>
+        </div>
+      </header>
+
+      <div id="results-skeleton" class="hidden space-y-2 p-4 sm:p-6" aria-hidden="true">
+        <div class="skeleton-row" style="width:100%"></div>
+        <div class="skeleton-row" style="width:92%"></div>
+        <div class="skeleton-row" style="width:96%"></div>
+        <div class="skeleton-row" style="width:88%"></div>
+      </div>
+
+      {% if rows %}
+      <div id="listings-region">
+        <div class="hidden overflow-x-clip md:block">
+          <table id="listings" class="table-listings">
+            <thead>
+              <tr>
+                <th class="col-price"><a class="hover:text-foreground inline-flex items-center gap-1" href="?{{ sort_query }}{% if sort_query %}&{% endif %}sort={{ '-price' if sort == 'price' else 'price' }}">Cena{% if sort == 'price' %} {{ ic.icon("arrow-up", "size-3") }}{% elif sort == '-price' %} {{ ic.icon("arrow-down", "size-3") }}{% endif %}</a></th>
+                <th>Titulok</th>
+                <th class="col-desc">Popis</th>
+                <th>Mesto / PSČ</th>
+                <th class="col-date"><a class="hover:text-foreground inline-flex items-center gap-1" href="?{{ sort_query }}{% if sort_query %}&{% endif %}sort={{ '-date' if sort == 'date' else 'date' }}">Dátum{% if sort == 'date' %} {{ ic.icon("arrow-up", "size-3") }}{% elif sort == '-date' %} {{ ic.icon("arrow-down", "size-3") }}{% endif %}</a></th>
+                <th class="col-views">Zobr.</th>
+                <th class="col-actions">Akcie</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for row in rows %}
+              <tr data-id="{{ row.id }}" class="listing-row {% if row.is_hidden %}hidden-row{% endif %}{% if row.seen %} seen-row{% endif %}">
+                <td class="col-price">{{ price_cell(row) }}</td>
+                <td class="col-title">
+                  {{ row_badges(row) }}
+                  <a href="{{ row.url }}" target="_blank" rel="noopener noreferrer" class="hover:text-primary font-medium">{{ row.title|highlight(highlight_terms) }}</a>
+                </td>
+                <td class="col-desc">{% set desc = row.short_description %}{{ (desc[:160] ~ ('…' if desc|length > 160 else ''))|highlight(highlight_terms) }}</td>
+                <td class="col-loc">{{ location(row) }}</td>
+                <td class="col-date tnum">{{ row.posted_date or '–' }}</td>
+                <td class="col-views tnum">{{ row.views if row.views is not none else '–' }}</td>
+                <td class="col-actions">{{ actions(row) }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="space-y-3 p-4 md:hidden">
+          {% for row in rows %}
+          <article data-id="{{ row.id }}" class="listing-card listing-row {% if row.is_hidden %}hidden-row{% endif %}{% if row.seen %} seen-row{% endif %}">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex flex-col gap-1">
+                <div class="flex flex-wrap items-center gap-1">{{ row_badges(row) }}</div>
+                <div class="price">{{ row.price_text or '–' }}</div>
+                {% if row.previous_price_amount is not none and row.price_amount is not none %}
+                  {% if row.price_amount < row.previous_price_amount %}
+                    <span class="price-drop" title="cena klesla">{{ ic.icon("arrow-down", "size-3") }}<s>{{ row.previous_price_amount }} €</s></span>
+                  {% elif row.price_amount > row.previous_price_amount %}
+                    <span class="price-up" title="cena stúpla">{{ ic.icon("arrow-up", "size-3") }}<s>{{ row.previous_price_amount }} €</s></span>
+                  {% endif %}
+                {% endif %}
+              </div>
+              {{ actions(row) }}
+            </div>
+            <a href="{{ row.url }}" target="_blank" rel="noopener noreferrer" class="listing-title hover:text-primary">{{ row.title|highlight(highlight_terms) }}</a>
+            {% set desc = row.short_description %}
+            <p class="text-muted-foreground text-sm">{{ (desc[:160] ~ ('…' if desc|length > 160 else ''))|highlight(highlight_terms) }}</p>
+            <div class="flex items-end justify-between gap-3">
+              <div class="text-sm">{{ location(row) }}</div>
+              <div class="text-muted-foreground tnum flex items-center gap-3 text-xs">
+                {% if row.posted_date %}<span class="inline-flex items-center gap-1">{{ ic.icon("calendar", "size-3") }}{{ row.posted_date }}</span>{% endif %}
+                {% if row.views is not none %}<span class="inline-flex items-center gap-1">{{ ic.icon("eye", "size-3") }}{{ row.views }}</span>{% endif %}
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+
+        {% if pages > 1 %}
+        <nav class="flex items-center justify-center gap-3 border-t px-4 py-3 sm:px-6" aria-label="Stránkovanie">
+          {% if page > 1 %}<a class="btn" data-variant="outline" data-size="sm" href="?{{ page_query }}{% if page_query %}&{% endif %}page={{ page - 1 }}">{{ ic.icon("chevron-left", "size-4") }} Predchádzajúca</a>{% endif %}
+          <span class="text-muted-foreground text-sm">Strana {{ page }} / {{ pages }}</span>
+          {% if page < pages %}<a class="btn" data-variant="outline" data-size="sm" href="?{{ page_query }}{% if page_query %}&{% endif %}page={{ page + 1 }}">Ďalšia {{ ic.icon("chevron-right", "size-4") }}</a>{% endif %}
+        </nav>
+        {% endif %}
+      </div>
+      {% else %}
+      <div class="empty">
+        <header>
+          <figure>{% if not overview %}{{ ic.icon("database", "size-6") }}{% else %}{{ ic.icon("search-x", "size-6") }}{% endif %}</figure>
+          {% if not overview %}
+            <h3>Zatiaľ nič nie je stiahnuté</h3>
+            <p>Vyberte kategóriu hore a kliknite na <strong>Aktualizovať</strong>.</p>
+          {% elif filters.category_key %}
+            <h3>Nič sa nenašlo</h3>
+            <p>V tejto kategórii nezodpovedá žiadny inzerát filtrom. Skúste ich zmeniť alebo kategóriu aktualizovať.</p>
+          {% else %}
+            <h3>Žiadne inzeráty</h3>
+            <p>Skúste zmeniť filtre alebo vybrať inú kategóriu.</p>
+          {% endif %}
+        </header>
+      </div>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer class="text-muted-foreground mx-auto w-full max-w-[1600px] px-3 pb-8 text-xs sm:px-4">
+    <p>Posledná úspešná aktualizácia{% if filters.category_key %} kategórie <strong>{{ current_label }}</strong>{% endif %}: <strong>{{ last_run or 'zatiaľ žiadna' }}</strong></p>
+    <p>Dáta pochádzajú z bazos.sk a slúžia len na osobné použitie. Nikdy sa neukladajú mená, telefóny ani e-maily predajcov.</p>
+  </footer>
+</div>
+
+<dialog id="confirm-dialog" class="dialog">
+  <div>
+    <header>
+      <h2 id="confirm-title">Potvrdenie</h2>
+      <p id="confirm-message"></p>
+    </header>
+    <footer class="flex justify-end gap-2">
+      <button type="button" class="btn" data-variant="outline" data-size="sm" id="confirm-secondary" hidden></button>
+      <button type="button" class="btn" data-variant="outline" data-size="sm" id="confirm-cancel">Zrušiť</button>
+      <button type="button" class="btn" data-variant="destructive" data-size="sm" id="confirm-ok">Potvrdiť</button>
+    </footer>
+    <button type="button" class="btn" data-variant="ghost" data-size="icon-sm" aria-label="Zavrieť" onclick="this.closest('dialog').close()">{{ ic.icon("x", "size-4") }}</button>
+  </div>
+</dialog>
+
+<dialog id="prompt-dialog" class="dialog">
+  <div>
+    <header>
+      <h2 id="prompt-title">Premenovať</h2>
+      <p id="prompt-message"></p>
+    </header>
+    <section>
+      <label class="label" for="prompt-input">Názov</label>
+      <input type="text" id="prompt-input" class="input" maxlength="60" autocomplete="off">
+    </section>
+    <footer class="flex justify-end gap-2">
+      <button type="button" class="btn" data-variant="outline" data-size="sm" id="prompt-cancel">Zrušiť</button>
+      <button type="button" class="btn" data-variant="primary" data-size="sm" id="prompt-ok">Uložiť</button>
+    </footer>
+    <button type="button" class="btn" data-variant="ghost" data-size="icon-sm" aria-label="Zavrieť" onclick="this.closest('dialog').close()">{{ ic.icon("x", "size-4") }}</button>
+  </div>
+</dialog>
+
+<script id="catalog-data" type="application/json">{{ catalog_json|tojson }}</script>
+<script id="overview-data" type="application/json">{{ overview_json|tojson }}</script>
+<script id="app-config" type="application/json">{{ {
+  "category": filters.category_key or "",
+  "all_label": "Všetky stiahnuté kategórie",
+  "filters": current_filters,
+  "sort": sort,
+  "max_saved_searches": max_saved_searches,
+  "max_watched_categories": max_watched_categories,
+  "backfill_max_pages_per_run": backfill_max_pages_per_run,
+  "request_delay_seconds": request_delay_seconds
+}|tojson }}</script>
+<script id="scheduler-data" type="application/json">{{ scheduler_state|tojson }}</script>
+<script src="{{ url_for('static', filename='vendor/basecoat/basecoat.min.js') }}" defer></script>
+<script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>

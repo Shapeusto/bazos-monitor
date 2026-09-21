@@ -1,0 +1,50 @@
+# bazos.sk scraper - runtime configuration
+
+# --- HTTP / politeness -----------------------------------------------------
+user_agent: "bazos-personal-monitor/0.1 (personal use)"
+request_delay_seconds: 1.5     # minimum delay between any two requests
+timeout_connect: 10            # seconds
+timeout_read: 30               # seconds
+max_retries: 3                 # retries for transient errors (connection / 5xx)
+backoff_factor: 2.0            # exponential backoff base
+# HTTP 403 / 429 always stop the whole run immediately (hard-coded, see fetcher.py)
+
+# --- Storage ---------------------------------------------------------------
+db_path: data/bazos.db         # relative to the project root
+
+# --- Incremental scraping limits ------------------------------------------
+first_run_max_pages: 10        # category has no listings in the DB yet
+incremental_max_pages: 25      # category already has listings in the DB
+hard_max_pages: 100            # absolute safety cap
+
+# --- Age window ------------------------------------------------------------
+# Only listings posted within this many days are stored/scanned/displayed.
+# 0 disables the limit (scan and show everything).
+max_listing_age_days: 10
+
+# --- Full-category backfill (manual only) ---------------------------------
+# Pages fetched per single backfill run; the category is downloaded in several
+# runs when it is larger. Absolute ceiling 2000 pages is enforced in code.
+backfill_max_pages_per_run: 1000
+
+# --- Location classification ----------------------------------------------
+# PSČ values used as placeholders / "not a real address" in the source data.
+# Quoted so leading zeros survive YAML parsing. Evidence from the current DB:
+# 12345 appears 67x (city "Zahraničie"), i.e. it is the most frequent
+# unmatched value; the rest are common filler patterns.
+placeholder_psc: ["12345", "00000", "11111", "99999", "01234", "54321"]
+
+# --- Saved searches / watched categories ----------------------------------
+max_saved_searches: 50         # hard cap on stored saved searches
+max_watched_categories: 40     # hard cap on watched categories
+min_batch_interval_minutes: 15 # skip watched categories scraped less recently
+                               # than this, unless a batch is forced
+
+# --- Web UI ---------------------------------------------------------------
+web_port: 5000                 # always bound to 127.0.0.1
+
+# --- Phase 1 recon sample URLs --------------------------------------------
+samples:
+  category_url: "https://pc.bazos.sk/notebook/"
+  edge_case_url: "https://zvierata.bazos.sk/"
+  robots_url: "https://www.bazos.sk/robots.txt"

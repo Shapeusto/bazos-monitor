@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<title>Zvieratá predaj | Bazoš.sk</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Zvieratá predaj zadarmo. Vyberajte z 24 546 inzerátov. Predaj ľahko a rýchlo na Bazoš.sk. Cez 400 tisíc užívateľov za deň."><meta property="og:title" content="Zvieratá predaj">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bazos.sk">
+<meta property="og:description" content="Zvieratá predaj zadarmo. Vyberajte z 24 546 inzerátov. Predaj ľahko a rýchlo na Bazoš.sk. Cez 400 tisíc užívateľov za deň.">
+<link rel="canonical" href="https://zvierata.bazos.sk/"><meta property="fb:admins" content="1055875657">
+<link rel="stylesheet" href="https://www.bazos.sk/bazos67s.css" type="text/css"><link rel="preload" as="image" href="https://www.bazos.sk/obrazky/bazos.svg">
+<link rel="stylesheet" href="https://www.bazos.sk/bazosprint.css" type="text/css" media="print">
+<link rel="icon" href="https://www.bazos.sk/favicon.svg" type="image/svg+xml">
+<link rel="icon" HREF="https://www.bazos.sk/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="https://www.bazos.sk/apple-touch-icon.png">
+
+<script>
+var xhr = new XMLHttpRequest();
+var naseptavac_value = '';
+function naseptavac(value) {
+  if (value=='')  {
+  	naseptavac_value = '';
+  	document.getElementById('vysledek').innerHTML='';
+  	}
+else {
+	if (naseptavac_value == value) {
+		return false;
+	}
+	naseptavac_value = value;
+	setTimeout(function () {
+		if (naseptavac_value != value) {
+			return false;
+		}
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4 && naseptavac_value == value){
+				document.getElementById('vysledek').innerHTML = this.responseText;
+			}
+ 		 };
+		xhr.open("POST", '/suggest.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('rubnas=ZV&catnas=&qnas='+encodeURIComponent(naseptavac_value));
+	}, 250);
+}
+}
+
+var naseptavacpsc_value = '';
+function naseptavacpsc(value) {
+  if (value=='')  {
+  	naseptavacpsc_value = '';
+  	document.getElementById('vysledekpsc').innerHTML='<table cellpadding=\"3\" cellspacing=\"0\" class=\"tablenaspsc\"><tr><td class=\"act\" onclick=\"getLocation();\"><b>Inzeráty v okolí</b></td></tr></table>';
+  	}
+else {
+	if (naseptavacpsc_value == value) {
+		return false;
+	}
+	naseptavacpsc_value = value;
+	setTimeout(function () {
+		if (naseptavacpsc_value != value) {
+			return false;
+		}
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4 && naseptavacpsc_value == value){
+				document.getElementById('vysledekpsc').innerHTML = this.responseText;
+			}
+ 		 };
+		xhr.open("POST", '/suggestpsc.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('qnaspsc='+encodeURIComponent(naseptavacpsc_value));
+	}, 250);
+}
+}
+
+function getLocation() {
+if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(showPosition);}
+else {document.getElementById('hlokalita').value = '';}
+}
+function showPosition(position) {
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4){
+				document.getElementById('hlokalita').value = this.responseText;
+				document.forms['formt'].submit();
+			}
+ 		 };
+		xhr.open("POST", '/zip.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('latitude='+encodeURIComponent(position.coords.latitude)+'&longitude='+encodeURIComponent(position.coords.longitude));
+}
+
+var agent_value = '';
+function agentclick() {
+  if (document.getElementById('agentmail').value=='')  {
+  	document.getElementById("agentmail").focus();
+    return false;
+  	}
+else {
+agent_value = document.getElementById('agentmail').value;
+xhr.onreadystatechange = function() {
+  if (this.readyState == 4){
+				document.getElementById('overlay').innerHTML = this.responseText;
+			}
+  };
+xhr.open("POST", '/agent.php');
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.send('hledat=&rubrikav=ZV&hlokalita=&humkreis=&cenaod=&cenado=&cat=&typ=&agentmail='+encodeURIComponent(agent_value));
+}
+}
+
+function odeslatrequest(value,params) {
+xhr.onreadystatechange = function() {
+  if (this.readyState == 4){
+				document.getElementById('overlay').innerHTML = this.responseText;
+			}
+  };
+xhr.open("POST", value);
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.send(params);
+}
+function overlay() {
+	el = document.getElementById("overlay");
+	el.style.display = (el.style.display == "inline") ? "none" : "inline";
+}
+function odeslatakci(postaction,value1,value2,value3) {
+document.getElementById('postaction').value = postaction;
+document.getElementById("postv1").value = value1;
+document.getElementById("postv2").value = value2;
+document.getElementById("postv3").value = value3;
+document.formaction.submit();
+}
+</script>
+</head>
+
+<body>
+
+<div class="sirka">
+
+
+<div class="listalogor">
+<div class="listalogol"><a href="https://www.bazos.sk/" title="Bazos.sk - Inzercia, inzeráty"><img src="https://www.bazos.sk/obrazky/bazos.svg" width="199" height="34" alt="Bazos.sk - Inzercia, inzeráty"></a></div>
+<div class="listalogom"><b>... predaj pre každého</b></div>
+<div class="listalogop"><a href="https://www.bazos.sk/oblubene.php"><b>Obľúbené inzeráty</b></a> <a href="https://www.bazos.sk/moje-inzeraty.php"><b>Moje inzeráty</b></a> <a href="/pridat-inzerat.php"><b><span class=pridati>Pridať inzerát</span></b></a></div>
+</div>
+<form name="formt" id="formt" method=get >
+<div class="listah">
+<div class="rubriky">
+<b>
+Čo: <span class=vysokoli><span id="vysledek"></span><input type="search" onkeyup="naseptavac(this.value);" id=hledat name=hledat size="17" maxlength="256" value="" autocomplete="off" title="Čo? Hľadaný výraz"></span>
+
+<select name="rubriky" onchange='this.form.submit();' title="Vyber rubriku">
+<option value="www">Všetky rubriky</option>
+<option value="auto">Auto</option><option value="deti">Deti</option><option value="dom">Dom a záhrada</option><option value="elektro">Elektro</option><option value="foto">Foto</option><option value="hudba">Hudba</option><option value="knihy">Knihy</option><option value="mobil">Mobily</option><option value="motocykle">Motocykle</option><option value="nabytok">Nábytok</option><option value="oblecenie">Oblečenie</option><option value="pc">PC</option><option value="praca">Práca</option><option value="reality">Reality</option><option value="sluzby">Služby</option><option value="stroje">Stroje</option><option value="sport">Šport</option><option value="vstupenky">Vstupenky</option><option value="zvierata" selected>Zvieratá</option><option value="ostatne">Ostatné</option></select>
+
+PSČ (miesto): <span class=vysokolipsc><span id="vysledekpsc"></span><input type="search" name="hlokalita" id="hlokalita" onkeyup="naseptavacpsc(this.value);" onclick="naseptavacpsc(this.value);" value="" size="5" maxlength="25" autocomplete="off" title="Kde? PSČ (miesto)" style="-webkit-appearance: none;"></span>
+Okolie: <input name="humkreis" title="Okolie v km" value="25" size="3" style="width: 25px;"> km
+Cena od: <input name=cenaod title="Cena od €" maxlength="12" size="4" value=""> - do: <input name=cenado title="Cena do €" maxlength="12" size="4" value=""> €  <input type="submit" name="Submit" value="Hľadať">
+<input type="hidden" name="order" id="order"><input type="hidden" name="crp" id="crp"><input type="hidden" id="kitx" name="kitx" value="ano"></b>
+</div>
+</div>
+</form>
+<div class="drobky"><a href=https://www.bazos.sk/>Hlavná stránka</a>  > <h1 class="nadpiskategorie">Zvieratá</h1></div>
+<br>
+
+
+<div class="flexmain"><div class="menuleft"><div class="nadpismenu">Domáce zvieratá</div>
+<div class="barvalmenu">
+<div class="barvaleva">
+<a href="/ryba/" >Akvarijné rybičky</a>
+<a href="/cicavec/" >Drobné cicavce</a>
+<a href="/kon/" >Kone</a>
+<a href="/konepotreby/" >Kone - potreby</a>
+<a href="https://sluzby.bazos.sk/ustajnenie/">Kone - služby</a>
+<a href="/macka/" >Mačky</a>
+<a href="/pes/" >Psy</a>
+<a href="/vtak/" >Vtáctvo</a>
+<a href="/zviera/" >Terárijné zvieratá</a>
+<a href="/ostatnidomaci/" >Ostatné domáce</a>
+<br>
+<a href="/kryti/" >Krytie</a>
+<a href="/strateni/" >Stratení a nájdení</a>
+<a href="/potreby/" >Chovateľské potreby</a>
+<a href="https://sluzby.bazos.sk/zvierata/">Služby pre zvieratá</a>
+</div></div>
+
+<br>
+<div class="nadpismenu">Hospodárska zvieratá</div>
+<div class="barvalmenu">
+<div class="barvaleva">
+<a href="/hydina/" >Hydina</a>
+<a href="/kralik/" >Králiky</a>
+<a href="/koza/" >Ovce a kozy</a>
+<a href="/prase/" >Prasatá</a>
+<a href="/dobytok/" >Dobytok</a>
+<br>
+<a href="/ostatnihospodarska/" >Ostatné hospodárske</a>
+</div></div>
+</div><div class="maincontent">
+
+
+<div class="listainzerat inzeratyflex">
+<div class="inzeratynadpis"><img src="https://www.bazos.sk/obrazky/list.gif" width="18" height="16" alt="List inzerátov" class=gallerylista> <form name="formgal" id="formgal" method="post" style="display: inline;"><input type="hidden" name="gal" value="g"><input type="image" alt="Submit" src="https://www.bazos.sk/obrazky/gallery.gif" width="18" height="16" class="gallerylist inputgal"></form> Zobrazených 1-20 inzerátov z 24 546</div>
+<div class="inzeratycena"><b><span onclick="document.getElementById('order').value=1;document.forms['formt'].submit();" class="paction">Cena</span></b></div>
+<div class="inzeratylok">Lokalita</div>
+<div class="inzeratyview"><span onclick="document.getElementById('order').value=3;document.forms['formt'].submit();" class="paction">Zobrazenie</span></div>
+</div><form name="formaction" method="post" style="display: inline;"><input type="hidden" id="postaction" name="postaction" value=""><input type="hidden" id="postv1" name="postv1" value=""><input type="hidden" id="postv2" name="postv2" value=""><input type="hidden" id="postv3" name="postv3" value=""></form><button type="button" onclick="odeslatrequest('/agent.php','teloverit=');overlay();">Nové inzeráty e-mailom</button>
+	<div id="overlay">
+     <div></div>
+</div>
+
+<div id="container_one"></div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195728259/bengalske-maciatka.php"><img src="https://www.bazos.sk/img/1t/259/195728259.jpg?t=1789909795" class="obrazek" alt="Bengalské mačiatka" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195728259/bengalske-maciatka.php">Bengalské mačiatka</a></h2><span class=velikost10> - <span title="TOP 9x Platí do 20.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Ponúkam na predaj bengalské mačiatka,  4 mačičky a 1 kocúrika.</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   350 €</span></b></div>
+<div class="inzeratylok">Galanta<br>925 03</div>
+<div class="inzeratyview">444 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195728259');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195728259');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5227653','2478665','Zolt%C3%A1n');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195728259');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195728155/mainske-myvalie-macky.php"><img src="https://www.bazos.sk/img/1t/155/195728155.jpg?t=1789909587" class="obrazek" alt="mainské mývalie mačky" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195728155/mainske-myvalie-macky.php">mainské mývalie mačky</a></h2><span class=velikost10> - <span title="TOP 8x Platí do 19.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Ponúkam na predaj mainské mývalie mačiatka zvláštnej farby.  Mám 5 kocúrov a jednu mačku</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   350 €</span></b></div>
+<div class="inzeratylok">Galanta<br>925 03</div>
+<div class="inzeratyview">443 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195728155');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195728155');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5227653','2478665','Zolt%C3%A1n');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195728155');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195628860/australsky-ovciak-s-pp.php"><img src="https://www.bazos.sk/img/1t/860/195628860.jpg?t=1789632433" class="obrazek" alt="Austrálsky ovčiak S PP" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195628860/australsky-ovciak-s-pp.php">Austrálsky ovčiak S PP</a></h2><span class=velikost10> - <span title="TOP 10x Platí do 18.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Chovateľská stanica Sofia's Choice ponúka na predaj šteniatka austrálskeho ovčiaka.
+
+S obrovskou radosťou vám oznamujeme, že sa nám narodili naše dlho očakávané šteniatka po úžasnom spojení Dreamy × Mikey.
+
+Šteniatka sa narodili vo všetkých farebných kombináciách.
+
+Matka aj otec maju čistý DNA ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">Dohodou</span></b></div>
+<div class="inzeratylok">Senica<br>908 71</div>
+<div class="inzeratyview">1546 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195628860');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195628860');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5610436','4388662','Sofia+Nasadova');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195628860');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195670972/korytnacka-zelenkasta-dar-jem.php"><img src="https://www.bazos.sk/obrazky/empty.gif" class="obrazek" alt="Korytnačka zelenkastá   Dar jem" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195670972/korytnacka-zelenkasta-dar-jem.php">Korytnačka zelenkastá   Dar jem</a></h2><span class=velikost10> - <span title="TOP 8x Platí do 17.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Darujem zdravého samčeka Testudo Hermanni ,Má platný CITES a mikročip, legálny pôvod. Narodený  v r. 2014. Chovaný v interieri , v lete aj  na balkone resp. v záhrade.</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">Zadarmo</span></b></div>
+<div class="inzeratylok">Senec<br>900 28</div>
+<div class="inzeratyview">738 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195670972');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195670972');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','13617629','13786375','Milka');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195670972');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195541236/belgicky-ovciak-malinois-po-vybornych-rodicoch.php"><img src="https://www.bazos.sk/img/1t/236/195541236.jpg?t=1789399656" class="obrazek" alt="Belgický ovčiak - Malinois po výborných rodičoch" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195541236/belgicky-ovciak-malinois-po-vybornych-rodicoch.php">Belgický ovčiak - Malinois po výborných rodičoch</a></h2><span class=velikost10> - <span title="TOP 11x Platí do 16.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Ponúkam krásne malinois šteniatka, zdravé, hravé a zvyknuté na ľudí aj bežný domáci ruch.
+Šteniatka sú odčervené, očkované a pripravené ísť do nového domova. Rodičia majú vyrovnanú povahu, silný aport a chuť pracovať. Malinois je plemeno, ktoré miluje svojho človeka a je ochotné pre neho spraviť vš ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   200 €</span></b></div>
+<div class="inzeratylok">Levice<br>937 01</div>
+<div class="inzeratyview">3898 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195541236');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195541236');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','6145248','8901760','%C4%BDudov%C3%ADt');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195541236');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195749331/shiba-inu-s-pp-fci.php"><img src="https://www.bazos.sk/img/1t/331/195749331.jpg?t=1789972720" class="obrazek" alt="Shiba inu s PP / FCI /" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195749331/shiba-inu-s-pp-fci.php">Shiba inu s PP / FCI /</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 16.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>CHS Od troch tabiel ponúka šteniatka shiba inu s preukazom pôvodu. Viac info telefonicky / 0918678912 /, alebo emailom. Naše psíky si môžete pozrieť na fb: jarka spakova Možnosť dovozu šteniatka do BA.</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">Dohodou</span></b></div>
+<div class="inzeratylok">Michalovce<br>072 32</div>
+<div class="inzeratyview">2 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195749331');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195749331');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','3049144','931125','Ing.Jarka+%C5%A0pakov%C3%A1');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195749331');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195277256/jazvecik.php"><img src="https://www.bazos.sk/img/1t/256/195277256.jpg?t=1789454278" class="obrazek" alt="Jazvecík" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195277256/jazvecik.php">Jazvecík</a></h2><span class=velikost10> - <span title="TOP 10x Platí do 16.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Hladáme  domov, uz samostatne papáme. Ked sa vies o mne riadne postarat  a budes  mojim najlepsim kamarátom tak  cakám iba na teba.</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">Dohodou</span></b></div>
+<div class="inzeratylok">Dunajská Streda<br>932 01</div>
+<div class="inzeratyview">4131 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195277256');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195277256');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','0','12878406','Archi');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195277256');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195647649/toy-pudel.php"><img src="https://www.bazos.sk/img/1t/649/195647649.jpg?t=1789672386" class="obrazek" alt="Toy pudel" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195647649/toy-pudel.php">Toy pudel</a></h2><span class=velikost10> - <span title="TOP 7x Platí do 15.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Na predaj sú šteniatka plemena toy pudel ; majú za sebou dve očkovania a pravidelné odčervenie. Rodičia sú zdraví a šteniatka sú veľmi hravé, zvyknuté na deti aj na ľudí.
+(Whataapp:+36702506198
+
+Registračné číslo chovu: 45hb65</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">  1 100 €</span></b></div>
+<div class="inzeratylok">Bratislava<br>811 09</div>
+<div class="inzeratyview">1776 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195647649');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195647649');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','6318587','5349485','Janko+Anik%C3%B3');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195647649');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195734538/astor-hlada-novy-domov.php"><img src="https://www.bazos.sk/img/1t/538/195734538.jpg?t=1789924156" class="obrazek" alt="Astor hľadá nový domov" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195734538/astor-hlada-novy-domov.php">Astor hľadá nový domov</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 15.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Darujeme psa Astora do dobrých rúk. Je to kríženec bavorského farbiara s nemeckým ovčiakom, má 8rokov. 
+
+Je čipovaný, očkovaný, povahovo dobrý , pekne hlási a je vhodný aj na stráženie.
+
+Z osobných dôvodov sa oňho, žiaľ, už nevieme ďalej starať a chceme mu nájsť nový domov.
+
+📍 Lokalita: Oščadnica/Ži ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">Zadarmo</span></b></div>
+<div class="inzeratylok">Čadca<br>023 01</div>
+<div class="inzeratyview">472 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195734538');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195734538');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','0','5259491','Gabriela');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195734538');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195304480/hladame-milujuce-domovy-pre-5-psikov-nemeckeho-drotosrsteho.php"><img src="https://www.bazos.sk/img/1t/480/195304480.jpg?t=1789653777" class="obrazek" alt="Hľadáme milujúce domovy ❤️🏠🐶" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195304480/hladame-milujuce-domovy-pre-5-psikov-nemeckeho-drotosrsteho.php">Hľadáme milujúce domovy ❤️🏠🐶</a></h2><span class=velikost10> - <span title="TOP 7x Platí do 15.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Ponúkame na predaj nádherné a zdravé šteniatka – 5 psíkov plemena nemecký drôtosrstý stavač po čistokrvných rodičoch bez PP.
+
+Šteniatka sú odchovávané v rodinnom prostredí s maximálnou starostlivosťou, pozornosťou a láskou. Sú skvelo socializované, zvyknuté na kontakt s ľuďmi a plné životnej energ ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   400 €</span></b></div>
+<div class="inzeratylok">Námestovo<br>029 43</div>
+<div class="inzeratyview">2837 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195304480');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195304480');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','0','12936630','Jaroslav');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195304480');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195637360/pagekony-a-tera-doplnky-geckosvk-frapp-capp-lw.php"><img src="https://www.bazos.sk/img/1t/360/195637360.jpg?t=1789648527" class="obrazek" alt="Pagekóny a tera doplnky GeckoSVK (Frapp, Capp, LW,...)" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195637360/pagekony-a-tera-doplnky-geckosvk-frapp-capp-lw.php">Pagekóny a tera doplnky GeckoSVK (Frapp, Capp, LW,...)</a></h2><span class=velikost10> - <span title="TOP 7x Platí do 15.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Pagekóny riasnaté (correlophus ciliatus) zo Slovenského chovu GeckoSVK.
+Dostupné aj morfy ako Cappucino, Frappucino, Lilly white,...
+
+Naučené samostatne loviť cvrčky aj papať kašičky.
+Ku každému jedincovi presný dátum narodenia.
+
+Celú ponuku pagekónov s cenami, ako aj doplnky k chovu, informác ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">V texte</span></b></div>
+<div class="inzeratylok">Piešťany<br>921 01</div>
+<div class="inzeratyview">261 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195637360');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195637360');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5579187','4718679','Juraj');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195637360');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195637320/pagekony-riasnate-frappucino-cappucino-lw-a-doplnky.php"><img src="https://www.bazos.sk/img/1t/320/195637320.jpg?t=1789648399" class="obrazek" alt="Pagekóny riasnaté (Frappucino, Cappucino, LW) a doplnky" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195637320/pagekony-riasnate-frappucino-cappucino-lw-a-doplnky.php">Pagekóny riasnaté (Frappucino, Cappucino, LW) a doplnky</a></h2><span class=velikost10> - <span title="TOP 7x Platí do 15.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Correlophus ciliatus od Slovenských chovateľov GeckoSVK.
+Dostupné samci aj samičky, aj v morfoch Cappucino, Frappucino, LW, ale aj klasické.
+
+Každý jedinec má určené pohlavie, dátum narodenia, aktuálnu váhu.
+
+Sú naučené samostatne loviť cvrčky aj papať kašičky rôznych príchutí.
+
+
+Celú ponuku ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">V texte</span></b></div>
+<div class="inzeratylok">Topoľčany<br>955 01</div>
+<div class="inzeratyview">188 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195637320');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195637320');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5579187','4718679','Juraj');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195637320');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195534092/premium-krevetky-pplmrktt-ba-express-dorucenie-pondelok.php"><img src="https://www.bazos.sk/img/1t/092/195534092.jpg?t=1789402332" class="obrazek" alt="PREMIUM KREVETKY PP,LM,RK,TT, BA EXPRESS dorucenie PONDELOK" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195534092/premium-krevetky-pplmrktt-ba-express-dorucenie-pondelok.php">PREMIUM KREVETKY PP,LM,RK,TT, BA EXPRESS dorucenie PONDELOK</a></h2><span class=velikost10> - <span title="TOP 10x Platí do 15.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>PREMIUM Hobby AKVA krevetky – chované na kvalitných Premium krmivách🦐
+Rýchle doručenie so zárukou.
+K odder aj BOA, RED BOA, Galaxy Fishbone, Panda OE, rôzne farby Neocaridina Orange Eyes.
+
+OSOBNÝ ODBER TENTO PONDELOK 21. SEPTEMBRA po trase: Prešov, PP, LM, RK,Žilina, P. Bystrica, TRENČÍN, Piešťa ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">V texte</span></b></div>
+<div class="inzeratylok">Bratislava<br>821 04</div>
+<div class="inzeratyview">861 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195534092');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195534092');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','4159767','3800765','RB');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195534092');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195708677/britske-maciatka-k-rezervacii.php"><img src="https://www.bazos.sk/img/1t/677/195708677.jpg?t=1789852937" class="obrazek" alt="Britské mačiatka k rezervácii" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195708677/britske-maciatka-k-rezervacii.php">Britské mačiatka k rezervácii</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 14.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Ponúkame možnosť rezervácie britských lila - krémových mačiatok. V čase odberu budú mať kompletné očkovanie, veterinárny preukaz. Sú viac krát odčervené, naučené na mačací záchod aj škrabadlo. Zvyknuté na bežný ruch domácnosti. Obaja rodičia sú pritulnej a vyrovnanej povahy. Odber mačiatok bude možn ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   350 €</span></b></div>
+<div class="inzeratylok">Senica<br>908 01</div>
+<div class="inzeratyview">349 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195708677');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195708677');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','485178','2877','Miroslava');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195708677');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195705238/francuzsky-buldocek.php"><img src="https://www.bazos.sk/img/1t/238/195705238.jpg?t=1789839077" class="obrazek" alt="Francúzsky buldoček" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195705238/francuzsky-buldocek.php">Francúzsky buldoček</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 14.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Ch.s. hladá domov psíkovi rasy Francúzsky buldoček s PP-FCI nar. 19.6.2026 pri odbere bude čipovaný-odčervený-očkovaní,s preukazom pôvodu.
+Farba strakoš 
+Otec-Ferry Slavic storm 
+Matka-Catherine Bulison dog
+Info-0948096456</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">Dohodou</span></b></div>
+<div class="inzeratylok">Hlohovec<br>920 03</div>
+<div class="inzeratyview">389 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195705238');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195705238');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','12234247','12207526','Peter');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195705238');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195562638/darujem-do-dobrych-ruk.php"><img src="https://www.bazos.sk/img/1t/638/195562638.jpg?t=1789832619" class="obrazek" alt="Darujem do dobrých rúk" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195562638/darujem-do-dobrych-ruk.php">Darujem do dobrých rúk</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 14.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Dobrý deň. 
+
+Hľadáme nový domov 5 ročnému psíkovi plemena Rotvajler,Rtw, očkovaný,cipovany,vhodný do strážnej služby,dobre hlási,treba s nim pracovať, pre viac info volať 0948 756 097</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">V texte</span></b></div>
+<div class="inzeratylok">Bratislava<br>831 04</div>
+<div class="inzeratyview">1263 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195562638');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195562638');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','13393497','13532144','%C4%BDubos');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195562638');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195689638/predam-steniatka-toy-pudel-pudlika.php"><img src="https://www.bazos.sk/img/1t/638/195689638.jpg?t=1789969720" class="obrazek" alt="Predám šteniatka  toy pudel  Pudlika" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195689638/predam-steniatka-toy-pudel-pudlika.php">Predám šteniatka  toy pudel  Pudlika</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 14.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predám šteniatka  toy pudel  Pudlika
+, Predám krásne a zdravé roztomilý  čistokrvné Toy Pudel, Steniatka boli pravidelne odčervenene,a očkované
+s veterinárnym preukazom, Su hravé, priateľské a vyrastajú v kontakte s deťmi, takže sú dobre socializované.Viac info prosim cez tel!!!!. Som k dispozícii ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   650 €</span></b></div>
+<div class="inzeratylok">Senec<br>903 01</div>
+<div class="inzeratyview">767 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195689638');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195689638');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','6218737','12816465','Petra');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195689638');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195001234/rottweiler-s-pp-rotvajler-s-pp-stenata-rotvajlera-s-pp-sten.php"><img src="https://www.bazos.sk/img/1t/234/195001234.jpg?t=1789820963" class="obrazek" alt="Rottweiler s PP  Rotvajler s PP Štenata rotvajlera s PP Šten" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195001234/rottweiler-s-pp-rotvajler-s-pp-stenata-rotvajlera-s-pp-sten.php">Rottweiler s PP  Rotvajler s PP Štenata rotvajlera s PP Šten</a></h2><span class=velikost10> - <span title="TOP 7x Platí do 13.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>CHS vom Hause LEPAROTTI prijíma rezervácie na šteniatka rottwejlera z TOP spojenia nemecká linia.
+
+Šteniatka majú predpoklady na výstavné aj pracovné úspechy na základe úspechov oboch rodičov. Rodičia sú temperamentný, vyrovnaný, priateľský s veľkou chuťou pracovať. Mama robí kynologické ukážky v  ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">Dohodou</span></b></div>
+<div class="inzeratylok">Ilava<br>018 41</div>
+<div class="inzeratyview">1937 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195001234');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195001234');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5709115','12243634','Pater');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195001234');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195673306/jazvecik-trpazlici-kratkosrsty.php"><img src="https://www.bazos.sk/img/1t/306/195673306.jpg?t=1789889985" class="obrazek" alt="Jazvečík trpazličí kratkosrstý" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195673306/jazvecik-trpazlici-kratkosrsty.php">Jazvečík trpazličí kratkosrstý</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 13.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predám šteniatka trpazličieho jazvečíka. Šteniatka sú očkované odčervené, majú 7 týždňov. čierny psík 300€ Lila fenka 350€</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">V texte</span></b></div>
+<div class="inzeratylok">Nové Zámky<br>940 02</div>
+<div class="inzeratyview">1674 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195673306');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195673306');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','0','8968444','J');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195673306');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195444005/premium-krevetky-trencin-za-rk-lm-pp-express-dorucenie.php"><img src="https://www.bazos.sk/img/1t/005/195444005.jpg?t=1789402364" class="obrazek" alt="PREMIUM KREVETKY-KE,PO,PP,LM,MARTIN EXPRESS dorucenie PIATOK" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195444005/premium-krevetky-trencin-za-rk-lm-pp-express-dorucenie.php">PREMIUM KREVETKY-KE,PO,PP,LM,MARTIN EXPRESS dorucenie PIATOK</a></h2><span class=velikost10> - <span title="TOP 11x Platí do 13.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Sladkovodné okrasné riasožravé hobby AKVA krevetky – chované na kvalitných Premium krmivách🦐
+Rýchle doručenie so zárukou.
+K odder aj BOA, RED BOA, Galaxy Fishbone, Panda OE, rôzne farby Neocaridina Orange Eyes. 
+
+OSOBNÝ ODBER  TENTO PIATOK 18. SEPTEMBRA po trase: Košice, PREŠOV, POPRAD, Lipt. Mi ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">V texte</span></b></div>
+<div class="inzeratylok">Martin<br>036 01</div>
+<div class="inzeratyview">1346 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195444005');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195444005');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','4159767','3800765','RB');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195444005');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+<div id="container_two"></div><br><div class="strankovani">Stránka: <b><span class=cisla>1</span></b> <a href="/20/">2</a> <a href="/40/">3</a> <a href="/60/">4</a> <a href="/80/">5</a> <a href="/100/">6</a> <a href="/120/">7</a> <a href="/140/">8</a> <a href="/20/"><b>Ďalšia</b></a></div><br><br><br>
+
+
+</div></div><br>
+
+&copy;2026 Bazoš - <b>Inzercia, bazár </b><br>
+<a href="https://www.bazos.sk/pomoc.php">Pomoc</a>, <a href="https://www.bazos.sk/otazky.php">Otázky</a>, <a href="https://www.bazos.sk/hodnotenie.php">Hodnotenie</a>, <a href="https://www.bazos.sk/kontakt.php">Kontakt</a>, <a href="https://www.bazos.sk/reklama.php">Reklama</a>, <a href="https://www.bazos.sk/podmienky.php">Podmienky</a>, <a href="https://www.bazos.sk/ochrana-udajov.php">Ochrana údajov</a>, <a href="https://www.bazos.sk/rss.php?rub=zv">RSS</a>, <form name="formvkm" id="formvkm" method="post" style="display: inline;"><input type="hidden" name="vkm" value="m"><input type="submit" class="vkm" value="Mobilná verzia"></form><br>
+
+Inzeráty Zvieratá celkom: <b>24539</b>, za 24 hodín: <b>1423</b><br><br>
+<a href="https://www.bazos.sk/mapa-kategorie.php">Mapa kategórií</a>, <a href="https://zvierata.bazos.sk/mapa-search.php">Najvyhľadávanejšie výrazy</a>
+<br>
+Krajiny: <a href="https://zvierata.bazos.sk">Slovensko</a>, <a href="https://zvirata.bazos.cz">Česká republika</a>, <a href="https://zwierzeta.bazos.pl">Poľsko</a>, <a href="https://tiere.bazos.at">Rakúsko</a>
+<br>
+<br>
+</div>
+
+<script src="https://www.bazos.sk/cookie-consent.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"sk","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"cookie_domain": "bazos.sk"});
+});
+</script>
+<a href="#" id="open_preferences_center"> </a>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLZSNE9Z0C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HLZSNE9Z0C');
+</script>
+
+</body>
+</html>

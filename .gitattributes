@@ -1,0 +1,7 @@
+# Normalize line endings in the repository, check out native per OS.
+* text=auto
+
+# Binary assets
+*.png binary
+*.ico binary
+*.woff2 binary

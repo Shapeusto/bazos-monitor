@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<title>Notebooky bazár - PC | Bazoš.sk</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Kategória Notebooky bazár. Vyberajte z 6 386 inzerátov. Predaj ľahko a rýchlo na Bazoš.sk. Cez 400 tisíc užívateľov za deň."><meta property="og:title" content="Notebooky bazár - PC">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bazos.sk">
+<meta property="og:description" content="Kategória Notebooky bazár. Vyberajte z 6 386 inzerátov. Predaj ľahko a rýchlo na Bazoš.sk. Cez 400 tisíc užívateľov za deň.">
+<link rel="canonical" href="https://pc.bazos.sk/notebook/"><meta property="fb:admins" content="1055875657">
+<link rel="stylesheet" href="https://www.bazos.sk/bazos67s.css" type="text/css"><link rel="preload" as="image" href="https://www.bazos.sk/obrazky/bazos.svg">
+<link rel="stylesheet" href="https://www.bazos.sk/bazosprint.css" type="text/css" media="print">
+<link rel="icon" href="https://www.bazos.sk/favicon.svg" type="image/svg+xml">
+<link rel="icon" HREF="https://www.bazos.sk/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="https://www.bazos.sk/apple-touch-icon.png">
+
+<script async="async" src="https://www.google.com/adsense/search/ads.js"></script>
+<script type="text/javascript" charset="utf-8">
+(function(g,o){g[o]=g[o]||function(){(g[o]['q']=g[o]['q']||[]).push(
+  arguments)},g[o]['t']=1*new Date})(window,'_googCsa');
+</script><script>
+var xhr = new XMLHttpRequest();
+var naseptavac_value = '';
+function naseptavac(value) {
+  if (value=='')  {
+  	naseptavac_value = '';
+  	document.getElementById('vysledek').innerHTML='';
+  	}
+else {
+	if (naseptavac_value == value) {
+		return false;
+	}
+	naseptavac_value = value;
+	setTimeout(function () {
+		if (naseptavac_value != value) {
+			return false;
+		}
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4 && naseptavac_value == value){
+				document.getElementById('vysledek').innerHTML = this.responseText;
+			}
+ 		 };
+		xhr.open("POST", '/suggest.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('rubnas=PC&catnas=10&qnas='+encodeURIComponent(naseptavac_value));
+	}, 250);
+}
+}
+
+var naseptavacpsc_value = '';
+function naseptavacpsc(value) {
+  if (value=='')  {
+  	naseptavacpsc_value = '';
+  	document.getElementById('vysledekpsc').innerHTML='<table cellpadding=\"3\" cellspacing=\"0\" class=\"tablenaspsc\"><tr><td class=\"act\" onclick=\"getLocation();\"><b>Inzeráty v okolí</b></td></tr></table>';
+  	}
+else {
+	if (naseptavacpsc_value == value) {
+		return false;
+	}
+	naseptavacpsc_value = value;
+	setTimeout(function () {
+		if (naseptavacpsc_value != value) {
+			return false;
+		}
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4 && naseptavacpsc_value == value){
+				document.getElementById('vysledekpsc').innerHTML = this.responseText;
+			}
+ 		 };
+		xhr.open("POST", '/suggestpsc.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('qnaspsc='+encodeURIComponent(naseptavacpsc_value));
+	}, 250);
+}
+}
+
+function getLocation() {
+if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(showPosition);}
+else {document.getElementById('hlokalita').value = '';}
+}
+function showPosition(position) {
+		xhr.onreadystatechange = function() {
+ 		 if (this.readyState == 4){
+				document.getElementById('hlokalita').value = this.responseText;
+				document.forms['formt'].submit();
+			}
+ 		 };
+		xhr.open("POST", '/zip.php');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.send('latitude='+encodeURIComponent(position.coords.latitude)+'&longitude='+encodeURIComponent(position.coords.longitude));
+}
+
+var agent_value = '';
+function agentclick() {
+  if (document.getElementById('agentmail').value=='')  {
+  	document.getElementById("agentmail").focus();
+    return false;
+  	}
+else {
+agent_value = document.getElementById('agentmail').value;
+xhr.onreadystatechange = function() {
+  if (this.readyState == 4){
+				document.getElementById('overlay').innerHTML = this.responseText;
+			}
+  };
+xhr.open("POST", '/agent.php');
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.send('hledat=&rubrikav=PC&hlokalita=&humkreis=&cenaod=&cenado=&cat=10&typ=&agentmail='+encodeURIComponent(agent_value));
+}
+}
+
+function odeslatrequest(value,params) {
+xhr.onreadystatechange = function() {
+  if (this.readyState == 4){
+				document.getElementById('overlay').innerHTML = this.responseText;
+			}
+  };
+xhr.open("POST", value);
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.send(params);
+}
+function overlay() {
+	el = document.getElementById("overlay");
+	el.style.display = (el.style.display == "inline") ? "none" : "inline";
+}
+function odeslatakci(postaction,value1,value2,value3) {
+document.getElementById('postaction').value = postaction;
+document.getElementById("postv1").value = value1;
+document.getElementById("postv2").value = value2;
+document.getElementById("postv3").value = value3;
+document.formaction.submit();
+}
+</script>
+</head>
+
+<body>
+
+<div class="sirka">
+
+
+<div class="listalogor">
+<div class="listalogol"><a href="https://www.bazos.sk/" title="Bazos.sk - Inzercia, inzeráty"><img src="https://www.bazos.sk/obrazky/bazos.svg" width="199" height="34" alt="Bazos.sk - Inzercia, inzeráty"></a></div>
+<div class="listalogom"><b>... bazár pre každého</b></div>
+<div class="listalogop"><a href="https://www.bazos.sk/oblubene.php"><b>Obľúbené inzeráty</b></a> <a href="https://www.bazos.sk/moje-inzeraty.php"><b>Moje inzeráty</b></a> <a href="/pridat-inzerat.php"><b><span class=pridati>Pridať inzerát</span></b></a></div>
+</div>
+<form name="formt" id="formt" method=get >
+<div class="listah">
+<div class="rubriky">
+<b>
+Čo: <span class=vysokoli><span id="vysledek"></span><input type="search" onkeyup="naseptavac(this.value);" id=hledat name=hledat size="17" maxlength="256" value="" autocomplete="off" title="Čo? Hľadaný výraz"></span>
+
+<select name="rubriky" onchange='this.form.submit();' title="Vyber rubriku">
+<option value="www">Všetky rubriky</option>
+<option value="auto">Auto</option><option value="deti">Deti</option><option value="dom">Dom a záhrada</option><option value="elektro">Elektro</option><option value="foto">Foto</option><option value="hudba">Hudba</option><option value="knihy">Knihy</option><option value="mobil">Mobily</option><option value="motocykle">Motocykle</option><option value="nabytok">Nábytok</option><option value="oblecenie">Oblečenie</option><option value="pc" selected>PC</option><option value="praca">Práca</option><option value="reality">Reality</option><option value="sluzby">Služby</option><option value="stroje">Stroje</option><option value="sport">Šport</option><option value="vstupenky">Vstupenky</option><option value="zvierata">Zvieratá</option><option value="ostatne">Ostatné</option></select>
+
+PSČ (miesto): <span class=vysokolipsc><span id="vysledekpsc"></span><input type="search" name="hlokalita" id="hlokalita" onkeyup="naseptavacpsc(this.value);" onclick="naseptavacpsc(this.value);" value="" size="5" maxlength="25" autocomplete="off" title="Kde? PSČ (miesto)" style="-webkit-appearance: none;"></span>
+Okolie: <input name="humkreis" title="Okolie v km" value="25" size="3" style="width: 25px;"> km
+Cena od: <input name=cenaod title="Cena od €" maxlength="12" size="4" value=""> - do: <input name=cenado title="Cena do €" maxlength="12" size="4" value=""> €  <input type="submit" name="Submit" value="Hľadať">
+<input type="hidden" name="order" id="order"><input type="hidden" name="crp" id="crp"><input type="hidden" id="kitx" name="kitx" value="ano"></b>
+</div>
+</div>
+</form>
+<div class="drobky"><a href=https://www.bazos.sk/>Hlavná stránka</a>  > <a href="https://pc.bazos.sk">PC</a> > <h1 class="nadpiskategorie">Notebooky</h1></div>
+<br>
+
+
+<div class="flexmain"><div class="menuleft"><div class="nadpismenu">Kategórie</div>
+<div class="barvalmenu">
+<div class="barvaleva">
+<a href="/cd/" >DVD, Blu-ray mechaniky</a>
+<a href="https://foto.bazos.sk/">Fotoaparáty</a>
+<a href="/gps/" >GPS navigácia</a>
+<a href="/graficka/" >Grafické karty</a>
+<a href="/hdd/" >Hard disky, SSD</a>
+<a href="/playstation/" >Herné konzoly</a>
+<a href="/volanty/" >Herné zariadenia</a>
+<a href="/hry/" >Hry</a>
+<a href="/chladic/" >Chladiče</a>
+<a href="/klavesnice/" >Klávesnice</a>
+<a href="/kopirka/" >Kopírovacie stroje</a>
+<a href="https://mobil.bazos.sk">Mobilné telefóny</a>
+<a href="/modem/" >Modemy</a>
+<a href="/monitor/" >LCD monitory</a>
+<a href="/mys/" >Myši</a>
+<a href="/notebook/"  id=zvyraznenikat>Notebooky</a>
+<a href="/pamet/" >Pamäte</a>
+<a href="/pc/" >PC, Počítače</a>
+<a href="/procesor/" >Procesory</a>
+<a href="/sit/" >Sieťové komponenty</a>
+<a href="/scaner/" >Scanery</a>
+<a href="/case/" >Skrine, zdroje</a>
+<a href="/software/" >Software</a>
+<a href="/spotrebny/" >Spotrebný materiál</a>
+<a href="/tablet/" >Tablety, E-čítačky</a>
+<a href="/tlaciaren/" >Tlačiarne</a>
+<a href="/wifi/" >Wireless, WiFi</a>
+<a href="/motherboard/" >Základné dosky</a>
+<a href="/ups/" >Záložné zdroje</a>
+<a href="/sound/" >Zvukové karty</a>
+<a href="/ostatni/" >Ostatné</a>
+</div></div>
+</div><div class="maincontent">
+
+
+<div class="listainzerat inzeratyflex">
+<div class="inzeratynadpis"><img src="https://www.bazos.sk/obrazky/list.gif" width="18" height="16" alt="List inzerátov" class=gallerylista> <form name="formgal" id="formgal" method="post" style="display: inline;"><input type="hidden" name="gal" value="g"><input type="image" alt="Submit" src="https://www.bazos.sk/obrazky/gallery.gif" width="18" height="16" class="gallerylist inputgal"></form> Zobrazených 1-20 inzerátov z 6 386</div>
+<div class="inzeratycena"><b><span onclick="document.getElementById('order').value=1;document.forms['formt'].submit();" class="paction">Cena</span></b></div>
+<div class="inzeratylok">Lokalita</div>
+<div class="inzeratyview"><span onclick="document.getElementById('order').value=3;document.forms['formt'].submit();" class="paction">Zobrazenie</span></div>
+</div><form name="formaction" method="post" style="display: inline;"><input type="hidden" id="postaction" name="postaction" value=""><input type="hidden" id="postv1" name="postv1" value=""><input type="hidden" id="postv2" name="postv2" value=""><input type="hidden" id="postv3" name="postv3" value=""></form><button type="button" onclick="odeslatrequest('/agent.php','teloverit=');overlay();">Nové inzeráty e-mailom</button>
+	<div id="overlay">
+     <div></div>
+</div>
+
+<div id="container_one"></div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195709118/predam-hlinikovy156-notebook-fullhd-ips-8gb-256gb-ssd.php"><img src="https://www.bazos.sk/img/1t/118/195709118.jpg?t=1789859041" class="obrazek" alt="Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195709118/predam-hlinikovy156-notebook-fullhd-ips-8gb-256gb-ssd.php">Predám  hliníkový15.6&quot; notebook FullHD IPS 8GB 256GB SSD</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 15.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predám 15.6"" kovový, nový nepoužívaný, multimediálny NB Teclast F15 Plus2
+Základom v tomto notebooku je kvalitná hliníková konštrukcia v zaujímavej tmavošedej farbe ktorá sa odlišuje od zaužívaných prevedení u konkurencie. Priestor je v tomto prípade využitý skutočne efektívne a klávesnica siaha a ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   389 €</span></b></div>
+<div class="inzeratylok">Košice<br>040 12</div>
+<div class="inzeratyview">126 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195709118');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195709118');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5136665','3666705','Peter');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195709118');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195703097/macbook-pro-14-2021-m1-pro-16gb1tb-sk-klavesnica.php"><img src="https://www.bazos.sk/img/1t/097/195703097.jpg?t=1789832501" class="obrazek" alt="MacBook Pro 14&quot; 2021, M1 Pro, 16GB/1TB, SK klávesnica" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195703097/macbook-pro-14-2021-m1-pro-16gb1tb-sk-klavesnica.php">MacBook Pro 14&quot; 2021, M1 Pro, 16GB/1TB, SK klávesnica</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 14.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predávam MacBook Pro 14" (2021) s čipom M1 Pro. Prechádzam na novší model, preto ho ponúkam ďalej. Slúžil mi ako pracovný stroj – kancelária, dokumenty, prezentácie, fotky. Žiadne hranie ani nepretržitá záťaž.
+
+Konfigurácia:
+
+Apple M1 Pro, 10-jadrové CPU / 16-jadrové GPU
+16 GB zjednotenej pamät ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   750 €</span></b></div>
+<div class="inzeratylok">Prievidza<br>972 43</div>
+<div class="inzeratyview">227 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195703097');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195703097');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','13678080','13856160','Marek');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195703097');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/194386727/lenovo-thinkpad-t15-g1-velmi-dory-stav.php"><img src="https://www.bazos.sk/img/1t/727/194386727.jpg?t=1789551407" class="obrazek" alt="Lenovo ThinkPad T15 G1 - veľmi dorý stav" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/194386727/lenovo-thinkpad-t15-g1-velmi-dory-stav.php">Lenovo ThinkPad T15 G1 - veľmi dorý stav</a></h2><span class=velikost10> - <span title="TOP 6x Platí do 13.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predám používaný notebook Lenovo ThinkPad T15 G1 v perfektnom stave, pridám k nemu 65W nabíjačku.
+
+Parametre pc:
+Procesor: Intel(R) Core(TM) i5-10310U CPU @ 1.70GHz (2.21 GHz)
+Ram: 16GB
+GPU: Intel(R) UHD Graphics
+Úložisko: SSD 477GB
+Windows 11 Pro
+Porty USB C
+SIM card reader, čítačka kariet ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   350 €</span></b></div>
+<div class="inzeratylok">Senec<br>925 26</div>
+<div class="inzeratyview">880 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','194386727');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','194386727');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','0','9720721','Zdenko');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','194386727');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195642521/lenovo-p14s-gen-2-ryzen-7-243248gb-ram-radeon-zar.php"><img src="https://www.bazos.sk/img/1t/521/195642521.jpg?t=1789724573" class="obrazek" alt="█ Lenovo P14s gen 2 (Ryzen 7, 24/32/48GB RAM, Radeon, zár.)" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195642521/lenovo-p14s-gen-2-ryzen-7-243248gb-ram-radeon-zar.php">█ Lenovo P14s gen 2 (Ryzen 7, 24/32/48GB RAM, Radeon, zár.)</a></h2><span class=velikost10> - <span title="TOP 4x Platí do 9.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>24GB RAM. Odolný notebook z magnézia a uhlíkových vláken s solidně výkonným CPU od AMD, které je v této generaci výkonější a přitom úspornější než Intel. Jsem plátce DPH. Záruka, možnost přidat WWAN modem na SIM kartu. 
+
+
+Parametry:
+• CPU AMD Ryzen 7 PRO 5850U 1,9 - 4,4Ghz (8 jádro 16 vlákno, 16 ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   498 €</span></b></div>
+<div class="inzeratylok">Česká republika<br>110 00</div>
+<div class="inzeratyview">306 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195642521');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195642521');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','18048','4312','Jakub');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195642521');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195734865/17-alienwarecore-i7-16gb-ram-512ssd-a-1tb-hdd-6gb-gra.php"><img src="https://www.bazos.sk/img/1t/865/195734865.jpg?t=1789925509" class="obrazek" alt="17&quot;  Alienware/Core I7/ 16GB RAM/ 512SSD a 1TB HDD/ 6GB Gra" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195734865/17-alienwarecore-i7-16gb-ram-512ssd-a-1tb-hdd-6gb-gra.php">17&quot;  Alienware/Core I7/ 16GB RAM/ 512SSD a 1TB HDD/ 6GB Gra</a></h2><span class=velikost10> - <span title="TOP 3x Platí do 8.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predam velky 17.3" plne funkcny, vysokovykonny, Herny-Multimedialny NB ALIENWARE 17 ...
+
+✅ Parametre:
+
+LCD 17.3" LED s rozlisenim FullHD 1920x1080 MPx...
+
+Procesor Intel Core I7-4700mq 4x2.4GHz v turborezime 4x3.4GHz / Virtualne osemjadro ...
+
+RAM Operacna pamat 16GB...
+
+NB ma  dva disky,  ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   330 €</span></b></div>
+<div class="inzeratylok">Nitra<br>951 88</div>
+<div class="inzeratyview">74 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195734865');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195734865');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','2154065','5165354','Jozef');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195734865');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195604816/dell-latitude-5520-s-i5-11th-16gb-ram-156-fullhd.php"><img src="https://www.bazos.sk/img/1t/816/195604816.jpg?t=1789560015" class="obrazek" alt="DELL Latitude 5520 s i5 11th, 16GB ram ,15,6&quot; FullHD" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195604816/dell-latitude-5520-s-i5-11th-16gb-ram-156-fullhd.php">DELL Latitude 5520 s i5 11th, 16GB ram ,15,6&quot; FullHD</a></h2><span class=velikost10> - <span title="TOP 4x Platí do 8.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>!!! pokiaľ ponuku čítate, je aktuálna !!!
+
+Predám špičkový pracovný notebook... Od značky DELL model Latitude 5520.. jedná sa o 15,6" prevedenie 1920x1080 , podsvietená klávesnica - super na prácu, atď ... Daná rada sa vyznačuje s vysokou spoľahlivosťou, odolnosťou a pevnou konštrukciou...
+O výko ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   299 €</span></b></div>
+<div class="inzeratylok">Nitra<br>949 01</div>
+<div class="inzeratyview">426 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195604816');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195604816');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','4950898','3515257','Notebook+NR');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195604816');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195708419/predam-lenovo-ideapad-gaming-3-15iah7-i5-12450h-rtx-3050.php"><img src="https://www.bazos.sk/img/1t/419/195708419.jpg?t=1789851644" class="obrazek" alt="Predám Lenovo IdeaPad Gaming 3 15IAH7 – i5-12450H / RTX 3050" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195708419/predam-lenovo-ideapad-gaming-3-15iah7-i5-12450h-rtx-3050.php">Predám Lenovo IdeaPad Gaming 3 15IAH7 – i5-12450H / RTX 3050</a></h2><span class=velikost10> - <span title="TOP 3x Platí do 7.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predám zachovalý herný notebook Lenovo IdeaPad Gaming 3. Notebook je plne funkčný, používaný približne 2–3 roky, pravidelne čistený a bez technických závad. Dôvod predaja je prechod na výkonnejší počítač.
+
+
+Parametre:
+Intel Core i5-12450H (12. generácia)
+NVIDIA GeForce RTX 3050 4 GB
+16 GB DDR4 ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   650 €</span></b></div>
+<div class="inzeratylok">Prešov<br>080 05</div>
+<div class="inzeratyview">165 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195708419');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195708419');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','9987309','9630349','Matej');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195708419');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195474445/notebooky-s-dotykovym-displejom-microsoft-surface-laptop-3.php"><img src="https://www.bazos.sk/img/1t/445/195474445.jpg?t=1789220801" class="obrazek" alt="Notebooky s dotykovým displejom Microsoft Surface Laptop 3" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195474445/notebooky-s-dotykovym-displejom-microsoft-surface-laptop-3.php">Notebooky s dotykovým displejom Microsoft Surface Laptop 3</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 7.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>✅ Záruka 6 mesiacov! ✅
+
+
+➡️ Ľahké, tenké, rýchle, hliníkové notebooky s výdržou na batérií až 12 hodín!
+➡️ Dotyková obrazovka s vysokým jasom, vysokým 2.8K rozíšením a pomerom strán 3:2 (perfekté na kancelárske práce, surfovanie na webe, čítanie dokumentov, filmy!
+➡️ Podsvietená klávesnica s fa ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   329 €</span></b></div>
+<div class="inzeratylok">Komárno<br>946 03</div>
+<div class="inzeratyview">1525 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195474445');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195474445');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','6031395','4945076','Tom%C3%A1%C5%A1+V.+-+Kol%C3%A1rovo');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195474445');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195537076/156-acer-nitro-core-i7-12gb-ram-256-ssd-4gb-nvidia-gr.php"><img src="https://www.bazos.sk/img/1t/076/195537076.jpg?t=1789626071" class="obrazek" alt="15.6&quot; ACER Nitro/ Core i7/ 12GB RAM/ 256 SSD/ 4GB Nvidia Gr" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195537076/156-acer-nitro-core-i7-12gb-ram-256-ssd-4gb-nvidia-gr.php">15.6&quot; ACER Nitro/ Core i7/ 12GB RAM/ 256 SSD/ 4GB Nvidia Gr</a></h2><span class=velikost10> - <span title="TOP 4x Platí do 6.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predam 15.6" plne funkcny, celohlinikovy, ultratenky, vysokovykonny, Herny-Multimedialny NB ACER Nitro Vn7-572TG ...
+
+✅ Parametre:
+
+LCD 15.6" LED s rozlisenim FullHD 1920x1080 MPx...
+
+Procesor Intel Core I7-6500u 2x2.5GHz v turborezime 2x3.1GHz / Virtualne stvorjadro ...
+
+RAM Operacna pamat  ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   240 €</span></b></div>
+<div class="inzeratylok">Nitra<br>951 88</div>
+<div class="inzeratyview">526 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195537076');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195537076');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','2154065','5165354','Jozef');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195537076');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195512267/lenovo-thinkpad-t14-g2core-i7-1165g716gbssd-512gbw11p.php"><img src="https://www.bazos.sk/img/1t/267/195512267.jpg?t=1789367498" class="obrazek" alt="Lenovo ThinkPad T14 G2:Core i7 1165G7,16GB,SSD 512GB,W11P" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195512267/lenovo-thinkpad-t14-g2core-i7-1165g716gbssd-512gbw11p.php">Lenovo ThinkPad T14 G2:Core i7 1165G7,16GB,SSD 512GB,W11P</a></h2><span class=velikost10> - <span title="TOP 4x Platí do 6.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>STAV: refurbished stav A
+PROCESOR: Intel Core i7 1165G7
+RAM: 16GB DDR4 (32GB +200€)
+GRAFICKÁ KARTA: Intel® Iris® Xe Graphics
+SSD/HDD DISK: 512GB M.2 NvME (1TB +120€, 2TB +250€, 4TB +350€)
+MONITOR: 14.1" FHD anti-glare LED (1920 x 1080), matný
+KLÁVESNICA: EU/iná (SK/CZ prelepky +10€)
+FARBA: či ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   350 €</span></b></div>
+<div class="inzeratylok">Žilina<br>010 01</div>
+<div class="inzeratyview">748 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195512267');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195512267');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5588298','6457085','Tibor+%E2%98%8E+0902+259+962');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195512267');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195572314/lenovo-legion-pro-7ultra-9-275hx64gbssd-1tbrtx5070ti.php"><img src="https://www.bazos.sk/img/1t/314/195572314.jpg?t=1789576918" class="obrazek" alt="LENOVO Legion PRO 7:Ultra 9 275HX,64GB,SSD 1TB,RTX5070Ti" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195572314/lenovo-legion-pro-7ultra-9-275hx64gbssd-1tbrtx5070ti.php">LENOVO Legion PRO 7:Ultra 9 275HX,64GB,SSD 1TB,RTX5070Ti</a></h2><span class=velikost10> - <span title="TOP 3x Platí do 4.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>STAV: úplne nový a nepoužívaný, bol rozbalený kvôli vizuálnej kontrole a inštalácii slovenskej verzie Windows
+PROCESOR: Intel Core Ultra 9 275HX
+RAM: 64GB DDR5
+GRAFICKÁ KARTA: nVidia GeForce RTX5070Ti 12GB GDDR7 175W
+SSD/HDD DISK: 1000 GB M.2 NvME (2TB +250€, 4TB +450€)
+MONITOR: 16" WQXGA (2560 ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">  2 250 €</span></b></div>
+<div class="inzeratylok">Žilina<br>010 01</div>
+<div class="inzeratyview">302 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195572314');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195572314');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5588298','6457085','Tibor+%E2%98%8E+0902+259+962');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195572314');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195477516/dell-latitude-5520-s-i7-11th-32gb-ram1tb-ssd-156-fullh.php"><img src="https://www.bazos.sk/img/1t/516/195477516.jpg?t=1789235885" class="obrazek" alt="DELL Latitude 5520 s i7 11th, 32GB ram,1TB ssd ,15,6&quot; FullH" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195477516/dell-latitude-5520-s-i7-11th-32gb-ram1tb-ssd-156-fullh.php">DELL Latitude 5520 s i7 11th, 32GB ram,1TB ssd ,15,6&quot; FullH</a></h2><span class=velikost10> - <span title="TOP 4x Platí do 4.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>!!! pokiaľ ponuku čítate, je aktuálna !!!
+
+Predám špičkový pracovný notebook... Od značky DELL model Latitude 5520.. jedná sa o 15,6" prevedenie 1920x1080 , podsvietená klávesnica - super na prácu, atď ... Daná rada sa vyznačuje s vysokou spoľahlivosťou, odolnosťou a pevnou konštrukciou...
+O výko ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   449 €</span></b></div>
+<div class="inzeratylok">Nitra<br>949 01</div>
+<div class="inzeratyview">1274 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195477516');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195477516');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','4950898','3515257','Notebook+NR');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195477516');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195474123/notebook-s-dotykovym-displejom-microsoft-surface-laptop-2.php"><img src="https://www.bazos.sk/img/1t/123/195474123.jpg?t=1789220782" class="obrazek" alt="Notebook s dotykovým displejom Microsoft Surface Laptop 2" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195474123/notebook-s-dotykovym-displejom-microsoft-surface-laptop-2.php">Notebook s dotykovým displejom Microsoft Surface Laptop 2</a></h2><span class=velikost10> - <span title="TOP 4x Platí do 4.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>✅ Záruka 6 mesiacov! ✅ 
+
+
+➡️ Ľahký, tenký, rýchly, hliníkový notebook s alcantarou s výdržou na batérií až 12 hodín!
+➡️ Dotyková obrazovka s vysokým jasom, vysokým 2.8K rozíšením a pomerom strán 3:2 (perfekté na kancelárske práce, surfovanie na webe, čítanie dokumentov, filmy!
+➡️ Podsvietená kl ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   299 €</span></b></div>
+<div class="inzeratylok">Komárno<br>946 03</div>
+<div class="inzeratyview">1050 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195474123');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195474123');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','6031395','4945076','Tom%C3%A1%C5%A1+V.+-+Kol%C3%A1rovo');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195474123');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195738431/dotykovy-dell-5470-14-full-hd-win11-ssd-podsvieteny.php"><img src="https://www.bazos.sk/img/1t/431/195738431.jpg?t=1789932341" class="obrazek" alt="Dotykový Dell 5470, 14&quot; Full HD, Win11, SSD, podsvietený" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195738431/dotykovy-dell-5470-14-full-hd-win11-ssd-podsvieteny.php">Dotykový Dell 5470, 14&quot; Full HD, Win11, SSD, podsvietený</a></h2><span class=velikost10> - <span title="TOP 2x Platí do 3.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Nanovopreinštalovaný ultrabook Dell Wyse 5470 s WIN11 PRO s podsvietenou klávesnicou,
+- možnosť odkúpiť Váš starý notebook (aj pokazený)
+- Kompletne vyčistený zvnútra od prachu,
+- Aktuálny oficiálny Windows 11 PRO,
+- spolu s vystavenou faktúrou,
+
+- 1 mesiac záruka
+- 14" Full HD displej,
+
+Vl ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   130 €</span></b></div>
+<div class="inzeratylok">Považská Bystrica<br>017 01</div>
+<div class="inzeratyview">33 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195738431');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195738431');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','717877','5821','PBIT');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195738431');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195738228/hp-650-g2-i5-ssd-win11-pro-numericka-klavesnica-rs232.php"><img src="https://www.bazos.sk/img/1t/228/195738228.jpg?t=1789932149" class="obrazek" alt="HP 650 G2, i5, SSD, Win11 PRO, numerická klávesnica, RS232" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195738228/hp-650-g2-i5-ssd-win11-pro-numericka-klavesnica-rs232.php">HP 650 G2, i5, SSD, Win11 PRO, numerická klávesnica, RS232</a></h2><span class=velikost10> - <span title="TOP 2x Platí do 3.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Nanovopreinštalovaný notebook HP Probook 650 G2 s WIN11 PRO,
+- možnosť odkúpiť Váš starý notebook (aj pokazený)
+- Kompletne vyčistený zvnútra od prachu,
+- Aktuálny oficiálny Windows 11 PRO,
+- spolu s vystavenou faktúrou,
+
+- 1 mesiac záruka
+- 15,6" HD displej,
+
+Vlastnosti procesora:
+názov:  ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   169 €</span></b></div>
+<div class="inzeratylok">Považská Bystrica<br>017 01</div>
+<div class="inzeratyview">21 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195738228');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195738228');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','717877','5821','PBIT');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195738228');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195738291/dell-e7240-125hd-podsvietena-klavesnica-i5-ssd.php"><img src="https://www.bazos.sk/img/1t/291/195738291.jpg?t=1789932132" class="obrazek" alt="Dell E7240, 12,5&quot;HD, podsvietená klávesnica, i5, SSD" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195738291/dell-e7240-125hd-podsvietena-klavesnica-i5-ssd.php">Dell E7240, 12,5&quot;HD, podsvietená klávesnica, i5, SSD</a></h2><span class=velikost10> - <span title="TOP 2x Platí do 3.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Nanovopreinštalovaný ultrabook Dell Latitude E7240 s WIN11 PRO,
+- možnosť odkúpiť Váš starý notebook (aj pokazený)
+- Kompletne vyčistený zvnútra od prachu,
+- Aktuálny oficiálny Windows 11 PRO,
+- spolu s vystavenou faktúrou,
+- Podsvietená klávesnica
+
+- 1 mesiac záruka
+- 12,5" HD displej,
+
+V ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   99 €</span></b></div>
+<div class="inzeratylok">Považská Bystrica<br>017 01</div>
+<div class="inzeratyview">29 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195738291');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195738291');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','717877','5821','PBIT');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195738291');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195735173/macbook-air-m4-15.php"><img src="https://www.bazos.sk/img/1t/173/195735173.jpg?t=1789926157" class="obrazek" alt="MacBook Air M4 15’’" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195735173/macbook-air-m4-15.php">MacBook Air M4 15’’</a></h2><span class=velikost10> - <span title="TOP 2x Platí do 3.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predám svoj mac z dôvodu nevyužitia (kupujem iPad) je ako nový minimálne známky používania 
+Počet cyklov batérie 75 maximálna kapacita 99% (viď. foto) 
+K macu pridám nabijacku plus kábel krabicu bohuzial nemám 
+Preferujem skôr predaj ako výmenu pri rýchlom a serióznom jednaní dohoda možná</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">  1 150 €</span></b></div>
+<div class="inzeratylok">Banská Bystrica<br>974 01</div>
+<div class="inzeratyview">61 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195735173');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195735173');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','13736214','7537061','MacBook');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195735173');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195352048/156-asus-x515-i3-10th-8gb-ram-512gb-ssd-intel-uhd.php"><img src="https://www.bazos.sk/img/1t/048/195352048.jpg?t=1789392597" class="obrazek" alt="15.6&quot; ACER Nitro/ Core I5/ 16GB RAM/ 240GB SSD/ NV GTX860." width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195352048/156-asus-x515-i3-10th-8gb-ram-512gb-ssd-intel-uhd.php">15.6&quot; ACER Nitro/ Core I5/ 16GB RAM/ 240GB SSD/ NV GTX860.</a></h2><span class=velikost10> - <span title="TOP 5x Platí do 3.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>Predam 15.6" plne funkcny, celohlinikovy, ultratenky, vysokovykonny, Herny-Multimedialny NB ACER Nitro Vn7-591G...
+
+✅ Parametre:
+
+LCD 15.6" LED s rozlisenim FullHD 1920x1080 MPx...
+
+Procesor Intel Core I5-4210H 2x2.9GHz v turborezime 2x3.5GHz / Virtualne stvorjadro ...
+
+RAM Operacna pamat 16 ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   210 €</span></b></div>
+<div class="inzeratylok">Nitra<br>951 88</div>
+<div class="inzeratyview">1562 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195352048');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195352048');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','2154065','5165354','Jozef');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195352048');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195159142/notebooky-s-dotykovym-displejom-microsoft-surface-laptop.php"><img src="https://www.bazos.sk/img/1t/142/195159142.jpg?t=1788349977" class="obrazek" alt="Notebooky s dotykovým displejom Microsoft Surface Laptop" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195159142/notebooky-s-dotykovym-displejom-microsoft-surface-laptop.php">Notebooky s dotykovým displejom Microsoft Surface Laptop</a></h2><span class=velikost10> - <span title="TOP 10x Platí do 3.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>✅ Záruka 6 mesiacov! ✅ 
+✅ Cena 149€ vrátane doručenia!✅ 
+
+
+➡️ Ľahké, tenké, rýchle, hliníkové notebooky s alcantarou s výdržou na batérií až 12 hodín!
+➡️ Dotyková obrazovka s vysokým jasom, vysokým 2.8K rozíšením a pomerom strán 3:2 (perfekté na kancelárske práce, surfovanie na webe, čítanie do ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   149 €</span></b></div>
+<div class="inzeratylok">Komárno<br>946 03</div>
+<div class="inzeratyview">3119 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195159142');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195159142');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','6031395','4945076','Tom%C3%A1%C5%A1+V.+-+Kol%C3%A1rovo');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195159142');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+
+<div class="inzeraty inzeratyflex">
+<div class="inzeratynadpis"><a href="/inzerat/195564370/lenovo-yoga-x13-g3-core-i7-1265u16gbssd-512gbw11p.php"><img src="https://www.bazos.sk/img/1t/370/195564370.jpg?t=1789468320" class="obrazek" alt="Lenovo Yoga X13 G3: Core i7 1265U,16GB,SSD 512GB,W11P" width="170" height="128"></a>
+<h2 class=nadpis><a href="/inzerat/195564370/lenovo-yoga-x13-g3-core-i7-1265u16gbssd-512gbw11p.php">Lenovo Yoga X13 G3: Core i7 1265U,16GB,SSD 512GB,W11P</a></h2><span class=velikost10> - <span title="TOP 3x Platí do 3.10. 2026" class="ztop">TOP</span> - [21.9. 2026]</span><br>
+<div class=popis>STAV: refurbished stav A
+PROCESOR: Intel Core i7 1265U
+RAM: 16GB DDR5
+GRAFICKÁ KARTA: Intel® Iris® Xe Graphics
+SSD/HDD DISK: 512GB M.2 NvME (1TB +120€, 2TB +250€, 4TB +350€)
+MONITOR: 13.3" WUXGA anti-glare LED (1920 x 1200), matný, dotykový
+KLÁVESNICA: EU/iná (SK/CZ prelepky +10€)
+FARBA: čier ...</div><br><br>
+</div>
+<div class="inzeratycena"><b><span translate="no">   650 €</span></b></div>
+<div class="inzeratylok">Žilina<br>010 01</div>
+<div class="inzeratyview">230 x</div>
+<div class="inzeratyakce">
+<span onclick="odeslatakci('spam','195564370');return false;" class="akce paction">Označiť zlý inzerát</span> <span onclick="odeslatakci('category','195564370');return false;" class="akce paction">Chybnú kategóriu</span> <span onclick="odeslatakci('rating','5588298','6457085','Tibor+%E2%98%8E+0902+259+962');return false;" class="akce paction">Ohodnotiť užívateľa</span> <span onclick="odeslatakci('edit','195564370');return false;" class="akce paction">Zmazať/Upraviť/Topovať</span>
+</div>
+</div>
+<div id="container_two"></div><script type="text/javascript" charset="utf-8">
+var pageOptions = {
+  'pubId': 'pub-3645948300403337',
+  'query' : "Notebooky",
+  "channel": "4622775456",  'linkTarget' : '_blank',
+  'personalizedAds' : 'false',
+  'ivt': false,
+'styleId' : '6171314811',  'hl': 'sk'
+};
+
+var adblock1 = {
+  'container': 'container_one',
+  'width': 'auto',
+  'maxTop' : 2
+};
+
+var adblock2 = {
+  'container': 'container_two',
+  'width': 'auto',
+  'number' : 2
+};
+
+_googCsa('ads', pageOptions, adblock2);</script>
+
+<br><div class="strankovani">Stránka: <b><span class=cisla>1</span></b> <a href="/notebook/20/">2</a> <a href="/notebook/40/">3</a> <a href="/notebook/60/">4</a> <a href="/notebook/80/">5</a> <a href="/notebook/100/">6</a> <a href="/notebook/120/">7</a> <a href="/notebook/140/">8</a> <a href="/notebook/20/"><b>Ďalšia</b></a></div><br><br><br>
+
+
+</div></div><br>
+
+&copy;2026 Bazoš - <b>Inzercia, bazár Notebooky</b><br>
+<a href="https://www.bazos.sk/pomoc.php">Pomoc</a>, <a href="https://www.bazos.sk/otazky.php">Otázky</a>, <a href="https://www.bazos.sk/hodnotenie.php">Hodnotenie</a>, <a href="https://www.bazos.sk/kontakt.php">Kontakt</a>, <a href="https://www.bazos.sk/reklama.php">Reklama</a>, <a href="https://www.bazos.sk/podmienky.php">Podmienky</a>, <a href="https://www.bazos.sk/ochrana-udajov.php">Ochrana údajov</a>, <a href="https://www.bazos.sk/rss.php?rub=pc&cat=10">RSS</a>, <form name="formvkm" id="formvkm" method="post" style="display: inline;"><input type="hidden" name="vkm" value="m"><input type="submit" class="vkm" value="Mobilná verzia"></form><br>
+
+Inzeráty PC celkom: <b>34507</b>, za 24 hodín: <b>1883</b><br><br>
+<a href="https://www.bazos.sk/mapa-kategorie.php">Mapa kategórií</a>, <a href="https://pc.bazos.sk/mapa-search.php">Najvyhľadávanejšie výrazy</a>
+<br>
+Krajiny: <a href="https://pc.bazos.sk">Slovensko</a>, <a href="https://pc.bazos.cz">Česká republika</a>, <a href="https://komputer.bazos.pl">Poľsko</a>, <a href="https://pc.bazos.at">Rakúsko</a>
+<br>
+<br>
+</div>
+
+<script src="https://www.bazos.sk/cookie-consent.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"sk","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"cookie_domain": "bazos.sk"});
+});
+</script>
+<a href="#" id="open_preferences_center"> </a>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLZSNE9Z0C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HLZSNE9Z0C');
+</script>
+
+</body>
+</html>
